@@ -1,0 +1,405 @@
+{
+  "collections": [
+    {
+      "name": "Colors",
+      "modes": [
+        {
+          "name": "Mode 1",
+          "modeId": "mode1"
+        }
+      ],
+      "variableIds": [
+        "brand-primary",
+        "brand-secondary",
+        "bg-primary",
+        "bg-white",
+        "bg-light",
+        "button-color",
+        "button-color-2",
+        "button-color-3",
+        "text-primary",
+        "text-primary-2",
+        "text-secondary",
+        "text-inverse",
+        "text-inverse-2"
+      ]
+    },
+    {
+      "name": "Radius",
+      "modes": [
+        {
+          "name": "Mode 1",
+          "modeId": "mode1"
+        }
+      ],
+      "variableIds": [
+        "radius-button",
+        "radius-card",
+        "radius-pill"
+      ]
+    },
+    {
+      "name": "Spacing",
+      "modes": [
+        {
+          "name": "Mode 1",
+          "modeId": "mode1"
+        }
+      ],
+      "variableIds": [
+        "space-1",
+        "space-2",
+        "space-3",
+        "space-4",
+        "space-5",
+        "space-6",
+        "space-7"
+      ]
+    },
+    {
+      "name": "Typography",
+      "modes": [
+        {
+          "name": "Mode 1",
+          "modeId": "mode1"
+        }
+      ],
+      "variableIds": [
+        "font-hero",
+        "font-section",
+        "font-body-lg",
+        "font-body",
+        "font-micro",
+        "font-family"
+      ]
+    }
+  ],
+  "variables": [
+    {
+      "id": "brand-primary",
+      "name": "brand/brand primary",
+      "type": "COLOR",
+      "scopes": ["ALL_SCOPES"],
+      "valuesByMode": {
+        "mode1": {
+          "r": 0.10980392156862745,
+          "g": 0.20784313725490197,
+          "b": 0.20784313725490197,
+          "a": 1
+        }
+      }
+    },
+    {
+      "id": "brand-secondary",
+      "name": "brand/brand Secondary",
+      "type": "COLOR",
+      "scopes": ["ALL_SCOPES"],
+      "valuesByMode": {
+        "mode1": {
+          "r": 0.9647058823529412,
+          "g": 0.5411764705882353,
+          "b": 0.2901960784313726,
+          "a": 1
+        }
+      }
+    },
+    {
+      "id": "bg-primary",
+      "name": "BG/bgprimary",
+      "type": "COLOR",
+      "scopes": ["ALL_SCOPES"],
+      "valuesByMode": {
+        "mode1": {
+          "r": 1,
+          "g": 0.9764705882352941,
+          "b": 0.9568627450980393,
+          "a": 1
+        }
+      }
+    },
+    {
+      "id": "bg-white",
+      "name": "BG/bg white",
+      "type": "COLOR",
+      "scopes": ["ALL_SCOPES"],
+      "valuesByMode": {
+        "mode1": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1
+        }
+      }
+    },
+    {
+      "id": "bg-light",
+      "name": "BG/bg light",
+      "type": "COLOR",
+      "scopes": ["ALL_SCOPES"],
+      "valuesByMode": {
+        "mode1": {
+          "r": 1,
+          "g": 0.9607843137254902,
+          "b": 0.9215686274509803,
+          "a": 1
+        }
+      }
+    },
+    {
+      "id": "button-color",
+      "name": "button/color button",
+      "type": "COLOR",
+      "scopes": ["ALL_SCOPES"],
+      "valuesByMode": {
+        "mode1": {
+          "r": 0.10980392156862745,
+          "g": 0.20784313725490197,
+          "b": 0.20784313725490197,
+          "a": 1
+        }
+      }
+    },
+    {
+      "id": "button-color-3",
+      "name": "button/color button 3",
+      "type": "COLOR",
+      "scopes": ["ALL_SCOPES"],
+      "valuesByMode": {
+        "mode1": {
+          "r": 0.9647058823529412,
+          "g": 0.5411764705882353,
+          "b": 0.2901960784313726,
+          "a": 1
+        }
+      }
+    },
+    {
+      "id": "button-color-2",
+      "name": "button/color button 2",
+      "type": "COLOR",
+      "scopes": ["ALL_SCOPES"],
+      "valuesByMode": {
+        "mode1": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1
+        }
+      }
+    },
+    {
+      "id": "text-primary",
+      "name": "text/textprimary",
+      "type": "COLOR",
+      "scopes": ["ALL_SCOPES"],
+      "valuesByMode": {
+        "mode1": {
+          "r": 0.08235294117647059,
+          "g": 0.15294117647058825,
+          "b": 0.15294117647058825,
+          "a": 1
+        }
+      }
+    },
+    {
+      "id": "text-primary-2",
+      "name": "text/textprimary 2",
+      "type": "COLOR",
+      "scopes": ["ALL_SCOPES"],
+      "valuesByMode": {
+        "mode1": {
+          "r": 0.9647058823529412,
+          "g": 0.5411764705882353,
+          "b": 0.2901960784313726,
+          "a": 1
+        }
+      }
+    },
+    {
+      "id": "text-secondary",
+      "name": "text/text secondary",
+      "type": "COLOR",
+      "scopes": ["ALL_SCOPES"],
+      "valuesByMode": {
+        "mode1": {
+          "r": 0.3568627450980392,
+          "g": 0.3568627450980392,
+          "b": 0.3568627450980392,
+          "a": 1
+        }
+      }
+    },
+    {
+      "id": "text-inverse",
+      "name": "text/text inverse",
+      "type": "COLOR",
+      "scopes": ["ALL_SCOPES"],
+      "valuesByMode": {
+        "mode1": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1
+        }
+      }
+    },
+    {
+      "id": "text-inverse-2",
+      "name": "text/text inverse 2",
+      "type": "COLOR",
+      "scopes": ["ALL_SCOPES"],
+      "valuesByMode": {
+        "mode1": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1
+        }
+      }
+    },
+    {
+      "id": "radius-button",
+      "name": "radius button",
+      "type": "NUMBER",
+      "scopes": ["ALL_SCOPES"],
+      "valuesByMode": {
+        "mode1": 30
+      }
+    },
+    {
+      "id": "radius-card",
+      "name": "radius card",
+      "type": "NUMBER",
+      "scopes": ["ALL_SCOPES"],
+      "valuesByMode": {
+        "mode1": 32
+      }
+    },
+    {
+      "id": "radius-pill",
+      "name": "radius pill",
+      "type": "NUMBER",
+      "scopes": ["ALL_SCOPES"],
+      "valuesByMode": {
+        "mode1": 999
+      }
+    },
+    {
+      "id": "space-1",
+      "name": "space 1",
+      "type": "NUMBER",
+      "scopes": ["ALL_SCOPES"],
+      "valuesByMode": {
+        "mode1": 8
+      }
+    },
+    {
+      "id": "space-2",
+      "name": "space 2",
+      "type": "NUMBER",
+      "scopes": ["ALL_SCOPES"],
+      "valuesByMode": {
+        "mode1": 16
+      }
+    },
+    {
+      "id": "space-3",
+      "name": "space 3",
+      "type": "NUMBER",
+      "scopes": ["ALL_SCOPES"],
+      "valuesByMode": {
+        "mode1": 24
+      }
+    },
+    {
+      "id": "space-4",
+      "name": "space 4",
+      "type": "NUMBER",
+      "scopes": ["ALL_SCOPES"],
+      "valuesByMode": {
+        "mode1": 32
+      }
+    },
+    {
+      "id": "space-5",
+      "name": "space 5",
+      "type": "NUMBER",
+      "scopes": ["ALL_SCOPES"],
+      "valuesByMode": {
+        "mode1": 48
+      }
+    },
+    {
+      "id": "space-6",
+      "name": "space 6",
+      "type": "NUMBER",
+      "scopes": ["ALL_SCOPES"],
+      "valuesByMode": {
+        "mode1": 64
+      }
+    },
+    {
+      "id": "space-7",
+      "name": "space 7",
+      "type": "NUMBER",
+      "scopes": ["ALL_SCOPES"],
+      "valuesByMode": {
+        "mode1": 96
+      }
+    },
+    {
+      "id": "font-hero",
+      "name": "size/font hero",
+      "type": "NUMBER",
+      "scopes": ["ALL_SCOPES"],
+      "valuesByMode": {
+        "mode1": 48
+      }
+    },
+    {
+      "id": "font-section",
+      "name": "size/font section",
+      "type": "NUMBER",
+      "scopes": ["ALL_SCOPES"],
+      "valuesByMode": {
+        "mode1": 24
+      }
+    },
+    {
+      "id": "font-body-lg",
+      "name": "size/font body lg",
+      "type": "NUMBER",
+      "scopes": ["ALL_SCOPES"],
+      "valuesByMode": {
+        "mode1": 18
+      }
+    },
+    {
+      "id": "font-body",
+      "name": "size/font body",
+      "type": "NUMBER",
+      "scopes": ["ALL_SCOPES"],
+      "valuesByMode": {
+        "mode1": 16
+      }
+    },
+    {
+      "id": "font-micro",
+      "name": "size/font micro",
+      "type": "NUMBER",
+      "scopes": ["ALL_SCOPES"],
+      "valuesByMode": {
+        "mode1": 16
+      }
+    },
+    {
+      "id": "font-family",
+      "name": "IBM Plex Sans Arabic",
+      "type": "STRING",
+      "scopes": ["ALL_SCOPES"],
+      "valuesByMode": {
+        "mode1": "IBM Plex Sans Arabic"
+      }
+    }
+  ]
+}

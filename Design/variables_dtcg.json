@@ -1,0 +1,112 @@
+{
+  "Colors": {
+    "$type": "color",
+    "brand": {
+      "primary": {
+        "$value": "#1C3535"
+      },
+      "secondary": {
+        "$value": "#F68A4A"
+      }
+    },
+    "BG": {
+      "primary": {
+        "$value": "#FFF9F4"
+      },
+      "white": {
+        "$value": "#FFFFFF"
+      },
+      "light": {
+        "$value": "#FFF5EB"
+      }
+    },
+    "button": {
+      "color": {
+        "$value": "#1C3535"
+      },
+      "color-2": {
+        "$value": "#FFFFFF"
+      },
+      "color-3": {
+        "$value": "#F68A4A"
+      }
+    },
+    "text": {
+      "primary": {
+        "$value": "#152727"
+      },
+      "primary-2": {
+        "$value": "#F68A4A"
+      },
+      "secondary": {
+        "$value": "#5B5B5B"
+      },
+      "inverse": {
+        "$value": "#FFFFFF"
+      },
+      "inverse-2": {
+        "$value": "#000000"
+      }
+    }
+  },
+  "Radius": {
+    "$type": "number",
+    "button": {
+      "$value": 30
+    },
+    "card": {
+      "$value": 32
+    },
+    "pill": {
+      "$value": 999
+    }
+  },
+  "Spacing": {
+    "$type": "number",
+    "1": {
+      "$value": 8
+    },
+    "2": {
+      "$value": 16
+    },
+    "3": {
+      "$value": 24
+    },
+    "4": {
+      "$value": 32
+    },
+    "5": {
+      "$value": 48
+    },
+    "6": {
+      "$value": 64
+    },
+    "7": {
+      "$value": 96
+    }
+  },
+  "Typography": {
+    "size": {
+      "$type": "number",
+      "hero": {
+        "$value": 48
+      },
+      "section": {
+        "$value": 24
+      },
+      "body-lg": {
+        "$value": 18
+      },
+      "body": {
+        "$value": 16
+      },
+      "micro": {
+        "$value": 16
+      }
+    },
+    "font-family": {
+      "$type": "fontFamily",
+      "$value": "IBM Plex Sans Arabic"
+    }
+  }
+}
