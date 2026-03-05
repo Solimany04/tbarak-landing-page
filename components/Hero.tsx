@@ -7,8 +7,6 @@ import { ChevronDown } from "lucide-react";
 import { scrollToNextSection } from "@/lib/actions/scrollToNextSection";
 import { ParticlesBackground } from "@/components/ParticlesBackground";
 
-
-
 export default function Hero() {
   return (
     <>
@@ -26,7 +24,7 @@ export default function Hero() {
         {/* <div className="absolute inset-0 bg-black/40 -z-10" /> */}
 
         {/* Content */}
-        <ParticlesBackground/>
+        <ParticlesBackground />
         <div className="container relative z-20 flex flex-col gap-2 items-center justify-center text-center text-white">
           <h1 className="text-5xl md:text-[64px] font-semibold w-fit">
             تبارك للأقمشة
@@ -75,7 +73,7 @@ export default function Hero() {
             </div>
           </div>
         </div>
-        <div className="flex justify-center absolute bottom-0">
+        <div className="flex justify-center absolute bottom-0 z-30">
           <button
             onClick={() => scrollToNextSection(`about-section`)}
             className="animate-bounce"
