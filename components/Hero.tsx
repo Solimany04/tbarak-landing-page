@@ -9,7 +9,7 @@ import { ParticlesBackground } from "@/components/ParticlesBackground";
 
 
 
-export default function Form1() {
+export default function Hero() {
   return (
     <>
       <main className="relative h-124 md:h-154 lg:h-178 w-full overflow-hidden flex flex-col items-center justify-center">
