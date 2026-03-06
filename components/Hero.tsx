@@ -3,29 +3,35 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import React from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Fullscreen } from "lucide-react";
 import { scrollToNextSection } from "@/lib/actions/scrollToNextSection";
 import { ParticlesBackground } from "@/components/ParticlesBackground";
 
 export default function Hero() {
   return (
     <>
-      <main className="relative h-124 md:h-154 lg:h-178 w-full overflow-hidden flex flex-col items-center justify-center">
+    {/* height classes: h-124 md:h-154 lg:h-fit  min-h-[calc(100vh-50px)]*/}
+      <main id="hero" className="relative min-h-[calc(100vh-100px)] w-full flex flex-col items-center justify-center">
         <Image
           src="/Hero.png"
           alt="background"
-          // width={1000}
-          // height={1000}
-          fill
-          priority
-          className="object-cover -z-10"
+          width={1920}
+          height={1080}
+          style={{
+            height: "100%",
+            width: "100%",
+          }}
+          // fill
+          // priority
+          className="object-cover absolute inset-0 -z-10"
         />
-        {/* overlay for text readability */}
-        {/* <div className="absolute inset-0 bg-black/40 -z-10" /> */}
+        <ParticlesBackground />
 
         {/* Content */}
-        <ParticlesBackground />
-        <div className="container relative z-20 flex flex-col gap-2 items-center justify-center text-center text-white">
+        <div
+          id="content"
+          className="relative z-20 flex flex-col gap-2 items-center justify-center text-center text-white"
+        >
           <h1 className="text-5xl md:text-[64px] font-semibold w-fit">
             تبارك للأقمشة
           </h1>
@@ -90,7 +96,7 @@ export default function Hero() {
         
       </div> */}
       </main>
-      <section id="about-section" className="h-500"></section>
+      <section id="about-section" className="h-500 bg-accent"></section>
     </>
   );
 }
