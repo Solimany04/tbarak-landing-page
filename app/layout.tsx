@@ -1,5 +1,6 @@
 import { IBM_Plex_Sans_Arabic } from "next/font/google";
 
+import "flag-icons/css/flag-icons.min.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -21,7 +22,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  icons:"",
+  icons:"/Vector.svg",
   title: "Tbarak",
   description: "Tbarak for high quality textiles",
 };
