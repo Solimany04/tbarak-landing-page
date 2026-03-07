@@ -22,7 +22,6 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  icons:"/vector.svg",
   title: "Tbarak",
   description: "Tbarak for high quality textiles",
 };
