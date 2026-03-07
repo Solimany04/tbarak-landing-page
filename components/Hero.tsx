@@ -13,7 +13,7 @@ export default function Hero() {
   return (
     <>
     {/* height classes: h-124 md:h-154 lg:h-fit  min-h-[calc(100vh-50px)]*/}
-      <main id="hero" className="relative min-h-[calc(100vh-200px)] w-full flex flex-col items-center justify-center">
+      <main id="hero" className="relative min-h-[calc(100vh-250px)] w-full flex flex-col items-center justify-center">
         <Image
           src="/Hero.png"
           alt="background"
@@ -32,22 +32,22 @@ export default function Hero() {
         {/* Content */}
         <div
           id="content"
-          className="relative flex flex-col gap-2 items-center justify-center text-center text-white"
+          className="relative flex flex-col items-center justify-center text-center text-white"
         >
-          <h1 className="text-5xl md:text-[64px] font-semibold w-fit">
+          <h1 className="text-5xl md:text-[64px] font-medium w-fit mb-6">
             تبارك للأقمشة
           </h1>
-          <h5 className="text-xl md:text-2xl font-medium">جودة تلمسها بيديك</h5>
-          <p className="font-medium md:text-xl">
+          <h5 className="text-xl md:text-2xl font-normal mb-5">جودة تلمسها بيديك</h5>
+          <p className="font-normal md:text-xl mb-10">
             نوفر لتجار الأقمشة والمصانع خامات عالية الجودة بتوريد ثابت وأسعار
             تنافسية.
           </p>
-          <div className="flex items-center justify-center text-center gap-4 my-8">
+          <div className="flex items-center justify-center text-center gap-4 mb-[44px]">
             <Button
               variant="heroOutline"
               type="submit"
               size="hero"
-              className="font-normal"
+              className=""
             >
               استكشف الآن
             </Button>
@@ -55,7 +55,7 @@ export default function Hero() {
               variant="heroSecondary"
               type="submit"
               size="hero"
-              className=""
+              className="font-normal"
             >
               تواصل معنا
             </Button>
@@ -87,7 +87,7 @@ export default function Hero() {
             className="animate-bounce"
             aria-label="Scroll down"
           >
-            <ChevronDown className="text-white h-9 w-12 md:h-12 md:w-18 lg:mb-[19px] cursor-pointer" />
+            <ChevronDown strokeWidth={1} className="text-white h-12 w-18 md:h-13 md:w-13 lg:mb-[19px] cursor-pointer" />
           </button>
         </div>
         {/*       

@@ -23,7 +23,7 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         heroOutline: " font-medium font-normal text-[16px] border-2 bg-transparent text-primary-foreground shadow-xs hover:bg-white/12 dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
         heroSecondary:
-        "bg-secondary text-primary-foreground hover:bg-destructive hover:text-secondary",
+        "bg-secondary text-[16px] text-primary-foreground hover:bg-destructive hover:text-secondary",
         navSecondary:
         "bg-secondary text-primary-foreground hover:bg-primary-foreground hover:text-foreground",
 

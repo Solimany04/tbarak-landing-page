@@ -73,7 +73,7 @@ const Navbar = () => {
         href="http://"
         target="_blank"
         rel="noopener noreferrer"
-        className="mr-4 md:mr-8 lg:mr-16 w-[68px] md:w-[80px] lg:w-[100px]"
+        className="ml-auto md:ml-0 mr-4 md:mr-8 lg:mr-16 || w-auto max-w-[68px] md:w-auto md:max-w-[80px] lg:w-auto lg:max-w-[100px]"
       >
         <Image
           src="/vector.svg"
