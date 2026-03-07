@@ -1,4 +1,3 @@
-{/*
 "use client";
 
 import { useState, useEffect } from "react";
@@ -37,4 +36,3 @@ export function useActiveSection(sectionIds: string[]) {
 
   return activeSection;
 }
-*/}
