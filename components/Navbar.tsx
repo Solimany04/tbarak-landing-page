@@ -56,11 +56,11 @@ const Navbar = () => {
             <a
               href={`#${link.id}`}
               className={cn(
-                "rounded-md transition-colors",
+                "transition-colors",
                 // هنا بنغير ستايل اللينك نفسه لو هو الـ Active Section
                 activeSection === link.id
-                  ? "underline underline-offset-[10px] text-secondary font-semibold" // الستايل في حالة إنه نشط
-                  : "", // الستايل العادي
+                  ? "underline underline-offset-[12px] text-secondary font-semibold" // الستايل في حالة إنه نشط
+                  : "navLink relative inline-block after:content-[''] after:absolute after:-bottom-[7px] after:text-secondary after:right-0 after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 hover:after:w-[36px]", // الستايل العادي
               )}
             >
               {link.label}
@@ -68,27 +68,6 @@ const Navbar = () => {
           </li>
         ))}
       </ul>
-
-      {/* <div id="navigation" className="flex gap-4 lg:gap-8 text-xl">
-        <a href="" className="">
-          تواصل معنا
-        </a>
-        <a href="" className="">
-          المميزات
-        </a>
-        <a href="" className="">
-          مراحل العمل
-        </a>
-        <a href="" className="">
-          المنتجات
-        </a>
-        <a href="" className="">
-          من نحن
-        </a>
-        <a href="" className="">
-          الصفحة الرئيسية
-        </a>
-      </div> */}
       {/* LOGO */}
       <a
         href="http://"
