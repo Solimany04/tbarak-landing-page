@@ -8,10 +8,12 @@ import { scrollToNextSection } from "@/lib/actions/scrollToNextSection";
 import { ParticlesBackground } from "@/components/ParticlesBackground";
 
 export default function Hero() {
+
+
   return (
     <>
     {/* height classes: h-124 md:h-154 lg:h-fit  min-h-[calc(100vh-50px)]*/}
-      <main id="hero" className="relative min-h-[calc(100vh-100px)] w-full flex flex-col items-center justify-center">
+      <main id="hero" className="relative min-h-[calc(100vh-200px)] w-full flex flex-col items-center justify-center">
         <Image
           src="/Hero.png"
           alt="background"
@@ -23,14 +25,14 @@ export default function Hero() {
           }}
           // fill
           // priority
-          className="object-cover absolute inset-0 -z-10"
+          className="object-cover absolute -z-10"
         />
         <ParticlesBackground />
 
         {/* Content */}
         <div
           id="content"
-          className="relative z-20 flex flex-col gap-2 items-center justify-center text-center text-white"
+          className="relative flex flex-col gap-2 items-center justify-center text-center text-white"
         >
           <h1 className="text-5xl md:text-[64px] font-semibold w-fit">
             تبارك للأقمشة
@@ -79,7 +81,7 @@ export default function Hero() {
             </div>
           </div>
         </div>
-        <div className="flex justify-center absolute bottom-0 z-30">
+        <div className="flex justify-center absolute bottom-0">
           <button
             onClick={() => scrollToNextSection(`about-section`)}
             className="animate-bounce"
@@ -96,7 +98,6 @@ export default function Hero() {
         
       </div> */}
       </main>
-      <section id="about-section" className="h-500 bg-accent"></section>
     </>
   );
 }

@@ -49,7 +49,7 @@ export const ParticlesBackground = () => {
     return (
       <Particles
         id="tsparticles"
-        className="absolute inset-0 z-10" // التأكد من إنها تغطي الخلفية وفي طبقة متوسطة
+        className="absolute inset-0 -z-5" // التأكد من إنها تغطي الخلفية وفي طبقة متوسطة
         options={options}
       />
     );
