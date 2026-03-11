@@ -50,17 +50,17 @@ const Navbar = () => {
         </button>
       </div>
       {/* Navigation */}
-      <ul className="hidden md:flex md:gap-4 lg:gap-8 lg:text-xl md:text-base">
+      <ul className="hidden md:flex  lg:text-xl md:text-base">
         {navLinks.map((link) => (
           <li key={link.id}>
             <a
               href={`#${link.id}`}
               className={cn(
-                "transition-colors",
+                "transition-colors md:px-2 lg:px-4",
                 // هنا بنغير ستايل اللينك نفسه لو هو الـ Active Section
                 activeSection === link.id
                   ? "underline underline-offset-[12px] text-secondary font-semibold" // الستايل في حالة إنه نشط
-                  : "navLink relative inline-block after:content-[''] after:absolute after:-bottom-[7px] after:text-secondary after:right-0 after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 hover:after:w-[36px]", // الستايل العادي
+                  : "navLink relative inline-block after:content-[''] after:absolute after:-bottom-[7px] after:text-secondary after:right-4 after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 hover:after:w-[36px]",
               )}
             >
               {link.label}
