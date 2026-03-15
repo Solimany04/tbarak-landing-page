@@ -30,7 +30,7 @@ const Navbar = () => {
     { id: "hero", label: "الصفحة الرئيسية" },
   ];
 
-  const isScrolled = useScroll(140);
+  const isScrolled = useScroll(100);
 
   return (
     <nav
