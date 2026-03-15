@@ -8,7 +8,12 @@ import React from "react";
 import { Button } from "./ui/button";
 
 const Navbar = () => {
-  const activeLang = <div><span className="fi fi-sa mr-1 rounded" />AR</div>
+  const activeLang = (
+    <div>
+      <span className="fi fi-sa ml-1 rounded" />
+      AR
+    </div>
+  );
   const activeSection = useActiveSection([
     "hero",
     "about",
@@ -31,26 +36,29 @@ const Navbar = () => {
     <nav
       className={cn(
         "fixed top-0 z-50 w-full h-[67px] md:h-[84px] flex items-center justify-between ",
-        isScrolled ? "bg-primary text-primary-foreground" : "bg-gradient-to-b from-black/40 to-transparent",
+        isScrolled
+          ? "bg-primary text-primary-foreground"
+          : "bg-gradient-to-b from-black/40 to-transparent",
       )}
     >
-      {/* Contact Button */}
-      <div className="hidden md:flex gap-8 md:gap-4 lg:ml-16 md:ml-8 items-center">
-        <Button
-          variant="navSecondary"
-          className="lg:px-8 md:px-5 py-6 font-normal flex flex-row-reverse"
-        >
-          <span>
-            <Whatsapp className="inline" />
-          </span>
-          تواصل الآن
-        </Button>
-        <button id="lang" className="cursor-pointer md:flex text-primary-foreground">
-          {activeLang}
-        </button>
-      </div>
+      {/* LOGO */}
+      <a
+        href="http://"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="ml-auto md:ml-0 mr-4 md:mr-8 lg:mr-16 || w-auto max-w-[68px] md:w-auto md:max-w-[80px] lg:w-auto lg:max-w-[100px]"
+      >
+        <Image
+          src="/vector.svg"
+          alt="logo"
+          width={200}
+          height={200}
+          className="w-full"
+        />
+      </a>
+
       {/* Navigation */}
-      <ul className="hidden md:flex  lg:text-xl md:text-base">
+      <ul className="hidden md:flex flex-row-reverse lg:text-xl md:text-base">
         {navLinks.map((link) => (
           <li key={link.id}>
             <a
@@ -68,21 +76,24 @@ const Navbar = () => {
           </li>
         ))}
       </ul>
-      {/* LOGO */}
-      <a
-        href="http://"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="ml-auto md:ml-0 mr-4 md:mr-8 lg:mr-16 || w-auto max-w-[68px] md:w-auto md:max-w-[80px] lg:w-auto lg:max-w-[100px]"
-      >
-        <Image
-          src="/vector.svg"
-          alt="logo"
-          width={200}
-          height={200}
-          className="w-full"
-        />
-      </a>
+      {/* Contact Button */}
+      <div className="hidden md:flex gap-8 md:gap-4 lg:ml-16 md:ml-8 items-center">
+        <button
+          id="lang"
+          className="cursor-pointer md:flex text-primary-foreground"
+        >
+          {activeLang}
+        </button>
+        <Button
+          variant="navSecondary"
+          className="lg:px-8 md:px-5 py-6 font-normal flex flex-row-reverse"
+        >
+          تواصل الآن
+          <span>
+            <Whatsapp className="inline" />
+          </span>
+        </Button>
+      </div>
     </nav>
   );
 };

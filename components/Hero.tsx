@@ -13,7 +13,7 @@ export default function Hero() {
   return (
     <>
     {/* height classes: h-124 md:h-154 lg:h-fit  min-h-[calc(100vh-50px)]*/}
-      <main id="hero" className="relative min-h-[calc(100vh-250px)] w-full flex flex-col items-center justify-center">
+      <main id="hero" className="relative min-h-178 w-full flex flex-col items-center justify-center">
         <Image
           src="/Hero.png"
           alt="background"
@@ -44,14 +44,6 @@ export default function Hero() {
           </p>
           <div className="flex items-center justify-center text-center gap-4 mb-[44px]">
             <Button
-              variant="heroOutline"
-              type="submit"
-              size="hero"
-              className=""
-            >
-              استكشف الآن
-            </Button>
-            <Button
               variant="heroSecondary"
               type="submit"
               size="hero"
@@ -59,8 +51,16 @@ export default function Hero() {
             >
               تواصل معنا
             </Button>
+            <Button
+              variant="heroOutline"
+              type="submit"
+              size="hero"
+              className=""
+            >
+              استكشف الآن
+            </Button>
           </div>
-          <div className="flex flex-row-reverse gap-16 w-full justify-center">
+          <div className="flex flex gap-16 w-full justify-center">
             <div className="flex flex-col gap-1.5">
               <h4 className="text-secondary text-2xl md:text-4xl font-semibold">
                 30+
@@ -87,7 +87,7 @@ export default function Hero() {
             className="animate-bounce"
             aria-label="Scroll down"
           >
-            <ChevronDown strokeWidth={1} className="text-white h-12 w-18 md:h-13 md:w-13 lg:mb-[19px] cursor-pointer" />
+            <ChevronDown strokeWidth={1.2} className="text-white h-12 w-18 md:h-13 md:w-13 lg:mb-[19px] cursor-pointer" />
           </button>
         </div>
         {/*       
