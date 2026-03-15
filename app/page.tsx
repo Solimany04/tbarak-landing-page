@@ -1,7 +1,7 @@
-import About from "@/components/About";
-import Hero from "@/components/Hero";
-import Navbar from "@/components/Navbar";
-import ProductsSection from "@/components/ProductsSection";
+import About from "@/components/ui/About";
+import Hero from "@/components/ui/Hero";
+import Navbar from "@/components/ui/Navbar";
+import ProductsSection from "@/components/ui/ProductsSection";
 import { Button } from "@/components/ui/button";
 // import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import Image from "next/image";

@@ -5,7 +5,7 @@ import Image from "next/image";
 import React from "react";
 import { ChevronDown, Fullscreen } from "lucide-react";
 import { scrollToNextSection } from "@/lib/actions/scrollToNextSection";
-import { ParticlesBackground } from "@/components/ParticlesBackground";
+import { ParticlesBackground } from "@/components/ui/ParticlesBackground";
 
 export default function Hero() {
 

@@ -5,7 +5,7 @@ import { useScroll } from "@/lib/hooks/useScroll";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import React from "react";
-import { Button } from "./ui/button";
+import { Button } from "./button";
 
 const Navbar = () => {
   const activeLang = (

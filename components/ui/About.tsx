@@ -1,13 +1,13 @@
 import Image from "next/image";
 import React from "react";
-import { Button } from "./ui/button";
+import { Button } from "./button";
 import { cn } from "@/lib/utils"; 
 
 
 const About = () => {
   return (
     <div>
-      <div className="mb-4 flex flex-col-reverse md:flex-row md:mt-24 mt-15 md:mb-16 mx-4 md:mx-8 lg:mx-16 w-fit mb-16">
+      <div className="mb-4 flex flex-col-reverse md:flex-row md:mt-24 mt-15 md:mb-16 mx-4 md:mx-8 lg:mx-auto w-fit mb-16">
         
         {/* Image Side */}
         <div className="flex flex-col lg:w-1/3 md:w-1/2 w-full h-full relative mt-4 md:mt-0">
