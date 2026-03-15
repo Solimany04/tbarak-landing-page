@@ -21,9 +21,9 @@ const About = () => {
         </div>
 
         {/* Text Content Side */}
-        <div className="flex flex-col lg:w-2/3 md:w-1/2 w-full md:mr-[26px] lg:mr-16 ">
+        <div className="flex flex-col lg:w-2/3 md:w-1/2 w-full md:ms-[26px] lg:ms-16 ">
           {/* Heading */}
-          <h2 className="text-[32px] md:text-5xl font-semibold w-fit mx-auto md:ml-auto md:mx-0 ">
+          <h2 className="text-[32px] md:text-5xl font-semibold w-fit mx-auto md:me-auto md:mx-0 ">
             حول <span className="text-secondary">تبارك</span>
           </h2>
           {/* Paragraph */}

@@ -10,7 +10,7 @@ import { Button } from "./button";
 const Navbar = () => {
   const activeLang = (
     <div>
-      <span className="fi fi-sa ml-1 rounded" />
+      <span className="fi fi-sa me-1 rounded" />
       AR
     </div>
   );
@@ -46,7 +46,7 @@ const Navbar = () => {
         href="http://"
         target="_blank"
         rel="noopener noreferrer"
-        className="ml-auto md:ml-0 mr-4 md:mr-8 lg:mr-16 || w-auto max-w-[68px] md:w-auto md:max-w-[80px] lg:w-auto lg:max-w-[100px]"
+        className="me-auto md:me-0 ms-4 md:ms-8 lg:me-16 || w-auto max-w-[68px] md:w-auto md:max-w-[80px] lg:w-auto lg:max-w-[100px]"
       >
         <Image
           src="/vector.svg"
@@ -68,7 +68,7 @@ const Navbar = () => {
                 // هنا بنغير ستايل اللينك نفسه لو هو الـ Active Section
                 activeSection === link.id
                   ? "underline underline-offset-[12px] text-secondary font-semibold" // الستايل في حالة إنه نشط
-                  : "navLink relative inline-block after:content-[''] after:absolute after:-bottom-[7px] after:text-secondary after:right-4 after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 hover:after:w-[36px]",
+                  : "navLink relative inline-block after:content-[''] after:absolute after:-bottom-[7px] after:text-secondary after:start-4 after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 hover:after:w-[36px]",
               )}
             >
               {link.label}
@@ -77,7 +77,7 @@ const Navbar = () => {
         ))}
       </ul>
       {/* Contact Button */}
-      <div className="hidden md:flex gap-8 md:gap-4 lg:ml-16 md:ml-8 items-center">
+      <div className="hidden md:flex gap-8 md:gap-4 lg:me-16 md:me-8 items-center">
         <button
           id="lang"
           className="cursor-pointer md:flex text-primary-foreground"
