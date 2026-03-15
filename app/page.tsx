@@ -1,3 +1,4 @@
+import About from "@/components/About";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import ProductsSection from "@/components/ProductsSection";
@@ -10,6 +11,7 @@ export default function Home() {
     <div>
       <Navbar />
       <Hero />
+      <About/>
       <section id="about-section" className="h-500 bg-accent"></section>
       {/* <ProductsSection/> */}
       {/* <Button size="lg">Click me</Button> */}
