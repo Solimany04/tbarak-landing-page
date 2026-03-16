@@ -11,16 +11,13 @@ import ProductCard from "./ProductCard";
 const Products = () => {
   return (
     <div>
-        <ProductCard/>
-      {/* <Carousel>
+      <Carousel>
         <CarouselContent>
-          <CarouselItem></CarouselItem>
-          <CarouselItem>...</CarouselItem>
-          <CarouselItem>...</CarouselItem>
+          <CarouselItem><ProductCard/></CarouselItem>
         </CarouselContent>
         <CarouselPrevious />
         <CarouselNext />
-      </Carousel> */}
+      </Carousel>
     </div>
   );
 };
