@@ -1,5 +1,5 @@
 "use client";
-import { Whatsapp, HouseHeart, ArrowRight } from "react-bootstrap-icons";
+import { Whatsapp } from "react-bootstrap-icons";
 import { useActiveSection } from "@/lib/hooks/useActiveSection";
 import { useScroll } from "@/lib/hooks/useScroll";
 import { cn } from "@/lib/utils";
