@@ -9,7 +9,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "./button";
-import { Badge } from "./badge";
 import Image from "next/image";
 
 const ProductCard = () => {

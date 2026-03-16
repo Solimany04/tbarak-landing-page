@@ -1,13 +1,12 @@
 import Image from "next/image";
 import React from "react";
 import { Button } from "./button";
-import { cn } from "@/lib/utils"; 
 
 
 const About = () => {
   return (
     <div>
-      <div className="mb-4 flex flex-col-reverse md:flex-row md:mt-24 mt-15 md:mb-16 mx-4 md:mx-8 lg:mx-auto w-fit mb-16">
+      <div className="flex flex-col-reverse md:flex-row md:mt-24 mt-15 md:mb-16 mx-4 md:mx-8 lg:mx-auto w-fit mb-16">
         
         {/* Image Side */}
         <div className="flex flex-col lg:w-1/3 md:w-1/2 w-full h-full relative mt-4 md:mt-0">
@@ -34,19 +33,19 @@ const About = () => {
 
           {/* List */}
           <ul className="mt-8">
-            <li className="flex gap-4 lg:gap-7 border-t-1 border-[#e9e9e9] md:py-4 py-5 lg:py-5">
+            <li className="flex gap-4 lg:gap-7 border-t border-[#e9e9e9] md:py-4 py-5 lg:py-5">
               <p className="text- text-muted-foreground">01</p>
               <p className="text-base text-black">نوفّر لتجار الأقمشة والمصانع خامات موثوقة بجودة ثابتة وشحن منتظم.</p>
             </li>
-            <li className="flex gap-4 lg:gap-7 border-t-1 border-[#e9e9e9] md:py-4 lg:py-5 py-5">
+            <li className="flex gap-4 lg:gap-7 border-t border-[#e9e9e9] md:py-4 lg:py-5 py-5">
               <p className="text- text-muted-foreground">02</p>
               <p className="text-base text-black">علاقاتنا مع الموردين مبنية على التزام طويل يضمن استقرار التوريد.</p>
             </li>
-            <li className="flex gap-4 lg:gap-7 border-t-1 border-[#e9e9e9] md:py-4 lg:py-5 py-5">
+            <li className="flex gap-4 lg:gap-7 border-t border-[#e9e9e9] md:py-4 lg:py-5 py-5">
               <p className="text- text-muted-foreground">03</p>
               <p className="text-base text-black">نلتزم بتوفير المخزون المطلوب في أي وقت لضمان استمرارية الإنتاج لدى عملائنا.</p>
             </li>
-            <li className="flex gap-4 lg:gap-7 border-t-1 border-[#e9e9e9] md:pt-4 lg:pt-5 pt-5">
+            <li className="flex gap-4 lg:gap-7 border-t border-[#e9e9e9] md:pt-4 lg:pt-5 pt-5">
               <p className="text- text-muted-foreground">04</p>
               <p className="text-base text-black">نفهم احتياجات السوق المحلي، ونوفّر الحلول المناسبة بسرعة ومرونة.</p>
             </li>

@@ -38,7 +38,7 @@ const Navbar = () => {
         "fixed top-0 z-50 w-full h-[67px] md:h-[84px] flex items-center justify-between ",
         isScrolled
           ? "bg-primary text-primary-foreground"
-          : "bg-gradient-to-b from-black/40 to-transparent",
+          : "bg-linear-to-b from-black/40 to-transparent",
       )}
     >
       {/* LOGO */}
@@ -66,7 +66,7 @@ const Navbar = () => {
               className={cn(
                 "transition-colors md:px-2 lg:px-4",
                 activeSection === link.id
-                  ? "underline underline-offset-[12px] text-secondary font-semibold"
+                  ? "underline underline-offset-12 text-secondary font-semibold"
                   : "navLink relative inline-block after:content-[''] after:absolute after:-bottom-[7px] after:text-secondary after:start-4 after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 hover:after:w-[36px]",
               )}
             >

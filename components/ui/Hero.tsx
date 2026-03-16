@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import React from "react";
-import { ChevronDown, Fullscreen } from "lucide-react";
+import { ChevronDown} from "lucide-react";
 import { scrollToNextSection } from "@/lib/actions/scrollToNextSection";
 import { ParticlesBackground } from "@/components/ui/ParticlesBackground";
 
@@ -58,7 +58,7 @@ export default function Hero() {
               استكشف الآن
             </Button>
           </div>
-          <div className="flex flex gap-16 w-full justify-center">
+          <div className="flex gap-16 w-full justify-center">
             <div className="flex flex-col gap-1.5">
               <h4 className="text-secondary text-2xl md:text-4xl font-semibold">
                 30+
@@ -88,13 +88,7 @@ export default function Hero() {
             <ChevronDown strokeWidth={1.2} className="text-white h-12 w-18 md:h-13 md:w-13 lg:mb-[19px] cursor-pointer" />
           </button>
         </div>
-        {/*       
-      <div className="w-full max-w-md border rounded-2xl p-6 shadow-sm">
-        <h2 className="text-xl font-semibold mb-4 text-center">
-          FieldSet outside FieldGroup
-        </h2>
-        
-      </div> */}
+
       </main>
     </>
   );
