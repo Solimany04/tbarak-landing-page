@@ -17,28 +17,28 @@ export const ParticlesBackground = () => {
 
   const options = useMemo(
     () => ({
-      fullScreen: { enable: false }, // مهم جداً عشان تكون داخل الـ Hero بس
+      fullScreen: { enable: false },
       fpsLimit: 120,
       particles: {
-        color: { value: "#ffffff" }, // غير اللون حسب لون الـ Brand بتاعك
+        color: { value: "#ffffff" },
         move: {
           enable: true,
           direction: "none" as const,
           outModes: "out" as const,
           random: true,
-          speed: 1.5, // سرعة الطيران
+          speed: 1.5,
           straight: false,
         },
         number: {
           density: { enable: true, area: 800 },
-          value: 40, // عدد الكرات
+          value: 40,
         },
         opacity: {
-          value: { min: 0.1, max: 0.5 }, // درجات شفافية مختلفة لعمق بصري
+          value: { min: 0.1, max: 0.5 },
         },
         shape: { type: "circle" },
         size: {
-          value: { min: 1, max: 4 }, // أحجام مختلفة للكرات
+          value: { min: 1, max: 4 },
         },
       },
     }),
@@ -49,7 +49,7 @@ export const ParticlesBackground = () => {
     return (
       <Particles
         id="tsparticles"
-        className="absolute inset-0 -z-5" // التأكد من إنها تغطي الخلفية وفي طبقة متوسطة
+        className="absolute inset-0 -z-5"
         options={options}
       />
     );

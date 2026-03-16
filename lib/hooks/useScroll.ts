@@ -9,7 +9,6 @@ export function useScroll(threshold: number = 50) {
       setScrolled(window.scrollY > threshold);
     };
 
-    // Initialize on mount
     handleScroll();
 
     window.addEventListener("scroll", handleScroll, { passive: true });

@@ -65,9 +65,8 @@ const Navbar = () => {
               href={`#${link.id}`}
               className={cn(
                 "transition-colors md:px-2 lg:px-4",
-                // هنا بنغير ستايل اللينك نفسه لو هو الـ Active Section
                 activeSection === link.id
-                  ? "underline underline-offset-[12px] text-secondary font-semibold" // الستايل في حالة إنه نشط
+                  ? "underline underline-offset-[12px] text-secondary font-semibold"
                   : "navLink relative inline-block after:content-[''] after:absolute after:-bottom-[7px] after:text-secondary after:start-4 after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 hover:after:w-[36px]",
               )}
             >

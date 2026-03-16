@@ -9,14 +9,12 @@ export function useActiveSection(sectionIds: string[]) {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // أول ما السيكشن يدخل في الشاشة، بنحدث الـ state
           if (entry.isIntersecting) {
             setActiveSection(entry.target.id);
           }
         });
       },
       {
-        // الأرقام دي بتخلي التغيير يحصل لما السيكشن يوصل لمنتصف الشاشة تقريباً
         rootMargin: "-20% 0px -70% 0px",
       },
     );

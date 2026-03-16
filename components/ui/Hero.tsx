@@ -23,8 +23,6 @@ export default function Hero() {
             height: "100%",
             width: "100%",
           }}
-          // fill
-          // priority
           className="object-cover absolute -z-10"
         />
         <ParticlesBackground />
