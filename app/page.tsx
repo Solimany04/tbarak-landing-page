@@ -2,7 +2,6 @@ import About from "@/components/ui/About";
 import Hero from "@/components/ui/Hero";
 import Navbar from "@/components/ui/Navbar";
 import Products from "@/components/ui/Products";
-import ProductsSection from "@/components/ui/ProductsSection";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
