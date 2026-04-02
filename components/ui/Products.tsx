@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useCallback } from "react";
+import { CarouselApi } from "@/components/ui/carousel";
 import {
   Carousel,
   CarouselContent,
@@ -11,7 +12,7 @@ import {
 import ProductCard from "./ProductCard";
 
 const Products = () => {
-  const [api, setApi] = useState();
+  const [api, setApi] = useState<CarouselApi | undefined>();
   const [current, setCurrent] = useState(0);
   useEffect(() => {
     if (!api) return;
@@ -23,7 +24,7 @@ const Products = () => {
     });
   }, [api]);
 
-  const getDistance = (index) => {
+  const getDistance = (index: number) => {
     const len = productsList.length;
     const dist = Math.abs(index - current);
     return Math.min(dist, len - dist);
@@ -75,6 +76,7 @@ const Products = () => {
         orientation="horizontal"
         opts={{ align: "start", loop: true }}
         className="w-full max-w-[1336px] mx-auto"
+        setApi={setApi}
       >
         <CarouselContent>
           {productsList.map((product, index) => {
@@ -88,7 +90,7 @@ const Products = () => {
               className={`pl-4 transition-all duration-500 ease-in-out lg:basis-1/5 md:basis-1/3 basis-1/2  ${scale}`}
               key={product.productId}
             >
-              <ProductCard title={product.productTitle} desc={product.productDesc} image={product.productImage}/>
+              <ProductCard title={product.productTitle} desc={product.productDesc} image={product.productImage} size={size} />
             </CarouselItem>)
           })}
         </CarouselContent>
