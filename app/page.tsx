@@ -1,7 +1,12 @@
-import About from "@/components/ui/About";
-import Hero from "@/components/ui/Hero";
-import Navbar from "@/components/ui/Navbar";
-import Products from "@/components/ui/Products";
+import About from "@/components/sections/C_About";
+import ContactSection from "@/components/sections/H_ContactSection";
+import FeedbackSection from "@/components/sections/G_FeedbackSection";
+import Hero from "@/components/sections/B_Hero";
+import J_FooterSection from "@/components/sections/J_FooterSection";
+import Navbar from "@/components/sections/A_Navbar";
+import ProductionProcess from "@/components/sections/E_ProductionProcess";
+import Products from "@/components/sections/D_Products";
+import WhySection from "@/components/sections/F_WhySection";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
@@ -12,7 +17,11 @@ export default function Home() {
       <Hero />
       <About/>
       <Products/>
-      <section id="about-section" className="h-500 bg-accent"></section>
+      <ProductionProcess/>
+      <WhySection/>
+      <FeedbackSection/>
+      <ContactSection/>
+      <J_FooterSection/>
       {/* <ProductsSection/> */}
       {/* <Button size="lg">Click me</Button> */}
       {/* <WhatsAppButton/> */}
