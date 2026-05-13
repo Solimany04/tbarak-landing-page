@@ -7,8 +7,7 @@ const FeedbackSection = () => {
       <div className="flex flex-col md:m-28 gap-16 mb-24">
         <h2 className="text-center font-semibold text-5xl ">آراء عملاء <span className='text-accent'>تبارك</span></h2>
         <div className="flex gap-13.75 justify-center">
-          <FeedbackCard/>
-
+          <FeedbackCard avatar='' name='' desc='' content=''/>
         </div>
       </div>
     </div>
