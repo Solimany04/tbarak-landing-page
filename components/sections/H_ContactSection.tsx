@@ -4,12 +4,12 @@ import Image from 'next/image'
 
 const ContactSection = () => {
   return (
-      <div className='relative'>
-        <div className="absolute  w-full h-full">
+      <div className='relative bg-primary'>
+        <div className="absolute z-0 w-full h-full">
             <div className="bg-accent/40 w-38 h-38 rounded-full absolute blur-[100px] lg:start-20 lg:top-15 md:-start-10 md"></div>
             <div className="bg-accent/40 w-38 h-38 rounded-full absolute blur-[100px] lg:bottom-45 lg:start-1/3 md:bottom-4 md:start-1/3 bottom-1/2 end-0"></div>
         </div>
-        <div className="bg-primary flex flex-col md:flex-row lg:py-24 md:p-10 p-4 lg:justify-around items-center w-full">
+        <div className=" relative z-10 flex flex-col md:flex-row lg:py-24 md:p-10 p-4 lg:justify-around items-center w-full">
             {/* Halos */}
 
             {/* Right Side */}
