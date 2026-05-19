@@ -5,8 +5,8 @@ import { Button } from "../ui/button";
 
 const About = () => {
   return (
-    <div>
-      <div className="flex flex-col-reverse md:flex-row md:mt-24 mt-15 md:mb-16 mx-4 md:mx-8 lg:mx-auto w-fit pb-16 bg-white">
+    <div className="w-full bg-white">
+      <div className="flex flex-col-reverse md:flex-row md:pt-24 md:mb-16 mx-4 md:mx-8 lg:mx-auto w-fit pb-16 ">
         
         {/* Image Side */}
         <div className="flex flex-col lg:w-1/3 md:w-1/2 w-full h-full relative mt-4 md:mt-0">
