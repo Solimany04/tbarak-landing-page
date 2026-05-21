@@ -8,15 +8,16 @@ import {
     type CarouselApi,
   } from "@/components/ui/carousel";
 import ProductCard from './ProductCard';
-type CarouselUIProps = {
-    productId: number,
-    productTitle: string,
-    productDesc: string,
-    productImage: string
-}
+
+type ProductsListType = {
+  productId: number,
+  productTitle: string,
+  productDesc: string,
+  productImage: string,
+}[]
 
 
-const CarouselUI = (productsList: Array<object>) => {
+const CarouselUI = ({productsList}: {productsList: ProductsListType}) => {
 
     
   const [api, setApi] = React.useState<CarouselApi>();

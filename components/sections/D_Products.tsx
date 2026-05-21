@@ -79,6 +79,13 @@ const Products = () => {
       productImage: "/Products/Picture 10.png",
     },
   ];
+
+  type ProductsListType = {
+    productId: number,
+    productTitle: string,
+    productDesc: string,
+    productImage: string,
+  }[]
   const size = "";
   return (
     <div className=" w-full overflow-hidden">
