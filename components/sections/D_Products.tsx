@@ -1,10 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useCallback } from "react";
 
-import ProductCard from "../Draft/Carousel/ProductCardOld";
-import Image from "next/image";
-import CarouselUI from "../Draft/Carousel/CarouselUI";
 import { ProductCarousel } from "../ProductCarousel";
 import { ProductItem } from "@/app/utils/types";
 
