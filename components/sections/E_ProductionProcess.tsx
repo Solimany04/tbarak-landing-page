@@ -4,7 +4,7 @@ import React from "react";
 const ProductionProcess = () => {
   return (
     <div className="w-full bg-linear-to-b from-white ">
-      <div className="lg:m-16 md:m-8 m-4 mb-0">
+      <div className=" mb-0">
         <h2 className="font-semibold text-3xl md:text-5xl text-center mb-16 pt-16">
           مراحل عمل <span className="text-accent">تبارك</span>
         </h2>
