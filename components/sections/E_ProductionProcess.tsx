@@ -8,7 +8,7 @@ const ProductionProcess = () => {
         <h2 className="font-semibold text-3xl md:text-5xl text-center mb-16 pt-16">
           مراحل عمل <span className="text-accent">تبارك</span>
         </h2>
-        <div className="flex flex-col gap-16 lg:gap-0 ">
+        <div className="flex flex-col gap-16 lg:gap-0 px-16">
           <div className="grid lg:grid-cols-3 md:grid-cols-2">
             <div className="lg:col-span-2 justify-center flex flex-col mb-4">
               <div className="flex items-center justify-between relative md:my-0 my-4 ">
@@ -26,7 +26,7 @@ const ProductionProcess = () => {
               </p>
             </div>
             <Image
-              className="lg:col-span-1 rounded-[40px] mx-auto"
+              className="lg:col-span-1 rounded-[40px] ms-auto"
               src="/2.png"
               width={500}
               height={500}
@@ -50,7 +50,7 @@ const ProductionProcess = () => {
               </p>
             </div>
             <Image
-              className="lg:col-span-1 rounded-[40px] mx-auto"
+              className="lg:col-span-1 rounded-[40px] me-auto"
               src="/3.png"
               width={500}
               height={500}
@@ -73,7 +73,7 @@ const ProductionProcess = () => {
               </p>
             </div>
             <Image
-              className="lg:col-span-1 rounded-[40px] mx-auto"
+              className="lg:col-span-1 rounded-[40px] ms-auto"
               src="/4.png"
               width={500}
               height={500}
