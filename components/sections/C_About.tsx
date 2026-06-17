@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 
 const About = () => {
   return (
-    <div className="w-full bg-white">
+    <div className="w-full bg-white scroll-mt-21" id="about-section">
       <div className="flex flex-col-reverse md:flex-row pt-16 md:pt-24 mx-4 md:mx-8 lg:mx-auto w-fit pb-16 ">
         
         {/* Image Side */}
