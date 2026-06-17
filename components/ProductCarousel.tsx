@@ -89,21 +89,21 @@ export const ProductCarousel: React.FC<ProductCarouselProps> = ({ items, dir = "
         <button
           onClick={isRtl ? scrollNext : scrollPrev}
           className={cn(
-            "absolute top-[60%] -translate-y-1/2 z-30 flex items-center justify-center w-[42px] h-[42px] rounded-full bg-black/10 hover:bg-black/60 text-white backdrop-blur-xl transition-all duration-300",
+            "absolute top-[60%] md:top-[50%] -translate-y-1/2 z-30 flex items-center justify-center w-10.5 h-10.5 rounded-full bg-black/15 hover:bg-black/60 text-white backdrop-blur-[18px] transition-all duration-300",
             isRtl ? "right-[10%] md:right-[33.5%]" : "left-[10%] md:left-[33.5%]"
           )}
         >
-          <ArrowRight className="size-7" />
+          <ArrowRight className="size-8" />
         </button>
 
         <button
           onClick={isRtl ? scrollPrev : scrollNext}
           className={cn(
-            "absolute top-[60%] -translate-y-1/2 z-30 flex items-center justify-center w-[42px] h-[42px] rounded-full bg-black/10 hover:bg-black/60 text-white backdrop-blur-xl transition-all duration-300",
+            "absolute top-[60%] md:top-[50%] -translate-y-1/2 z-30 flex items-center justify-center w-10.5 h-10.5 rounded-full bg-black/15 hover:bg-black/60 text-white backdrop-blur-[18px] transition-all duration-300",
             isRtl ? "left-[10%] md:left-[33.5%]" : "right-[10%] md:right-[33.5%]"
           )}
         >
-          <ArrowLeft className="size-7" />
+          <ArrowLeft className="size-8" />
         </button>
       </Carousel>
     </div>
