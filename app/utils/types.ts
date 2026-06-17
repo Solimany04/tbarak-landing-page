@@ -7,3 +7,10 @@ export interface ProductItem {
 }
 
 export type CardStatus = "active" | "adjacent" | "distant";
+
+export type FeedbackCardProps = {
+    avatar?: string,
+    name?: string,
+    desc?: string,
+    content?: string
+}
