@@ -26,6 +26,7 @@ const FeedbackCarousel = ({ dummyFeedbacks }: {dummyFeedbacks: FeedbackCardProps
               stopOnInteraction: false,
               stopOnMouseEnter: true,
               speed: 4,
+              startDelay: 0,
             }),
           ]}
           className="w-full"
