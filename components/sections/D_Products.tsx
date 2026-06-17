@@ -77,14 +77,6 @@ const Products = () => {
       productImage: ["/Products/Picture 10.png"],
     },
   ];
-
-  type ProductsListType = {
-    productId: number,
-    productTitle: string,
-    productDesc: string,
-    productImage: string,
-  }[]
-  const size = "";
   return (
     <div className=" w-full overflow-hidden mb-16">
       <h1 className=" font-semibold text-5xl mx-auto my-16 w-fit">
