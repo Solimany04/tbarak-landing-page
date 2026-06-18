@@ -8,12 +8,11 @@ import why5 from "@/public/Icons/why5.svg"
 
 const WhySection = () => {
   return (
-    <div>
-      <div className="flex flex-col md:mx-16 mx-4 my-16">
+      <div className="flex flex-col md:mx-16 mx-4 mt-16 scroll-mt-16" id='why-section'>
         <div className='md:my-16 my-4'>
             <h2 className='text-center font-semibold md:text-5xl text-[32px]'>لماذا <span className='text-accent'>تبارك</span></h2>
         </div>
-        <div className="grid grid-cols-6 gap-4 h-[336px]">
+        <div className="grid grid-cols-6 gap-4 md:h-84 h-128">
             <div className="md:col-span-2 col-span-3 bg-white outline-1 outline-[#152727]/8 rounded-2xl flex flex-col items-center justify-center">
                 {/* Icon */}
                   <Image src={why1} width={50} height={50} alt='Top quality award' />
@@ -46,7 +45,6 @@ const WhySection = () => {
             </div>
         </div>
       </div>
-    </div>
   )
 }
 

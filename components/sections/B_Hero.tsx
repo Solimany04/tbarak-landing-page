@@ -13,12 +13,12 @@ export default function Hero() {
   return (
     <>
     {/* height classes: h-124 md:h-154 lg:h-fit  min-h-[calc(100vh-50px)]*/}
-      <main id="hero" className="relative min-h-178 w-full flex flex-col items-center justify-center">
+      <main id="hero-section" className="relative min-h-178 w-full flex flex-col items-center justify-center">
         <Image
           src="/Hero.png"
           alt="background"
           width={1920}
-          height={1080}
+          height={712}
           style={{
             height: "100%",
             width: "100%",
@@ -85,7 +85,7 @@ export default function Hero() {
             className="animate-bounce"
             aria-label="Scroll down"
           >
-            <ChevronDown strokeWidth={1.2} className="text-white h-12 w-18 md:h-13 md:w-13 lg:mb-[19px] cursor-pointer" />
+            <ChevronDown strokeWidth={1.2} className="text-white h-12 w-18 md:h-13 md:w-13 lg:mb-4.75 cursor-pointer" />
           </button>
         </div>
 

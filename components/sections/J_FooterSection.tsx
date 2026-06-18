@@ -7,7 +7,7 @@ import { Facebook, Linkedin, Instagram, Google } from "react-bootstrap-icons";
 
 const J_FooterSection = () => {
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full scroll-mt-21" id="footer-section">
       <div className="grid grid-cols-6 w-full pb-9 pt-24 md:ps-16 px-4">
         {/* Links */}
         <div className="md:col-span-3 col-span-6 flex md:flex-col gap-6 md:pb-0 pb-8 justify-between">

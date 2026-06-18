@@ -36,7 +36,7 @@ const dummyFeedbacks: FeedbackCardProps[] = [
 
 const FeedbackSection = () => {
   return (
-    <div className="overflow-hidden w-full relative">
+    <div className="overflow-hidden w-full relative scroll-mt-21" id='feedback-section'>
       <div className="flex flex-col md:m-28 gap-16 mb-24">
         <h2 className="text-center font-semibold text-5xl ">آراء عملاء <span className='text-accent'>تبارك</span></h2>
 

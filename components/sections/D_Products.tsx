@@ -78,7 +78,7 @@ const Products = () => {
     },
   ];
   return (
-    <div className=" w-full overflow-hidden mb-16">
+    <div className=" w-full overflow-hidden mb-16 scroll-mt-16" id="products-section">
       <h1 className=" font-semibold text-5xl mx-auto my-16 w-fit">
         منتجات <span className="text-secondary">تبارك</span>
       </h1>
