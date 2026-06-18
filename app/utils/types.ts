@@ -14,3 +14,6 @@ export type FeedbackCardProps = {
     desc?: string,
     content?: string
 }
+
+export type ButtonVariants = "link" | "default" | "destructive" | "outline" | "secondary" | "ghost" | "heroOutline" | "heroSecondary" | "navSecondary" | null | undefined
+export type ButtonSizes = "xs" | "sm" | "default" | "lg" | "icon" | "hero" | null | undefined

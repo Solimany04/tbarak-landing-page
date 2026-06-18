@@ -1,13 +1,15 @@
 import Image from "next/image";
 import React from "react";
 import { Button } from "../ui/button";
+import { scrollToNextSection } from "@/lib/actions/scrollToNextSection";
+import NaviagtionButton from "../NaviagtionButton";
 
 
 const About = () => {
   return (
     <div className="w-full bg-white scroll-mt-21" id="about-section">
       <div className="flex flex-col-reverse md:flex-row pt-16 md:pt-24 mx-4 md:mx-8 lg:mx-auto w-fit pb-16 ">
-        
+
         {/* Image Side */}
         <div className="flex flex-col lg:w-1/3 md:w-1/2 w-full h-full relative mt-4 md:mt-0">
           <Image
@@ -50,9 +52,9 @@ const About = () => {
               <p className="text-base text-black">نفهم احتياجات السوق المحلي، ونوفّر الحلول المناسبة بسرعة ومرونة.</p>
             </li>
           </ul>
-          <Button className="hover:shadow-[inset_0_0_0_1px_black] px-8 w-fit py-[24px] text-base font-normal hover:bg-white hover:text-primary mt-8 md:mt-4 lg:mt-auto ">اعرف المزيد</Button>
+          <NaviagtionButton variant={undefined} content="اعرف المزيد" navID="process-section" classes="hover:shadow-[inset_0_0_0_1px_black] px-8 w-fit py-[24px] text-base font-normal hover:bg-white hover:text-primary mt-8 md:mt-4 lg:mt-auto"></NaviagtionButton>
         </div>
-      
+
       </div>
     </div>
   );

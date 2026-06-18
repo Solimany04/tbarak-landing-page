@@ -6,6 +6,7 @@ import React from "react";
 import { ChevronDown} from "lucide-react";
 import { scrollToNextSection } from "@/lib/actions/scrollToNextSection";
 import { ParticlesBackground } from "@/components/ParticlesBackground";
+import NaviagtionButton from "../NaviagtionButton";
 
 export default function Hero() {
 
@@ -49,14 +50,15 @@ export default function Hero() {
             >
               تواصل معنا
             </Button>
-            <Button
+            <NaviagtionButton
+              content="استكشف الآن"
               variant="heroOutline"
-              type="submit"
+              classes=""
+              navID="products-section"
               size="hero"
-              className=""
             >
-              استكشف الآن
-            </Button>
+             
+            </NaviagtionButton>
           </div>
           <div className="flex gap-16 w-full justify-center">
             <div className="flex flex-col gap-1.5">

@@ -7,6 +7,7 @@ import Image from "next/image";
 import React from "react";
 import { Button } from "../ui/button";
 import { scrollToNextSection } from "@/lib/actions/scrollToNextSection";
+import Link from "next/link";
 
 const Navbar = () => {
   const activeLang = (
@@ -45,10 +46,8 @@ const Navbar = () => {
       )}
     >
       {/* LOGO */}
-      <a
-        href="http://"
-        target="_blank"
-        rel="noopener noreferrer"
+      <Link
+        href="/"
         className="me-auto md:me-0 ms-4 md:ms-8 lg:me-16 || w-auto max-w-17 md:w-auto md:max-w-20 lg:w-auto lg:max-w-25"
       >
         <Image
@@ -58,24 +57,24 @@ const Navbar = () => {
           height={200}
           className="w-full"
         />
-      </a>
+      </Link>
 
       {/* Navigation */}
       <ul className="hidden md:flex flex-row-reverse lg:text-xl md:text-base">
         {navLinks.map((link) => (
           <li key={link.id}>
-            <a
+            <button
+              type="button"
               onClick={() => scrollToNextSection(`${link.id}`)}
-              href={`#${link.id}`}
               className={cn(
-                "transition-colors md:px-2 lg:px-4",
+                "transition-colors md:px-2 lg:px-4 cursor-pointer",
                 activeSection === link.id
                   ? "underline underline-offset-12 text-secondary font-medium"
                   : "navLink relative inline-block after:content-[''] font-light after:absolute after:-bottom-1.75 after:text-secondary after:start-4 after:w-0 after:h-0.5 after:bg-current after:transition-all after:duration-300 hover:after:w-9",
               )}
             >
               {link.label}
-            </a>
+            </button>
           </li>
         ))}
       </ul>
