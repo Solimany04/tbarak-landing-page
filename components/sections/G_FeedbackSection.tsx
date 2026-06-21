@@ -37,9 +37,8 @@ const dummyFeedbacks: FeedbackCardProps[] = [
 const FeedbackSection = () => {
   return (
     <div className="overflow-hidden w-full relative scroll-mt-21" id='feedback-section'>
-      <div className="flex flex-col lg:mt-28 md:mt-12 mt-16 gap-16 mb-24">
+      <div className="flex flex-col lg:mt-28 md:mt-12 mt-16 gap-16 mb-24 w-360 mx-auto">
         <h2 className="text-center font-semibold text-5xl ">آراء عملاء <span className='text-accent'>تبارك</span></h2>
-
         <FeedbackCarousel dummyFeedbacks={dummyFeedbacks} />
       </div>
     </div>

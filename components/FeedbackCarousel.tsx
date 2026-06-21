@@ -11,7 +11,17 @@ import {
 import AutoScroll from "embla-carousel-auto-scroll"
 
 
-const FeedbackCarousel = ({ dummyFeedbacks }: {dummyFeedbacks: FeedbackCardProps[]}) => {
+const FeedbackCarousel = ({ dummyFeedbacks }: { dummyFeedbacks: FeedbackCardProps[] }) => {
+    const plugin = React.useRef(
+        AutoScroll({
+          playOnInit: true,
+          stopOnInteraction: false,
+          stopOnMouseEnter: true,
+          speed: 3,
+          startDelay: 0,
+        })
+    );
+
     return (
         <Carousel
           opts={{
@@ -20,21 +30,13 @@ const FeedbackCarousel = ({ dummyFeedbacks }: {dummyFeedbacks: FeedbackCardProps
             align: "start",
             watchDrag: false,
           }}
-          plugins={[
-            AutoScroll({
-              playOnInit: true,
-              stopOnInteraction: false,
-              stopOnMouseEnter: true,
-              speed: 4,
-              startDelay: 0,
-            }),
-          ]}
-          className="w-full"
+          plugins={[plugin.current]}
+          className="w-full [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]"
           dir="rtl"
         >
           <CarouselContent className="-ms-14">
             {dummyFeedbacks.map((fb, idx) => (
-              <CarouselItem key={idx} className="ps-14 basis-[auto] cursor-auto">
+              <CarouselItem key={idx} className="ps-14 basis-auto cursor-auto">
                 <FeedbackCard avatar={fb.avatar} name={fb.name} desc={fb.desc} content={fb.content} />
               </CarouselItem>
             ))}
