@@ -3,23 +3,31 @@
 import React from 'react'
 import { Button } from './ui/button'
 import { scrollToNextSection } from '@/lib/actions/scrollToNextSection'
-import { ButtonVariants, ButtonSizes } from '@/app/utils/types'
+import { ButtonVariants, ButtonSizes, NavigationButtonProps } from '@/app/utils/types'
+import { focusProduct } from '@/lib/actions/productCarouselNav'
 
-const NaviagtionButton = ({ classes, variant, navID, content, size }: { classes: string, variant: ButtonVariants, navID: string, content: string, size: ButtonSizes }) => {
-    if (variant == "clean") {
+
+
+
+const NaviagtionButton = ({ classes, variant, navID, content, size, productId }: NavigationButtonProps) => {
+    const handleClick = () => {
+        scrollToNextSection(navID);
+        if (productId) focusProduct(productId);
+    };
+
+    if (variant === "clean") {
         return (
-            <button type='button' className={classes} onClick={() => scrollToNextSection(`${navID}`)}>
+            <button type="button" className={classes} onClick={handleClick}>
                 {content}
             </button>
-        )
+        );
     }
-    else {
-        return (
-            <Button variant={variant} size={size} className={classes} onClick={() => scrollToNextSection(`${navID}`)}>
-                {content}
-            </Button>
-        )
-    }
-}
 
-export default NaviagtionButton
+    return (
+        <Button variant={variant} size={size} className={classes} onClick={handleClick}>
+            {content}
+        </Button>
+    );
+};
+
+export default NaviagtionButton;

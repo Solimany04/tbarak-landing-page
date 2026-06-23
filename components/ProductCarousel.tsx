@@ -1,92 +1,88 @@
-// ProductCarousel.tsx (تحديث)
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { ProductItem, CardStatus } from "../app/utils/types";
 import { ProductCard } from "./ProductCard";
 import { cn } from "@/lib/utils";
+import { onFocusProduct } from "@/lib/actions/productCarouselNav";
 
 interface ProductCarouselProps {
   items: ProductItem[];
   dir?: "rtl" | "ltr";
 }
 
+const OFFSET_BY_DISTANCE = { adjacent: 27, distant: 106 } as const;
+
 export const ProductCarousel: React.FC<ProductCarouselProps> = ({ items, dir = "rtl" }) => {
   const [api, setApi] = useState<CarouselApi>();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const isRtl = dir === "rtl";
 
   useEffect(() => {
     if (!api) return;
-    setCurrentIndex(api.selectedScrollSnap());
-    api.on("select", () => {
-      setCurrentIndex(api.selectedScrollSnap());
-    });
+    const sync = () => setCurrentIndex(api.selectedScrollSnap());
+    sync();
+    api.on("select", sync);
+    api.on("reInit", sync);
+    return () => {
+      api.off("select", sync);
+      api.off("reInit", sync);
+    };
   }, [api]);
 
-  const getCardStatus = (index: number): CardStatus => {
-    const total = items.length;
-    if (index === currentIndex) return "active";
-    const prevIndex = (currentIndex - 1 + total) % total;
-    const nextIndex = (currentIndex + 1) % total;
-    if (index === prevIndex || index === nextIndex) return "adjacent";
-    return "distant";
-  };
+  useEffect(() => {
+    if (!api) return;
+    return onFocusProduct((productId) => {
+      const index = items.findIndex((item) => item.productId === productId);
+      if (index !== -1) api.scrollTo(index);
+    });
+  }, [api, items]);
 
-  const getRelativeOffset = (index: number): number => {
+  const scrollPrev = useCallback(() => api?.scrollPrev(), [api]);
+  const scrollNext = useCallback(() => api?.scrollNext(), [api]);
+
+  const carouselOpts = useMemo(
+    () => ({ loop: true, align: "center" as const, direction: dir, watchDrag: false, duration: 25 }),
+    [dir]
+  );
+
+  const getOffset = (index: number) => {
     const n = items.length;
     let diff = index - currentIndex;
     if (diff > n / 2) diff -= n;
     else if (diff < -n / 2) diff += n;
-    return diff; // 0 = active, ±1 = adjacent, ±2 = distant
+    return diff;
   };
 
-  const scrollPrev = useCallback(() => {
-    if (api) api.scrollPrev();
-  }, [api]);
+  const getStatus = (diff: number): CardStatus =>
+    diff === 0 ? "active" : Math.abs(diff) === 1 ? "adjacent" : "distant";
 
-  const scrollNext = useCallback(() => {
-    if (api) api.scrollNext();
-  }, [api]);
-
-  const isRtl = dir === "rtl";
-
-  const carouselOpts = React.useMemo(
-    () => ({ loop: true, align: "center" as const, direction: dir, watchDrag: false, duration: 25 }),
-    [dir]
-  );
   return (
     <div className="w-full relative overflow-hidden" dir={dir}>
-      <Carousel
-        setApi={setApi}
-        opts={carouselOpts}
-        className="w-full max-w-[1350px] mx-auto "
-      >
+      <Carousel setApi={setApi} opts={carouselOpts} className="w-full max-w-[1350px] mx-auto">
         <CarouselContent className="-me-4 flex items-center h-[500px]">
           {items.map((item, index) => {
-            const status = getCardStatus(index);
-            const diff = getRelativeOffset(index);
-            const mag = diff === 0 ? 0 : Math.abs(diff) === 1 ? 27 : 106;
+            const diff = getOffset(index);
+            const status = getStatus(diff);
+            const mag = status === "active" ? 0 : OFFSET_BY_DISTANCE[status];
             const offsetX = (isRtl ? 1 : -1) * Math.sign(diff) * mag;
 
-            const isActive = status === "active";
             return (
               <CarouselItem
                 key={item.productId}
-                className={cn(" ps-0 flex justify-center items-center basis-[332px]",
-                  // isActive ? "basis-[308px] md:basis-[334px]" : 
-                  // status === "adjacent" ? "basis-[280px]" : 
-                  // "basis-[310px] md:basis-[226px]"
-                )}
+                className="ps-0 flex justify-center items-center basis-[332px]"
               >
                 <ProductCard item={item} status={status} offsetX={offsetX} />
               </CarouselItem>
             );
           })}
         </CarouselContent>
+
         <button
           onClick={isRtl ? scrollNext : scrollPrev}
+          aria-label="السابق"
           className={cn(
             "absolute top-[60%] md:top-[50%] -translate-y-1/2 z-30 flex items-center justify-center w-10.5 h-10.5 rounded-full bg-black/15 hover:bg-black/60 text-white backdrop-blur-[18px] transition-all duration-300",
             isRtl ? "right-[10%] md:right-[33.5%]" : "left-[10%] md:left-[33.5%]"
@@ -96,6 +92,7 @@ export const ProductCarousel: React.FC<ProductCarouselProps> = ({ items, dir = "
         </button>
         <button
           onClick={isRtl ? scrollPrev : scrollNext}
+          aria-label="التالي"
           className={cn(
             "absolute top-[60%] md:top-[50%] -translate-y-1/2 z-30 flex items-center justify-center w-10.5 h-10.5 rounded-full bg-black/15 hover:bg-black/60 text-white backdrop-blur-[18px] transition-all duration-300",
             isRtl ? "left-[10%] md:left-[33.5%]" : "right-[10%] md:right-[33.5%]"
