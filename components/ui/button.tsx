@@ -26,6 +26,7 @@ const buttonVariants = cva(
         "bg-secondary text-[16px] text-primary-foreground hover:bg-destructive hover:text-secondary",
         navSecondary:
         "bg-secondary text-primary-foreground hover:bg-primary-foreground hover:text-foreground",
+        clean: ""
 
       },
       size: {

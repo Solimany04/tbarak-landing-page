@@ -56,9 +56,7 @@ export default function Hero() {
               classes=""
               navID="products-section"
               size="hero"
-            >
-             
-            </NaviagtionButton>
+            ></NaviagtionButton>
           </div>
           <div className="flex gap-16 w-full justify-center">
             <div className="flex flex-col gap-1.5">

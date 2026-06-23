@@ -4,11 +4,13 @@ import { Logo } from "../Logo";
 import Link from "next/link";
 import { MapPin, Mail } from 'lucide-react';
 import { Facebook, Linkedin, Instagram, Google } from "react-bootstrap-icons";
+import NaviagtionButton from "../NaviagtionButton";
 
 const J_FooterSection = () => {
   return (
     <div className="flex flex-col w-full scroll-mt-21" id="footer-section">
       <div className="grid grid-cols-6 w-full pb-9 pt-24 md:ps-16 px-4">
+
         {/* Links */}
         <div className="md:col-span-3 col-span-6 flex md:flex-col gap-6 md:pb-0 pb-8 justify-between">
             <Link href="/" className="relative w-30 h-15 bg-primary "style={{maskImage: "url(/vector.svg)",maskRepeat: "no-repeat",maskSize: "contain",}}>
@@ -25,17 +27,16 @@ const J_FooterSection = () => {
                   <Link href="/" className="bg-secondary/10 text-secondary p-2.5 rounded-full"><Google/></Link>
               </div>
             </div>
-            
         </div>
 
         {/* Left Side List */}
         <div className="md:col-span-3 col-span-6 flex justify-around ">
           <div className="md:col-span-1 col-span-2 flex flex-col gap-6 ">
-            <Link href="" className="font-bold text-primary hover:text-secondary">المنتجات</Link>
-            <Link href="" className="hover:text-secondary">سينجل ليكرا قطن</Link>
-            <Link href="" className="hover:text-secondary">براسولا قطن </Link>
-            <Link href="" className="hover:text-secondary">سمر ميلتون</Link>
-            <Link href="" className="hover:text-secondary">قماش بيكا</Link></div>
+            <NaviagtionButton navID="products-section" variant={"clean"} size={undefined} content={`المنتجات`} classes="flex cursor-pointer font-bold text-primary hover:text-secondary"></NaviagtionButton>
+            <NaviagtionButton navID="products-section" variant={"clean"} size={undefined} content={`سينجل ليكرا قطن`} classes="flex cursor-pointer hover:text-secondary"></NaviagtionButton>
+            <NaviagtionButton navID="products-section" variant={"clean"} size={undefined} content={`براسولا قطن `} classes="flex cursor-pointer hover:text-secondary"></NaviagtionButton>
+            <NaviagtionButton navID="products-section" variant={"clean"} size={undefined} content={`سمر ميلتون`} classes="flex cursor-pointer hover:text-secondary"></NaviagtionButton>
+            <NaviagtionButton navID="products-section" variant={"clean"} size={undefined} content={`قماش بيكا`} classes="flex cursor-pointer hover:text-secondary"></NaviagtionButton></div>
           <div className="md:col-span-1 col-span-2 flex flex-col gap-6">
             <p className="font-bold text-primary">الخدمات</p>
             <p className="">بيع بالجملة</p>

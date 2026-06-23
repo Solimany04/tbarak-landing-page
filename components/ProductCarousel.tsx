@@ -85,7 +85,6 @@ export const ProductCarousel: React.FC<ProductCarouselProps> = ({ items, dir = "
             );
           })}
         </CarouselContent>
-
         <button
           onClick={isRtl ? scrollNext : scrollPrev}
           className={cn(
@@ -95,7 +94,6 @@ export const ProductCarousel: React.FC<ProductCarouselProps> = ({ items, dir = "
         >
           <ArrowRight className="size-8" />
         </button>
-
         <button
           onClick={isRtl ? scrollPrev : scrollNext}
           className={cn(

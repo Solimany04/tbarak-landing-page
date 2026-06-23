@@ -52,7 +52,7 @@ const About = () => {
               <p className="text-base text-black">نفهم احتياجات السوق المحلي، ونوفّر الحلول المناسبة بسرعة ومرونة.</p>
             </li>
           </ul>
-          <NaviagtionButton variant={undefined} content="اعرف المزيد" navID="process-section" classes="hover:shadow-[inset_0_0_0_1px_black] px-8 w-fit py-[24px] text-base font-normal hover:bg-white hover:text-primary mt-8 md:mt-4 lg:mt-auto"></NaviagtionButton>
+          <NaviagtionButton size={undefined} variant={undefined} content="اعرف المزيد" navID="process-section" classes="hover:shadow-[inset_0_0_0_1px_black] px-8 w-fit py-[24px] text-base font-normal hover:bg-white hover:text-primary mt-8 md:mt-4 lg:mt-auto"></NaviagtionButton>
         </div>
 
       </div>
