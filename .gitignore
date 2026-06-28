@@ -42,3 +42,6 @@ next-env.d.ts
 
 # dev
 Draft/
+
+# local-only image backups (originals before compression)
+._original_images/

@@ -16,7 +16,7 @@ export default function Hero() {
     {/* height classes: h-124 md:h-154 lg:h-fit  min-h-[calc(100vh-50px)]*/}
       <main id="hero-section" className="relative min-h-178 w-full flex flex-col items-center justify-center">
         <Image
-          src="/Hero.png"
+          src="/Hero.webp"
           alt="background"
           width={1920}
           height={712}
