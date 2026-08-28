@@ -3,10 +3,26 @@ import React from "react";
 import { Logo } from "../Logo";
 import Link from "next/link";
 import { MapPin, Mail } from 'lucide-react';
-import { Facebook, Linkedin, Instagram, Google } from "react-bootstrap-icons";
+import { useTranslations } from "next-intl";
+// import { Facebook, Linkedin, Instagram, Google } from "react-bootstrap-icons";
 import NaviagtionButton from "../NaviagtionButton";
+import "../../public/Icons/Facebook.svg"
+
+const Facebook = () => {
+return <Image src={"../../public/Icons/Facebook.svg"} width={50} height={50} alt="Facebook logo"/>
+} 
+const Instagram = () => {
+return <Image src={"../../public/Icons/Instagram.svg"} width={50} height={50} alt="Instagram logo"/>
+} 
+const Google = () => {
+return <Image src={"../../public/Icons/Google.svg"} width={50} height={50} alt="Google logo"/>
+} 
+const LinkedIn = () => {
+return <Image src={"../../public/Icons/LinkedIn.svg"} width={50} height={50} alt="LinkedIn logo"/>
+} 
 
 const J_FooterSection = () => {
+  const t = useTranslations("footer");
   return (
     <div className="flex flex-col w-full scroll-mt-21" id="footer-section">
       <div className="grid grid-cols-6 w-full pb-9 pt-24 md:ps-16 px-4">
@@ -17,11 +33,11 @@ const J_FooterSection = () => {
                     <Image src="/vector.svg" alt="icon" fill className="opacity-0" />
             </Link>
             <div className="flex flex-col gap-6">
-            <Link href="" className="w-fit"><MapPin className="inline me-2"/>محافظة القاهرة / وسط البلد.</Link>
+            <Link href="" className="w-fit"><MapPin className="inline me-2"/>{t("address")}</Link>
             <Link href="" className="w-fit"><Mail className="inline me-2"/>contact@tbarak.com</Link>
             {/* Social Icons */}
               <div className="flex gap-2">
-                  <Link href="" className="bg-secondary/10 text-secondary p-2.5 rounded-full"><Linkedin/></Link>
+                  <Link href="" className="bg-secondary/10 text-secondary p-2.5 rounded-full"><LinkedIn/></Link>
                   <Link href="" className="bg-secondary/10 text-secondary p-2.5 rounded-full"><Facebook /></Link>
                   <Link href="" className="bg-secondary/10 text-secondary p-2.5 rounded-full"><Instagram/></Link>
                   <Link href="/" className="bg-secondary/10 text-secondary p-2.5 rounded-full"><Google/></Link>
@@ -32,27 +48,27 @@ const J_FooterSection = () => {
         {/* Left Side List */}
         <div className="md:col-span-3 col-span-6 flex justify-around ">
           <div className="md:col-span-1 col-span-2 flex flex-col gap-6 ">
-            <NaviagtionButton navID="products-section" variant={"clean"} size={undefined} content={`المنتجات`} classes="flex cursor-pointer font-bold text-primary hover:text-secondary"></NaviagtionButton>
-            <NaviagtionButton navID="products-section" variant={"clean"} size={undefined} content={`سينجل ليكرا قطن`} classes="flex cursor-pointer hover:text-secondary"></NaviagtionButton>
-            <NaviagtionButton navID="products-section" variant={"clean"} size={undefined} content={`براسولا قطن `} classes="flex cursor-pointer hover:text-secondary"></NaviagtionButton>
-            <NaviagtionButton navID="products-section" variant={"clean"} size={undefined} content={`سمر ميلتون`} classes="flex cursor-pointer hover:text-secondary"></NaviagtionButton>
-            <NaviagtionButton navID="products-section" variant={"clean"} size={undefined} content={`قماش بيكا`} classes="flex cursor-pointer hover:text-secondary"></NaviagtionButton></div>
+            <NaviagtionButton navID="products-section" variant={"clean"} size={undefined} content={t("products")} classes="flex cursor-pointer font-bold text-primary hover:text-secondary"></NaviagtionButton>
+            <NaviagtionButton navID="products-section" productId="2" variant={"clean"} size={undefined} content={t("pSingle")} classes="flex cursor-pointer hover:text-secondary"></NaviagtionButton>
+            <NaviagtionButton navID="products-section" productId="1" variant={"clean"} size={undefined} content={t("pPrasola")} classes="flex cursor-pointer hover:text-secondary"></NaviagtionButton>
+            <NaviagtionButton navID="products-section" productId="4" variant={"clean"} size={undefined} content={t("pSummer")} classes="flex cursor-pointer hover:text-secondary"></NaviagtionButton>
+            <NaviagtionButton navID="products-section" productId="3" variant={"clean"} size={undefined} content={t("pPika")} classes="flex cursor-pointer hover:text-secondary"></NaviagtionButton></div>
           <div className="md:col-span-1 col-span-2 flex flex-col gap-6">
-            <p className="font-bold text-primary">الخدمات</p>
-            <p className="">بيع بالجملة</p>
-            <p className="">عينات مجانية</p>
-            <p className="">الشحن لأي مكان</p>
-            <p className="">أسعار منافسة</p></div>
+            <p className="font-bold text-primary">{t("servicesTitle")}</p>
+            <p className="">{t("sWholesale")}</p>
+            <p className="">{t("sSamples")}</p>
+            <p className="">{t("sShipping")}</p>
+            <p className="">{t("sPrices")}</p></div>
           <div className="md:col-span-1 col-span-2 flex flex-col gap-6">
-            <h5 className="font-bold text-primary">المزيد</h5>
-            <Link href="" className="hover:text-secondary">الدعم</Link>
-            <Link href="" className="hover:text-secondary">اتصل بنا</Link></div>
+            <h5 className="font-bold text-primary">{t("moreTitle")}</h5>
+            <Link href="" className="hover:text-secondary">{t("support")}</Link>
+            <Link href="" className="hover:text-secondary">{t("contactUs")}</Link></div>
         </div>
       </div>
 
       {/* Bottom */}
       <div className="flex justify-around border-t border-gray-400">
-        <p className="m-7 text-[15px] text-[#929292] font-normal">© 2025 تبارك - جميع الحقوق محفوظة</p>
+        <p className="m-7 text-[15px] text-[#929292] font-normal">{t("rights")}</p>
       </div>
     </div>
   );
