@@ -7,9 +7,10 @@ import { ChevronDown} from "lucide-react";
 import { scrollToNextSection } from "@/lib/actions/scrollToNextSection";
 import { ParticlesBackground } from "@/components/ParticlesBackground";
 import NaviagtionButton from "../NaviagtionButton";
+import { useTranslations } from "next-intl";
 
 export default function Hero() {
-
+  const t = useTranslations("hero");
 
   return (
     <>
@@ -34,12 +35,11 @@ export default function Hero() {
           className="relative flex flex-col items-center justify-center text-center text-white"
         >
           <h1 className="text-5xl md:text-[64px] font-medium w-fit mb-6">
-            تبارك للأقمشة
+            {t("title")}
           </h1>
-          <h5 className="text-xl md:text-2xl font-normal mb-5">جودة تلمسها بيديك</h5>
+          <h5 className="text-xl md:text-2xl font-normal mb-5">{t("subtitle")}</h5>
           <p className="font-normal md:text-xl mb-10">
-            نوفر لتجار الأقمشة والمصانع خامات عالية الجودة بتوريد ثابت وأسعار
-            تنافسية.
+            {t("body")}
           </p>
           <div className="flex flex-col md:flex-row items-center justify-center text-center gap-4 mb-[44px]">
             <Button
@@ -48,10 +48,10 @@ export default function Hero() {
               size="hero"
               className="font-normal"
             >
-              تواصل معنا
+              {t("contact")}
             </Button>
             <NaviagtionButton
-              content="استكشف الآن"
+              content={t("explore")}
               variant="heroOutline"
               classes=""
               navID="products-section"
@@ -63,19 +63,19 @@ export default function Hero() {
               <h4 className="text-secondary text-2xl md:text-4xl font-semibold">
                 30+
               </h4>
-              <p className="font-normal md:text-2xl">سنوات الخبرة</p>
+              <p className="font-normal md:text-2xl">{t("yearsLabel")}</p>
             </div>
             <div className="flex flex-col gap-1.5">
               <h4 className="text-secondary text-2xl md:text-4xl font-semibold">
                 25+
               </h4>
-              <p className="font-normal md:text-2xl">عميل راضٍ</p>
+              <p className="font-normal md:text-2xl">{t("clientsLabel")}</p>
             </div>
             <div className="flex flex-col gap-1.5">
               <h4 className="text-secondary text-2xl md:text-4xl font-semibold">
                 15+
               </h4>
-              <p className="font-normal md:text-2xl">نوع قماش</p>
+              <p className="font-normal md:text-2xl">{t("fabricsLabel")}</p>
             </div>
           </div>
         </div>

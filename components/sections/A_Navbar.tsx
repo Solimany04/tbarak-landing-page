@@ -5,17 +5,14 @@ import { useScroll } from "@/lib/hooks/useScroll";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import React from "react";
+import { useTranslations } from "next-intl";
 import { Button } from "../ui/button";
 import { scrollToNextSection } from "@/lib/actions/scrollToNextSection";
 import Link from "next/link";
+import LocaleSwitcher from "../LocaleSwitcher";
 
 const Navbar = () => {
-  const activeLang = (
-    <div>
-      <span className="fi fi-sa me-1 rounded" />
-      AR
-    </div>
-  );
+  const t = useTranslations("nav");
   const activeSection = useActiveSection([
     "hero-section",
     "about-section",
@@ -26,12 +23,12 @@ const Navbar = () => {
   ]);
 
   const navLinks = [
-    { id: "contact-section", label: "تواصل معنا" },
-    { id: "why-section", label: "المميزات" },
-    { id: "process-section", label: "مراحل العمل" },
-    { id: "products-section", label: "المنتجات" },
-    { id: "about-section", label: "من نحن" },
-    { id: "hero-section", label: "الصفحة الرئيسية" },
+    { id: "contact-section", label: t("contact") },
+    { id: "why-section", label: t("why") },
+    { id: "process-section", label: t("process") },
+    { id: "products-section", label: t("products") },
+    { id: "about-section", label: t("about") },
+    { id: "hero-section", label: t("home") },
   ];
 
   const isScrolled = useScroll(100);
@@ -80,17 +77,12 @@ const Navbar = () => {
       </ul>
       {/* Contact Button */}
       <div className="hidden md:flex gap-8 md:gap-4 lg:me-16 md:me-8 items-center">
-        <button
-          id="lang"
-          className="cursor-pointer md:flex text-primary-foreground"
-        >
-          {activeLang}
-        </button>
+        <LocaleSwitcher />
         <Button
           variant="navSecondary"
           className="lg:px-8 md:px-5 py-6 font-normal flex flex-row-reverse"
         >
-          تواصل الآن
+          {t("ctaNow")}
           <span>
             <Whatsapp className="inline" />
           </span>
