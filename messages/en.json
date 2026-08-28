@@ -1,0 +1,118 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About us",
+    "products": "Products",
+    "process": "Production",
+    "why": "Features",
+    "contact": "Contact us",
+    "ctaNow": "Continue now"
+  },
+  "hero": {
+    "title": "Tbarak Fabrics",
+    "subtitle": "quality you can feel with your hands",
+    "body": "high-quality materials, reliable supply, competitive prices.",
+    "contact": "Contact us",
+    "explore": "Explore now",
+    "yearsLabel": "Experience",
+    "clientsLabel": "Clients",
+    "fabricsLabel": "Fabrics"
+  },
+  "about": {
+    "heading": "About",
+    "brand": "Tbarak",
+    "intro": "Tbarak Spinning and Weaving Company strives to provide premium-quality raw materials and fabrics at the most competitive prices.",
+    "item1": "We provide reliable fabrics with consistent quality and regular shipping.",
+    "item2": "We build long-term partnerships with trusted suppliers.",
+    "item3": "We maintain ready stock to support uninterrupted production.",
+    "item4": "We understand the local market and deliver fast, flexible solutions.",
+    "cta": "Learn more"
+  },
+  "products": {
+    "heading": "Products by",
+    "brand": "Tbarak"
+  },
+  "process": {
+    "heading": "How We",
+    "brand": "Work",
+    "step1Title": "Quality First",
+    "step1Body": "We rely on the finest types of structures and fibers, carefully selected, and the highest levels of performance and stability within the range of use.",
+    "step2Title": "The Weaving Process",
+    "step2Body": "We rely on the finest types of yarns and fibers, carefully selected, to ensure the highest levels of performance and stability in manufacturing and long-term use.",
+    "step3Title": "Quality Control",
+    "step3Body": "We use state-of-the-art circular knitting machines along with innovative technologies to ensure the production of high-quality fabrics that meet the highest standards of comfort, durability and beauty."
+  },
+  "why": {
+    "heading": "Why",
+    "brand": "Tbarak",
+    "f1Title": "High quality",
+    "f1Sub": "Fabrics are carefully sourced",
+    "f2Title": "Competitive prices",
+    "f2Sub": "Best value in the market",
+    "f3Title": "Shipping anywhere",
+    "f3Sub": "Delivery to all governorates",
+    "f4Title": "We provide all materials",
+    "f4Sub": "You will find all the fabrics you need with us",
+    "f5Title": "Free samples",
+    "f5Sub": "Send samples for product preview before ordering"
+  },
+  "feedback": {
+    "heading": "Customer reviews of",
+    "brand": "Tbarak"
+  },
+  "contact": {
+    "heading": "Let's build relationships",
+    "subtitle": "Together we create more value. The journey begins with communication.",
+    "addressNote": "You can visit us at the address shown or contact us through the available channels.",
+    "companyName": "Tbarak Fabrics & Textiles",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "phone": "Phone number",
+    "message": "Message",
+    "messagePlaceholder": "Write your message",
+    "submit": "Send now",
+    "submitting": "Sending...",
+    "successTitle": "Sent successfully!",
+    "successBody": "Thank you for reaching out. We'll get back to you as soon as possible.",
+    "sendAnother": "Send another message",
+    "genericError": "Something went wrong. Please try again.",
+    "turnstileError": "Verification failed. Please try again.",
+    "turnstileExpired": "Verification expired. Please try again.",
+    "validation": {
+      "firstNameRequired": "First name is required",
+      "firstNameTooLong": "First name is too long",
+      "lastNameRequired": "Last name is required",
+      "lastNameTooLong": "Last name is too long",
+      "emailInvalid": "Invalid email address",
+      "emailTooLong": "Email address is too long",
+      "phoneInvalid": "Invalid phone number",
+      "messageTooShort": "Message is too short (minimum 10 characters)",
+      "messageTooLong": "Message is too long (maximum 2000 characters)",
+      "tokenRequired": "Verification token is required"
+    }
+  },
+  "footer": {
+    "address": "Cairo Governorate / Downtown.",
+    "products": "Products",
+    "pSingle": "Single Lycra Cotton",
+    "pPrasola": "Prasola Cotton",
+    "pSummer": "Summer Melton",
+    "pPika": "Pica Fabric",
+    "servicesTitle": "Services",
+    "sWholesale": "Wholesale",
+    "sSamples": "Free samples",
+    "sShipping": "Shipping anywhere",
+    "sPrices": "Competitive prices",
+    "moreTitle": "More",
+    "support": "Support",
+    "contactUs": "Contact us",
+    "rights": "© 2025 Tbarak - All rights reserved"
+  },
+  "common": {
+    "getItNow": "Get it now",
+    "contactNow": "Contact now",
+    "previous": "Previous",
+    "next": "Next"
+  }
+}
