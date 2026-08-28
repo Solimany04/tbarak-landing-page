@@ -1,8 +1,10 @@
 import React from 'react'
 import ContactForm from '../ContactForm'
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 
 const ContactSection = () => {
+  const t = useTranslations('contact');
   return (
       <div className='relative bg-primary scroll-mt-21' id='contact-section'>
         <div className="absolute z-0 w-full h-full">
@@ -14,8 +16,8 @@ const ContactSection = () => {
 
             {/* Right Side */}
             <div className="flex flex-col lg:max-w-116 w-full md:max-w-97  md:me-10.5 mt-8 md:mt-0 md:px-4">
-                <h2 className="font-medium md:text-5xl text-3xl text-white lg:mb-6 mb-2 md:w-106">دعونا ننسج العلاقات</h2>
-                <h4 className="font-normal text-white/80 md:text-2xl lg:mb-16 mb-8 line-clamp-1 -me-4">معًا نصنع قيمة أكبر، بالتواصل يبدأ الطريق.</h4>
+                <h2 className="font-medium md:text-5xl text-3xl text-white lg:mb-6 mb-2 md:w-106">{t('heading')}</h2>
+                <h4 className="font-normal text-white/80 md:text-2xl lg:mb-16 mb-8 line-clamp-1 -me-4">{t('subtitle')}</h4>
                 {/* lg:451x380 */}
                 {/* md:355x352.83 */}
                 <ContactForm/>
@@ -23,8 +25,8 @@ const ContactSection = () => {
             {/* Left Side */}
             <div className="relative h-fit my-8 md:my-0">
                 <div className="absolute bottom-0 px-5 py-7.5">
-                    <p className="text-white/70 mb-2.5">يمكنكم زيارتنا في العنوان الموضح أو التواصل معنا عبر القنوات المتاحة.</p>
-                    <p className="text-white/80 font-semibold">تبارك للأقمشة والمنسوجات</p>
+                    <p className="text-white/70 mb-2.5">{t('addressNote')}</p>
+                    <p className="text-white/80 font-semibold">{t('companyName')}</p>
                 </div>
                 <Image width={571} height={573} alt='Google Maps Location' src="/tbarak google maps location.png"></Image>
             </div>

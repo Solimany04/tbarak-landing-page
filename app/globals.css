@@ -161,3 +161,151 @@ html {
     @apply bg-background text-foreground;
   }
 }
+
+/* ===========================================================================
+   react-phone-number-input — `.phone-field` layout override
+   ===========================================================================
+
+   WHY THIS LIVES IN PLAIN CSS INSTEAD OF TAILWIND ARBITRARY VARIANTS
+   ------------------------------------------------------------------
+   `react-phone-number-input/style.css` is imported from node_modules, so its
+   rules are UNLAYERED author styles. Tailwind v4 emits every utility inside
+   `@layer utilities`. In the CSS cascade, unlayered declarations always beat
+   layered ones *regardless of specificity* — so `[&_.PhoneInputCountry]:absolute`
+   loses to the library's `.PhoneInputCountry { position: relative }` no matter
+   how many descendant selectors the arbitrary variant generates.
+   These overrides therefore live here, unlayered, and are scoped with a
+   `.phone-field` class that raises specificity above the library's own rules.
+
+   THE DOM THE LIBRARY RENDERS
+   ---------------------------
+   div.PhoneInput                 display:flex; align-items:center
+   ├─ div.PhoneInputCountry       position:relative; align-self:stretch
+   │  ├─ select.PhoneInputCountrySelect   inset:0; opacity:0; z-index:1
+   │  ├─ div.PhoneInputCountryIcon        the flag
+   │  └─ div.PhoneInputCountrySelectArrow the caret
+   └─ input.PhoneInputInput       flex:1; min-width:0
+
+   The country block is a *flex sibling* of the input, so by default it eats
+   horizontal space and the input can never span the full form width. The fix
+   is to drop the flex row entirely (`display:block`) and lift the country
+   block out of flow so the input alone defines the field's width.
+   =========================================================================== */
+
+.phone-field {
+  /* Prefer the library's documented CSS variables over rule overrides where
+     possible — these need no specificity battle. */
+  --PhoneInputCountryFlag-height: 1.125rem; /* → width = height × 1.5 = 27px */
+  --PhoneInputCountryFlag-borderWidth: 0; /* kills the box-shadow "border" */
+  --PhoneInputCountryFlag-backgroundColor--loading: transparent;
+  --PhoneInputCountrySelect-marginRight: 0;
+  --PhoneInputCountrySelectArrow-width: 0;
+
+  /* Derived from the library's own flag vars so the offset below can never
+     drift out of sync with the rendered flag size. */
+  --phone-field-flag-width: calc(
+    var(--PhoneInputCountryFlag-height) * var(--PhoneInputCountryFlag-aspectRatio)
+  );
+  --phone-field-flag-gap: 0.75rem; /* breathing room between flag and field */
+}
+
+/* Doubling the class beats `.PhoneInput` (0,1,0) with (0,2,0). */
+.phone-field.PhoneInput {
+  position: relative; /* containing block for the country selector */
+  display: block; /* was flex — this is what frees the input's width */
+  width: 100%;
+}
+
+/* WHY THIS BLOCK USES `[dir="rtl"]` AND NOT LOGICAL PROPERTIES
+   ------------------------------------------------------------
+   Logical properties (`inset-inline-start`, `text-align: start`) resolve against
+   the element's own computed `direction`. That is the wrong anchor here: a phone
+   number is *always* logically LTR — "+20 100 123 4567" must never be reordered
+   by bidi — so `.PhoneInputInput` below is pinned to `direction: ltr`. The
+   moment you do that, `start` means LEFT on this subtree even on the Arabic
+   page, which is exactly why the placeholder stayed left-aligned.
+
+   So the two concerns are deliberately separated:
+     • bidi ordering of the number  → `direction`, pinned to ltr, never changes
+     • which side the field hangs on → the `dir` ATTRIBUTE on <html>, via the
+       `[dir="rtl"]` ancestor selector, which is unaffected by the pin above.
+   Mixing the two is the classic trap with this widget. */
+
+/* Flag: out of flow and pulled fully OUTSIDE the input's border box, into the
+   column's outer margin — the input itself keeps a clean 100% width and stays
+   pixel-aligned with the email/message fields.
+
+   `inset-block: 0` makes the box full-height, so `align-items: center` centres
+   the flag against the input rather than against its own content box — this is
+   what gives true vertical centring without a `translateY(-50%)` hack. */
+.phone-field .PhoneInputCountry {
+  position: absolute;
+  inset-block: 0;
+  /* LTR default: flag hangs off the left edge. */
+  right: auto;
+  left: calc(-1 * (var(--phone-field-flag-width) + var(--phone-field-flag-gap)));
+  width: var(--phone-field-flag-width);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  opacity: 0.5;
+  transition: opacity 150ms ease;
+  cursor: pointer;
+}
+
+/* Arabic: mirror to the right edge. */
+[dir="rtl"] .phone-field .PhoneInputCountry {
+  left: auto;
+  right: calc(-1 * (var(--phone-field-flag-width) + var(--phone-field-flag-gap)));
+}
+
+.phone-field .PhoneInputCountry:hover,
+.phone-field:focus-within .PhoneInputCountry {
+  opacity: 1;
+}
+
+/* The invisible native <select> is `inset: 0` inside the country box, which is
+   now full field height — so the whole flag column is one tall click target
+   rather than just the 27×18px flag. */
+.phone-field .PhoneInputCountrySelect {
+  cursor: pointer;
+}
+
+/* Native dropdown options render with the select's own colours on most
+   platforms — without this they are white-on-white against the dark form. */
+.phone-field .PhoneInputCountrySelect,
+.phone-field .PhoneInputCountrySelect option {
+  background-color: var(--color-zinc-900, #18181b);
+  color: #fff;
+}
+
+.phone-field .PhoneInputCountrySelectArrow {
+  display: none;
+}
+
+/* `<input>` is inline-block by default; as the only child of a block wrapper
+   its baseline would add a few phantom pixels below the field. */
+.phone-field .PhoneInputInput {
+  display: block;
+  width: 100%;
+}
+
+/* `direction: ltr` is pinned so the number itself is never bidi-reordered —
+   a leading "+" in an RTL context otherwise jumps to the wrong end of the
+   string. Alignment is then set PHYSICALLY, because `start`/`end` would now
+   both resolve against this pinned ltr direction and always mean "left".
+   `::placeholder` inherits `text-align`, but it is spelled out because Safari
+   has historically needed the explicit rule. */
+.phone-field .PhoneInputInput,
+.phone-field .PhoneInputInput::placeholder {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Arabic: the field reads from the right like its email/message siblings,
+   while the digits inside it stay in ltr order. Keyed off the `dir` ATTRIBUTE
+   that layout.tsx puts on <html>, so the pin above cannot defeat it. */
+[dir="rtl"] .phone-field .PhoneInputInput,
+[dir="rtl"] .phone-field .PhoneInputInput::placeholder {
+  text-align: right;
+}
