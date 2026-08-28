@@ -1,45 +1,18 @@
 import FeedbackCarousel from "../FeedbackCarousel";
-import { FeedbackCardProps } from "@/app/utils/types";
+import { getFeedbacks } from "@/lib/content/feedbacks";
+import { getLocale, getTranslations } from "next-intl/server";
+import type { Locale } from "@/i18n/config";
 
-const dummyFeedbacks: FeedbackCardProps[] = [
-  {
-    avatar: "/FeadbackAvatars/Ellipse.png",
-    name: "عبدالله عبدالخالق1",
-    desc: "ورشة تصميم مفروشات",
-    content: "ثبات الألوان ممتاز، والقماش يتحمل الغسيل المستمر دون أي مشاكل."
-  },
-  {
-    avatar: "/FeadbackAvatars/Ellipse.png",
-    name: "خالد صقر1",
-    desc: "مصنع ملابس أطفال",
-    content: "الملمس الداخلي ناعم جدًا، والمنتج النهائي يعطي إحساس بالفخامة."
-  },
-  {
-    avatar: "/FeadbackAvatars/Ellipse.png",
-    name: "سامي حسن1",
-    desc: "مصنع السويس",
-    content: "جودة ممتازة ونعومة لا تُصدق، استخدمناه في إنتاج تيشرتات العملاء وكانت النتيجة رائعة!"
-  },
-  {
-    avatar: "/FeadbackAvatars/Ellipse.png",
-    name: "عبدالله عبدالخالق2",
-    desc: "ورشة تصميم مفروشات",
-    content: "ثبات الألوان ممتاز، والقماش يتحمل الغسيل المستمر دون أي مشاكل."
-  },
-  {
-    avatar: "/FeadbackAvatars/Ellipse.png",
-    name: "خالد صقر2",
-    desc: "مصنع ملابس أطفال",
-    content: "الملمس الداخلي ناعم جدًا، والمنتج النهائي يعطي إحساس بالفخامة."
-  },
-];
+const FeedbackSection = async () => {
+  const locale = (await getLocale()) as Locale;
+  const items = await getFeedbacks(locale);
+  const t = await getTranslations("feedback");
 
-const FeedbackSection = () => {
   return (
     <div className="overflow-hidden w-full relative scroll-mt-21" id='feedback-section'>
-      <div className="flex flex-col lg:mt-28 md:mt-12 mt-16 gap-16 mb-24 w-360 mx-auto">
-        <h2 className="text-center font-semibold text-5xl ">آراء عملاء <span className='text-accent'>تبارك</span></h2>
-        <FeedbackCarousel dummyFeedbacks={dummyFeedbacks} />
+      <div className="flex flex-col lg:mt-28 md:mt-12 mt-16 gap-16 mb-24 w-400 mx-auto">
+        <h2 className="text-center font-semibold text-5xl ">{t("heading")} <span className='text-accent'>{t("brand")}</span></h2>
+        <FeedbackCarousel dummyFeedbacks={items} />
       </div>
     </div>
   )

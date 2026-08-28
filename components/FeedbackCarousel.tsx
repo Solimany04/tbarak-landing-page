@@ -31,7 +31,7 @@ const FeedbackCarousel = ({ dummyFeedbacks }: { dummyFeedbacks: FeedbackCardProp
             watchDrag: false,
           }}
           plugins={[plugin.current]}
-          className="w-full [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]"
+          className="w-full [mask-image:linear-gradient(to_right,transparent,black_2.5%,black_97.5%,transparent)]"
           dir="rtl"
         >
           <CarouselContent className="-ms-14">
