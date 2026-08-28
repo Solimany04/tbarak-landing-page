@@ -7,6 +7,7 @@ import { ProductItem, CardStatus } from "../app/utils/types";
 import { ProductCard } from "./ProductCard";
 import { cn } from "@/lib/utils";
 import { onFocusProduct } from "@/lib/actions/productCarouselNav";
+import { useTranslations } from "next-intl";
 
 interface ProductCarouselProps {
   items: ProductItem[];
@@ -16,6 +17,7 @@ interface ProductCarouselProps {
 const OFFSET_BY_DISTANCE = { adjacent: 27, distant: 106 } as const;
 
 export const ProductCarousel: React.FC<ProductCarouselProps> = ({ items, dir = "rtl" }) => {
+  const t = useTranslations("common");
   const [api, setApi] = useState<CarouselApi>();
   const [currentIndex, setCurrentIndex] = useState(0);
   const isRtl = dir === "rtl";
@@ -82,7 +84,7 @@ export const ProductCarousel: React.FC<ProductCarouselProps> = ({ items, dir = "
 
         <button
           onClick={isRtl ? scrollNext : scrollPrev}
-          aria-label="السابق"
+          aria-label={t("previous")}
           className={cn(
             "absolute top-[60%] md:top-[50%] -translate-y-1/2 z-30 flex items-center justify-center w-10.5 h-10.5 rounded-full bg-black/15 hover:bg-black/60 text-white backdrop-blur-[18px] transition-all duration-300",
             isRtl ? "right-[10%] md:right-[33.5%]" : "left-[10%] md:left-[33.5%]"
@@ -92,7 +94,7 @@ export const ProductCarousel: React.FC<ProductCarouselProps> = ({ items, dir = "
         </button>
         <button
           onClick={isRtl ? scrollPrev : scrollNext}
-          aria-label="التالي"
+          aria-label={t("next")}
           className={cn(
             "absolute top-[60%] md:top-[50%] -translate-y-1/2 z-30 flex items-center justify-center w-10.5 h-10.5 rounded-full bg-black/15 hover:bg-black/60 text-white backdrop-blur-[18px] transition-all duration-300",
             isRtl ? "left-[10%] md:left-[33.5%]" : "right-[10%] md:right-[33.5%]"

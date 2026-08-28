@@ -3,11 +3,8 @@
 import React from 'react'
 import { Button } from './ui/button'
 import { scrollToNextSection } from '@/lib/actions/scrollToNextSection'
-import { ButtonVariants, ButtonSizes, NavigationButtonProps } from '@/app/utils/types'
+import { NavigationButtonProps } from '@/app/utils/types'
 import { focusProduct } from '@/lib/actions/productCarouselNav'
-
-
-
 
 const NaviagtionButton = ({ classes, variant, navID, content, size, productId }: NavigationButtonProps) => {
     const handleClick = () => {

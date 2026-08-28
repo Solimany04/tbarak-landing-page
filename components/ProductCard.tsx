@@ -1,5 +1,6 @@
-// ProductCard.tsx (تحديث)
+// ProductCard.tsx
 import React from "react";
+import { useTranslations } from "next-intl";
 import { ProductItem, CardStatus } from "../app/utils/types";
 import { cn } from "@/lib/utils";
 import { InnerGallery } from "./InnerGallery";
@@ -12,6 +13,7 @@ interface ProductCardProps {
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ item, status, offsetX = 0 }) => {
+  const t = useTranslations("common");
   const isActive = status === "active";
 
   return (
@@ -33,7 +35,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ item, status, offsetX 
           </p>
         </div>
         <Button className="bottom-0 bg-[#1c2c2e] hover:bg-[#2a3f41] text-white text-sm font-light rounded-full transition-colors duration-300 w-fit">
-          أحصل عليه الآن
+          {t("getItNow")}
         </Button>
       </div>
     </div>
