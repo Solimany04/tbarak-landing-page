@@ -20,6 +20,7 @@ const SocialIcon = ({ name, size = 16 }: { name: string; size?: number }) => {
 
 const J_FooterSection = () => {
   const t = useTranslations("footer");
+  const t2 = useTranslations("common");
   return (
     <div className="flex flex-col w-full scroll-mt-21" id="footer-section">
       <div className="grid grid-cols-6 w-full pb-9 pt-24 md:ps-16 px-4">
@@ -58,8 +59,13 @@ const J_FooterSection = () => {
             <p className="">{t("sPrices")}</p></div>
           <div className="md:col-span-1 col-span-2 flex flex-col gap-6">
             <h5 className="font-bold text-primary">{t("moreTitle")}</h5>
-            <Link href="" className="hover:text-secondary">{t("support")}</Link>
-            <Link href="" className="hover:text-secondary">{t("contactUs")}</Link></div>
+            <Link href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}?text=${t2("supportWhatsappMessage")}`} className="hover:text-secondary" target="_blank">
+              {t("support")}
+            </Link>
+            <Link href={`tel:${process.env.NEXT_PUBLIC_PHONE_NUMBER}`} className="hover:text-secondary">
+              {t("contactUs")}
+            </Link>
+          </div>
         </div>
       </div>
 

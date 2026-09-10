@@ -77,14 +77,9 @@ const I_ContactSection = () => {
           {/* Figma "com Button" — fills the 426px content width, radius 30,
               px-32 py-14, gap-8. Hover variant 101:115 is a white fill with
               #1C3535 label and icon, 200ms ease-out. */}
-          <Link
-            href={whatsappHref || "#"}
-            target={whatsappHref ? "_blank" : undefined}
-            rel={whatsappHref ? "noopener noreferrer" : undefined}
-            aria-disabled={whatsappHref ? undefined : true}
-            className={`flex flex-row items-center justify-center gap-2 w-full rounded-[30px] bg-[#F68A4A] px-8 py-3.5 text-white transition-colors duration-200 ease-out hover:bg-white hover:text-[#1C3535] ${
-              whatsappHref ? "" : "pointer-events-none"
-            }`}
+          <Link href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}?text=${tCommon("genericWhatsappMessage")}`} target="_blank"
+            className={`flex flex-row items-center justify-center gap-2 w-full rounded-[30px] bg-[#F68A4A] px-8 py-3.5 text-white transition-colors duration-200 ease-out hover:bg-white hover:text-[#1C3535] ${whatsappHref ? "" : "pointer-events-none"
+              }`}
           >
             <WhatsAppIcon className="shrink-0" />
             <span className="font-normal text-[16px] leading-[22.4px] tracking-[-0.025em]">

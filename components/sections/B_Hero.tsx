@@ -3,18 +3,20 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import React from "react";
-import { ChevronDown} from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { scrollToNextSection } from "@/lib/actions/scrollToNextSection";
 import { ParticlesBackground } from "@/components/ParticlesBackground";
 import NaviagtionButton from "../NaviagtionButton";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 
 export default function Hero() {
   const t = useTranslations("hero");
+  const t2 = useTranslations("common");
 
   return (
     <>
-    {/* height classes: h-124 md:h-154 lg:h-fit  min-h-[calc(100vh-50px)]*/}
+      {/* height classes: h-124 md:h-154 lg:h-fit  min-h-[calc(100vh-50px)]*/}
       <main id="hero-section" className="relative min-h-178 w-full flex flex-col items-center justify-center">
         <Image
           src="/Hero.webp"
@@ -42,14 +44,16 @@ export default function Hero() {
             {t("body")}
           </p>
           <div className="flex flex-col md:flex-row items-center justify-center text-center gap-4 mb-[44px]">
-            <Button
-              variant="heroSecondary"
-              type="submit"
-              size="hero"
-              className="font-normal"
-            >
-              {t("contact")}
-            </Button>
+            <Link href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}?text=${t2("genericWhatsappMessage")}`} target="_blank">
+              <Button
+                variant="heroSecondary"
+                type="submit"
+                size="hero"
+                className="font-normal"
+              >
+                {t("contact")}
+              </Button>
+            </Link>
             <NaviagtionButton
               content={t("explore")}
               variant="heroOutline"

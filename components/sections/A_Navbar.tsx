@@ -13,6 +13,7 @@ import LocaleSwitcher from "../LocaleSwitcher";
 
 const Navbar = () => {
   const t = useTranslations("nav");
+  const t2 = useTranslations("common");
   const activeSection = useActiveSection([
     "hero-section",
     "about-section",
@@ -78,15 +79,19 @@ const Navbar = () => {
       {/* Contact Button */}
       <div className="hidden md:flex gap-8 md:gap-4 lg:me-16 md:me-8 items-center">
         <LocaleSwitcher />
-        <Button
-          variant="navSecondary"
-          className="lg:px-8 md:px-5 py-6 font-normal flex flex-row-reverse"
-        >
-          {t("ctaNow")}
-          <span>
-            <Whatsapp className="inline" />
-          </span>
-        </Button>
+        <Link href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}?text=${t2("genericWhatsappMessage")}`} target="_blank">
+
+          <Button
+
+            variant="navSecondary"
+            className="lg:px-8 md:px-5 py-6 font-normal flex flex-row-reverse"
+          >
+            {t("ctaNow")}
+            <span>
+              <Whatsapp className="inline" />
+            </span>
+          </Button>
+        </Link>
       </div>
     </nav>
   );

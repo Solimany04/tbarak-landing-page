@@ -110,6 +110,9 @@
     "rights": "© 2025 Tbarak - All rights reserved"
   },
   "common": {
+    "supportWhatsappMessage": "Hello, I need some help.",
+    "genericWhatsappMessage": "Hello, I would like to know more about your products.",
+    "productWhatsappMessage": "Hello, I would like to know more about ",
     "getItNow": "Get it now",
     "contactNow": "Contact now",
     "previous": "Previous",

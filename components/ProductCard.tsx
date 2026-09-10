@@ -5,6 +5,7 @@ import { ProductItem, CardStatus } from "../app/utils/types";
 import { cn } from "@/lib/utils";
 import { InnerGallery } from "./InnerGallery";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 interface ProductCardProps {
   item: ProductItem;
@@ -34,8 +35,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ item, status, offsetX 
             {item.productDesc}
           </p>
         </div>
+
         <Button className="bottom-0 bg-[#1c2c2e] hover:bg-[#2a3f41] text-white text-sm font-light rounded-full transition-colors duration-300 w-fit">
+                <Link href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}?text=${t("productWhatsappMessage")}${item.productTitle}.`} target="_blank">
           {t("getItNow")}
+        </Link>
         </Button>
       </div>
     </div>
