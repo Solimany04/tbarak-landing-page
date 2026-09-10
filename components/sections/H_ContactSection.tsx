@@ -28,7 +28,7 @@ const ContactSection = () => {
                     <p className="text-white/70 mb-2.5">{t('addressNote')}</p>
                     <p className="text-white/80 font-semibold">{t('companyName')}</p>
                 </div>
-                <Image width={571} height={573} alt='Google Maps Location' src="/tbarak google maps location.png"></Image>
+                <Image width={573} height={573} alt='Google Maps Location' src="/tbarak google maps location.png"></Image>
             </div>
         </div>
     </div>

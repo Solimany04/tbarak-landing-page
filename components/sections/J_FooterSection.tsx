@@ -4,22 +4,19 @@ import { Logo } from "../Logo";
 import Link from "next/link";
 import { MapPin, Mail } from 'lucide-react';
 import { useTranslations } from "next-intl";
-// import { Facebook, Linkedin, Instagram, Google } from "react-bootstrap-icons";
 import NaviagtionButton from "../NaviagtionButton";
-import "../../public/Icons/Facebook.svg"
 
-const Facebook = () => {
-return <Image src={"../../public/Icons/Facebook.svg"} width={50} height={50} alt="Facebook logo"/>
-} 
-const Instagram = () => {
-return <Image src={"../../public/Icons/Instagram.svg"} width={50} height={50} alt="Instagram logo"/>
-} 
-const Google = () => {
-return <Image src={"../../public/Icons/Google.svg"} width={50} height={50} alt="Google logo"/>
-} 
-const LinkedIn = () => {
-return <Image src={"../../public/Icons/LinkedIn.svg"} width={50} height={50} alt="LinkedIn logo"/>
-} 
+const SocialIcon = ({ name, size = 16 }: { name: string; size?: number }) => {
+  return <Link href="" className="bg-secondary/10 text-secondary p-2.5 rounded-full inline-flex">
+    <Image
+      src={`/Icons/${name}.svg`}
+      width={size}
+      height={size}
+      alt={`${name} logo`}
+      style={{ width: size, height: size }}
+    />
+  </Link>
+};
 
 const J_FooterSection = () => {
   const t = useTranslations("footer");
@@ -29,20 +26,20 @@ const J_FooterSection = () => {
 
         {/* Links */}
         <div className="md:col-span-3 col-span-6 flex md:flex-col gap-6 md:pb-0 pb-8 justify-between">
-            <Link href="/" className="relative w-30 h-15 bg-primary "style={{maskImage: "url(/vector.svg)",maskRepeat: "no-repeat",maskSize: "contain",}}>
-                    <Image src="/vector.svg" alt="icon" fill className="opacity-0" />
-            </Link>
-            <div className="flex flex-col gap-6">
-            <Link href="" className="w-fit"><MapPin className="inline me-2"/>{t("address")}</Link>
-            <Link href="" className="w-fit"><Mail className="inline me-2"/>contact@tbarak.com</Link>
+          <Link href="/" className="relative w-30 h-15 bg-primary " style={{ maskImage: "url(/vector.svg)", maskRepeat: "no-repeat", maskSize: "contain", }}>
+            <Image src="/vector.svg" alt="icon" fill className="opacity-0" />
+          </Link>
+          <div className="flex flex-col gap-6">
+            <Link href="" className="w-fit"><MapPin className="inline me-2" />{t("address")}</Link>
+            <Link href="" className="w-fit"><Mail className="inline me-2" />contact@tbarak.com</Link>
             {/* Social Icons */}
-              <div className="flex gap-2">
-                  <Link href="" className="bg-secondary/10 text-secondary p-2.5 rounded-full"><LinkedIn/></Link>
-                  <Link href="" className="bg-secondary/10 text-secondary p-2.5 rounded-full"><Facebook /></Link>
-                  <Link href="" className="bg-secondary/10 text-secondary p-2.5 rounded-full"><Instagram/></Link>
-                  <Link href="/" className="bg-secondary/10 text-secondary p-2.5 rounded-full"><Google/></Link>
-              </div>
+            <div className="flex gap-2">
+              <SocialIcon name="Facebook" />
+              <SocialIcon name="Instagram" />
+              <SocialIcon name="Google" />
+              <SocialIcon name="LinkedIn" />
             </div>
+          </div>
         </div>
 
         {/* Left Side List */}

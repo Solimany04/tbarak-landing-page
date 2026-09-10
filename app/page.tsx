@@ -1,5 +1,6 @@
 import About from "@/components/sections/C_About";
 import ContactSection from "@/components/sections/H_ContactSection";
+import I_ContactSection from "@/components/sections/I_ContactSection";
 import FeedbackSection from "@/components/sections/G_FeedbackSection";
 import Hero from "@/components/sections/B_Hero";
 import J_FooterSection from "@/components/sections/J_FooterSection";
@@ -20,7 +21,8 @@ export default function Home() {
       <ProductionProcess/>
       <WhySection/>
       <FeedbackSection/>
-      <ContactSection/>
+      {/* Old form-based contact section, kept for reference: <ContactSection/> */}
+      <I_ContactSection/>
       <J_FooterSection/>
       {/* <ProductsSection/> */}
       {/* <Button size="lg">Click me</Button> */}
