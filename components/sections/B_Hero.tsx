@@ -20,7 +20,7 @@ export default function Hero() {
           src="/Hero.webp"
           alt="background"
           width={1920}
-          height={712}
+          height={1920}
           style={{
             height: "100%",
             width: "100%",

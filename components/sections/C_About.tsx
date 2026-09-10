@@ -10,7 +10,8 @@ const About = () => {
   const t = useTranslations("about");
   return (
     <div className="w-full bg-white scroll-mt-21" id="about-section">
-      <div className="flex flex-col-reverse md:flex-row pt-16 md:pt-24 mx-4 md:mx-8 lg:mx-auto w-fit pb-16 ">
+      
+      <div className="flex flex-col-reverse md:flex-row pt-16 md:pt-24 pb-16 w-full max-w-7xl mx-auto px-4 md:px-8">
 
         {/* Image Side */}
         <div className="flex flex-col lg:w-1/3 md:w-1/2 w-full h-full relative mt-4 md:mt-0">
