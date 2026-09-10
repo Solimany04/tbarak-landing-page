@@ -3,9 +3,29 @@ import { ContactFormData } from "./contact-schema";
 import NotificationEmail from "@/lib/emails/Notification";
 import AutoReplyEmail from "@/lib/emails/AutoReply";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// The Resend client is created lazily, on the first send, instead of at module
+// scope. `next build` imports every route module to collect page data, and a
+// module-scope `new Resend(process.env.RESEND_API_KEY)` throws there whenever
+// the key is not present in the build environment, failing the whole build.
+let resendClient: Resend | null = null;
+
+export function isEmailConfigured(): boolean {
+  return Boolean(process.env.RESEND_API_KEY);
+}
+
+function getResend(): Resend {
+  if (!resendClient) {
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      throw new Error("RESEND_API_KEY is not defined");
+    }
+    resendClient = new Resend(apiKey);
+  }
+  return resendClient;
+}
 
 export async function sendContactEmails(data: ContactFormData, ip: string, userAgent: string) {
+  const resend = getResend();
   const isVerified = process.env.RESEND_DOMAIN_VERIFIED === "true";
 
   const fallbackEmail = process.env.OWNER_FALLBACK_EMAIL || "";
@@ -14,10 +34,10 @@ export async function sendContactEmails(data: ContactFormData, ip: string, userA
   const productionFromEmail = process.env.RESEND_FROM_EMAIL || "";
 
   // 1. Send Notification Email
-  const notificationFrom = isVerified 
-    ? `${productionFromName} <${productionFromEmail}>` 
+  const notificationFrom = isVerified
+    ? `${productionFromName} <${productionFromEmail}>`
     : "Website Contact <onboarding@resend.dev>";
-    
+
   const notificationTo = isVerified ? productionToEmail : fallbackEmail;
 
   const { error: notificationError } = await resend.emails.send({

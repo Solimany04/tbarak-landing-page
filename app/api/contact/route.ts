@@ -1,12 +1,33 @@
 import { NextRequest, NextResponse } from "next/server";
 import { contactSchema } from "@/lib/actions/contact/contact-schema";
 import { getClientIp } from "@/lib/actions/contact/get-ip";
-import { ratelimit } from "@/lib/actions/contact/rate-limit";
+import { getRatelimit } from "@/lib/actions/contact/rate-limit";
 import { verifyTurnstileToken } from "@/lib/actions/contact/turnstile";
-import { sendContactEmails } from "@/lib/actions/contact/email";
+import { sendContactEmails, isEmailConfigured } from "@/lib/actions/contact/email";
+
+// This route talks to Resend/Upstash/Turnstile per request; never prerender it.
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
+/** Secrets the handler cannot work without. Upstash is optional. */
+function missingConfig(): string[] {
+  const missing: string[] = [];
+  if (!isEmailConfigured()) missing.push("RESEND_API_KEY");
+  if (!process.env.TURNSTILE_SECRET_KEY) missing.push("TURNSTILE_SECRET_KEY");
+  return missing;
+}
 
 export async function POST(request: NextRequest) {
   try {
+    // 0. Configuration guard
+    // Returns 503 instead of throwing, so a deployment without the contact
+    // secrets still builds and serves; the form just reports it is unavailable.
+    const missing = missingConfig();
+    if (missing.length > 0) {
+      console.error(`Contact form disabled, missing env: ${missing.join(", ")}`);
+      return NextResponse.json({ error: "Contact form is not configured" }, { status: 503 });
+    }
+
     // 1. Content-Type & Method guards
     if (request.headers.get("content-type") !== "application/json") {
       return NextResponse.json({ error: "Invalid Content-Type" }, { status: 415 });
@@ -38,10 +59,15 @@ export async function POST(request: NextRequest) {
     const ip = getClientIp(request);
     const userAgent = request.headers.get("user-agent") || "Unknown";
 
-    // 5. Rate Limiting
-    const { success } = await ratelimit.limit(ip);
-    if (!success) {
-      return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+    // 5. Rate Limiting (skipped when Upstash is not configured)
+    const ratelimit = getRatelimit();
+    if (ratelimit) {
+      const { success } = await ratelimit.limit(ip);
+      if (!success) {
+        return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+      }
+    } else {
+      console.warn("Upstash is not configured; contact form rate limiting is disabled");
     }
 
     // 6. Turnstile Verification
