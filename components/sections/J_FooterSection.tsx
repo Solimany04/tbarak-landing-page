@@ -5,6 +5,7 @@ import Link from "next/link";
 import { MapPin, Mail } from 'lucide-react';
 import { useTranslations } from "next-intl";
 import NaviagtionButton from "../NaviagtionButton";
+import { whatsappHref, WHATSAPP_NUMBER } from "@/lib/whatsapp";
 
 const SocialIcon = ({ name, size = 16 }: { name: string; size?: number }) => {
   return <Link href="" className="bg-secondary/10 text-secondary p-2.5 rounded-full inline-flex">
@@ -21,6 +22,10 @@ const SocialIcon = ({ name, size = 16 }: { name: string; size?: number }) => {
 const J_FooterSection = () => {
   const t = useTranslations("footer");
   const t2 = useTranslations("common");
+  const supportHref = whatsappHref(t2("supportWhatsappMessage"));
+  /* No dedicated NEXT_PUBLIC_PHONE_NUMBER is configured, so "call us" falls
+     back to the WhatsApp number rather than rendering `tel:undefined`. */
+  const telHref = WHATSAPP_NUMBER ? `tel:+${WHATSAPP_NUMBER}` : "";
   return (
     <div className="flex flex-col w-full scroll-mt-21" id="footer-section">
       <div className="grid grid-cols-6 w-full pb-9 pt-24 md:ps-16 px-4">
@@ -59,10 +64,18 @@ const J_FooterSection = () => {
             <p className="">{t("sPrices")}</p></div>
           <div className="md:col-span-1 col-span-2 flex flex-col gap-6">
             <h5 className="font-bold text-primary">{t("moreTitle")}</h5>
-            <Link href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}?text=${t2("supportWhatsappMessage")}`} className="hover:text-secondary" target="_blank">
+            <Link
+              href={supportHref || "#"}
+              className={`hover:text-secondary ${supportHref ? "" : "pointer-events-none opacity-60"}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {t("support")}
             </Link>
-            <Link href={`tel:${process.env.NEXT_PUBLIC_PHONE_NUMBER}`} className="hover:text-secondary">
+            <Link
+              href={telHref || "#"}
+              className={`hover:text-secondary ${telHref ? "" : "pointer-events-none opacity-60"}`}
+            >
               {t("contactUs")}
             </Link>
           </div>

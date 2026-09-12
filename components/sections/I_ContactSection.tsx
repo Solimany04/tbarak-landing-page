@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { whatsappHref } from "@/lib/whatsapp";
 
 /* Built from Figma node 2014:3772 ("Tabarak – Landing Page Design").
    The redesign drops the email form entirely: the section is now a heading,
@@ -13,10 +14,11 @@ import { useTranslations } from "next-intl";
    `--accent` (#F58B4D) — so swapping to `bg-primary` / `bg-accent` is a
    one-word change if you ever want them back on the token system. */
 
-/* Digits only, including the country code, e.g. "201234567890".
-   Set NEXT_PUBLIC_WHATSAPP_NUMBER in the environment; until it is set the
-   button renders as a disabled-looking, non-navigating link. */
-const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "";
+/* The number lives in NEXT_PUBLIC_WHATSAPP_NUMBER and is normalised in
+   lib/whatsapp.ts (digits only, country code included). Until it is set in the
+   BUILD environment — on Vercel that means Project Settings → Environment
+   Variables plus a redeploy — the button renders as a disabled-looking,
+   non-navigating link. */
 
 /* prime:whatsapp, exported from the Figma node. The 24×24.01 outer box and
    16×16.01 glyph are the designed geometry; `currentColor` lets the glyph
@@ -43,7 +45,7 @@ const I_ContactSection = () => {
   const t = useTranslations("contact");
   const tCommon = useTranslations("common");
 
-  const whatsappHref = WHATSAPP_NUMBER ? `https://wa.me/${WHATSAPP_NUMBER}` : "";
+  const href = whatsappHref(tCommon("genericWhatsappMessage"));
 
   return (
     <section
@@ -77,8 +79,8 @@ const I_ContactSection = () => {
           {/* Figma "com Button" — fills the 426px content width, radius 30,
               px-32 py-14, gap-8. Hover variant 101:115 is a white fill with
               #1C3535 label and icon, 200ms ease-out. */}
-          <Link href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}?text=${tCommon("genericWhatsappMessage")}`} target="_blank"
-            className={`flex flex-row items-center justify-center gap-2 w-full rounded-[30px] bg-[#F68A4A] px-8 py-3.5 text-white transition-colors duration-200 ease-out hover:bg-white hover:text-[#1C3535] ${whatsappHref ? "" : "pointer-events-none"
+          <Link href={href || "#"} target="_blank" rel="noopener noreferrer"
+            className={`flex flex-row items-center justify-center gap-2 w-full rounded-[30px] bg-[#F68A4A] px-8 py-3.5 text-white transition-colors duration-200 ease-out hover:bg-white hover:text-[#1C3535] ${href ? "" : "pointer-events-none opacity-60"
               }`}
           >
             <WhatsAppIcon className="shrink-0" />

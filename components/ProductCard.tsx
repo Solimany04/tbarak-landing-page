@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { InnerGallery } from "./InnerGallery";
 import { Button } from "./ui/button";
 import Link from "next/link";
+import { whatsappHref } from "@/lib/whatsapp";
 
 interface ProductCardProps {
   item: ProductItem;
@@ -16,6 +17,7 @@ interface ProductCardProps {
 export const ProductCard: React.FC<ProductCardProps> = ({ item, status, offsetX = 0 }) => {
   const t = useTranslations("common");
   const isActive = status === "active";
+  const href = whatsappHref(`${t("productWhatsappMessage")}${item.productTitle}.`);
 
   return (
     <div
@@ -36,10 +38,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({ item, status, offsetX 
           </p>
         </div>
 
-        <Button className="bottom-0 bg-[#1c2c2e] hover:bg-[#2a3f41] text-white text-sm font-light rounded-full transition-colors duration-300 w-fit">
-                <Link href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}?text=${t("productWhatsappMessage")}${item.productTitle}.`} target="_blank">
-          {t("getItNow")}
-        </Link>
+        <Button
+          className={cn(
+            "bottom-0 bg-[#1c2c2e] hover:bg-[#2a3f41] text-white text-sm font-light rounded-full transition-colors duration-300 w-fit",
+            href ? "" : "pointer-events-none opacity-60"
+          )}
+        >
+          <Link href={href || "#"} target="_blank" rel="noopener noreferrer">
+            {t("getItNow")}
+          </Link>
         </Button>
       </div>
     </div>
