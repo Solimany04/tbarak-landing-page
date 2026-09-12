@@ -4,9 +4,10 @@ import { cn } from "@/lib/utils";
 interface InnerGalleryProps {
   images: string[];
   isActive: boolean;
+  zoomed?: boolean;
 }
 
-export const InnerGallery: React.FC<InnerGalleryProps> = ({ images, isActive }) => {
+export const InnerGallery: React.FC<InnerGalleryProps> = ({ images, isActive, zoomed = false }) => {
   const [currentPic, setCurrentPic] = useState(0);
   const [fadeOverlay, setFadeOverlay] = useState<string | null>(null);
   const [isFading, setIsFading] = useState(false);
@@ -19,6 +20,9 @@ export const InnerGallery: React.FC<InnerGalleryProps> = ({ images, isActive }) 
   const dragDistance = useRef(0);
 
   const N = images.length;
+
+  // Scale is contained by the parent's overflow-hidden frame; the parent owns the toggle
+  const zoomClasses = cn("transition-transform duration-200 ease-out origin-center", zoomed && "scale-200");
 
   useEffect(() => {
     if (!isActive) {
@@ -162,14 +166,13 @@ export const InnerGallery: React.FC<InnerGalleryProps> = ({ images, isActive }) 
     }
   };
 
-  const handleClick = () => {
-    if (dragDistance.current < 5) {
-      scrollToIndex(currentPic + 1, 'fade');
-    }
+  const handleClick = (e: MouseEvent<HTMLDivElement>) => {
+    // A drag must not bubble up as a click, since the parent toggles zoom on click
+    if (dragDistance.current >= 5) e.stopPropagation();
   };
 
   if (!isActive || images.length <= 1) {
-    return <img src={images[0]} alt="product" className="w-full h-full object-cover select-none pointer-events-none" draggable={false} />;
+    return <img src={images[0]} alt="product" className={cn("w-full h-full object-cover select-none pointer-events-none", zoomClasses)} draggable={false} />;
   }
 
   // Prepend 2 last images and append 2 first images for infinite loop buffer
@@ -183,46 +186,48 @@ export const InnerGallery: React.FC<InnerGalleryProps> = ({ images, isActive }) 
 
   return (
     <div className="relative w-full h-full">
-      <div
-        ref={scrollContainerRef}
-        onScroll={handleScroll}
-        onMouseDown={onMouseDown}
-        onMouseLeave={onMouseLeave}
-        onMouseUp={onMouseUp}
-        onMouseMove={onMouseMove}
-        onClick={handleClick}
-        className="w-full h-full flex overflow-x-auto snap-x snap-mandatory
-                   [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]
-                   cursor-grab active:cursor-grabbing"
-        dir="ltr"
-      >
-        {extendedImages.map((img, idx) => {
-          let logicalIndex = idx - 2;
-          logicalIndex = ((logicalIndex % N) + N) % N;
-
-          return (
-            <div key={idx} className="w-full h-full flex-shrink-0 snap-center relative">
-              <img 
-                src={img} 
-                alt={`product-${logicalIndex}`} 
-                className="w-full h-full object-cover select-none pointer-events-none rounded-sm" 
-                draggable={false} 
-              />
-            </div>
-          );
-        })}
-      </div>
-
-      {fadeOverlay && (
-        <div 
-          className={cn(
-            "absolute inset-0 z-10 transition-opacity duration-500 ease-in-out pointer-events-none",
-            isFading ? "opacity-100" : "opacity-0"
-          )}
+      <div className={cn("relative w-full h-full", zoomClasses)}>
+        <div
+          ref={scrollContainerRef}
+          onScroll={handleScroll}
+          onMouseDown={onMouseDown}
+          onMouseLeave={onMouseLeave}
+          onMouseUp={onMouseUp}
+          onMouseMove={onMouseMove}
+          onClick={handleClick}
+          className="w-full h-full flex overflow-x-auto snap-x snap-mandatory
+                     [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]
+                     active:cursor-grabbing"
+          dir="ltr"
         >
-          <img src={fadeOverlay} alt="fade overlay" className="w-full h-full object-cover rounded-sm" />
+          {extendedImages.map((img, idx) => {
+            let logicalIndex = idx - 2;
+            logicalIndex = ((logicalIndex % N) + N) % N;
+
+            return (
+              <div key={idx} className="w-full h-full flex-shrink-0 snap-center relative">
+                <img 
+                  src={img} 
+                  alt={`product-${logicalIndex}`} 
+                  className="w-full h-full object-cover select-none pointer-events-none rounded-sm" 
+                  draggable={false} 
+                />
+              </div>
+            );
+          })}
         </div>
-      )}
+
+        {fadeOverlay && (
+          <div 
+            className={cn(
+              "absolute inset-0 z-10 transition-opacity duration-500 ease-in-out pointer-events-none",
+              isFading ? "opacity-100" : "opacity-0"
+            )}
+          >
+            <img src={fadeOverlay} alt="fade overlay" className="w-full h-full object-cover rounded-sm" />
+          </div>
+        )}
+      </div>
 
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-black/20 backdrop-blur-sm px-3 py-1.5 rounded-full z-20">
         {images.map((_, idx) => (

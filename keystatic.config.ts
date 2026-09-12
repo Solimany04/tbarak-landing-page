@@ -1,4 +1,5 @@
 import { config, fields, collection } from '@keystatic/core';
+import { compressedImage } from '@/lib/keystatic/compressed-image';
 
 const isGithub = process.env.NEXT_PUBLIC_KEYSTATIC_STORAGE_KIND === 'github';
 
@@ -30,8 +31,16 @@ export default config({
           multiline: true,
           validation: { length: { max: 300 } },
         }),
+        // Same stored shape as fields.image (`/Products/<slug>/images/<n>.<ext>`),
+        // but uploads are resized to ≤1570px, converted to WebP and rejected if
+        // still over 1 MB — all in the browser (see lib/keystatic/compressed-image.tsx).
         images: fields.array(
-          fields.image({ label: 'Image', directory: 'public/Products', publicPath: '/Products' }),
+          compressedImage({
+            label: 'Image',
+            directory: 'public/Products',
+            publicPath: '/Products',
+            description: 'Resized to 1570px max and converted to WebP on upload. Must be under 1 MB after compression.',
+          }),
           { label: 'Images', itemLabel: (p) => p.value?.filename ?? 'Image' }
         ),
       },
