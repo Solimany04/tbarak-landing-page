@@ -93,7 +93,7 @@ const I_ContactSection = () => {
         {/* Map card — Figma "Image box", 591×573 with 10px side padding.
             The PNG in /public is the Figma export, so the 32px corner radius
             and the bottom #1C3535 gradient are already baked into it. */}
-        <div className="relative w-full max-w-[591px] px-2.5">
+        <Link href="https://maps.app.goo.gl/u6PWEFruWn1VbvgL8" target="_blank" rel="noopener noreferrer" className="relative w-full max-w-[591px] px-2.5 brightness-90 hover:brightness-110 transition-[filter] duration-400 ease-out">
           <Image
             src="/tbarak google maps location.png"
             alt={t("companyName")}
@@ -111,7 +111,7 @@ const I_ContactSection = () => {
               {t("companyName")}
             </p>
           </div>
-        </div>
+        </Link>
       </div>
     </section>
   );
