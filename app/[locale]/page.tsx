@@ -9,8 +9,12 @@ import Products from "@/components/sections/D_Products";
 import WhySection from "@/components/sections/F_WhySection";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { setRequestLocale } from "next-intl/server";
 
-export default function Home() {
+export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   return (
     <div>
       <Navbar />

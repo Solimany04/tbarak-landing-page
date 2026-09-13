@@ -8,7 +8,7 @@ import React from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "../ui/button";
 import { scrollToNextSection } from "@/lib/actions/scrollToNextSection";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import LocaleSwitcher from "../LocaleSwitcher";
 
 const Navbar = () => {

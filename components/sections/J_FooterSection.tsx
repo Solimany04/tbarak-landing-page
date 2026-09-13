@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { Logo } from "../Logo";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { MapPin, Mail } from 'lucide-react';
 import { useTranslations } from "next-intl";
 import NaviagtionButton from "../NaviagtionButton";
