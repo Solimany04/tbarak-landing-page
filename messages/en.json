@@ -6,7 +6,9 @@
     "process": "Production",
     "why": "Features",
     "contact": "Contact us",
-    "ctaNow": "Continue now"
+    "ctaNow": "Continue now",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
   },
   "hero": {
     "title": "Tbarak Fabrics",
