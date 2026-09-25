@@ -14,12 +14,12 @@ const ProductionProcess = () => {
           <div className="grid lg:grid-cols-3 md:grid-cols-2">
             <div className="lg:col-span-2 justify-center flex flex-col mb-4">
               <div className="flex items-center justify-between relative md:my-12 my-4 ">
-                <h2 className="text-[40px] md:text-5xl lg:text-[64px] md:mx-8">
+                <h3 className="text-[40px] md:text-5xl lg:text-[64px] md:mx-8">
                   {t("step1Title")}
-                </h2>
-                <h1 className="text-8xl md:text-9xl lg:text-[150px] md:absolute -top-18.5 text-primary/10 font-semibold ">
+                </h3>
+                <h3 className="text-8xl md:text-9xl lg:text-[150px] md:absolute -top-18.5 text-primary/10 font-semibold ">
                   01
-                </h1>
+                </h3>
               </div>
               <p className="text-base/8 lg:text-xl md:ms-8 md:me-8">
                 {t("step1Body")}
@@ -36,12 +36,12 @@ const ProductionProcess = () => {
           <div className="grid lg:grid-cols-3 md:grid-cols-2">
             <div className="lg:col-span-2 md:order-2 justify-center flex flex-col mb-4">
               <div className="flex items-center justify-between relative md:my-12 my-4">
-                <h2 className="text-[40px] md:text-5xl lg:text-[64px] md:ms-8">
+                <h3 className="text-[40px] md:text-5xl lg:text-[64px] md:ms-8">
                   {t("step2Title")}
-                </h2>
-                <h1 className="text-8xl md:text-9xl lg:text-[150px] md:absolute -top-18.5 text-primary/10 font-semibold md:ms-3">
+                </h3>
+                <h3 className="text-8xl md:text-9xl lg:text-[150px] md:absolute -top-18.5 text-primary/10 font-semibold md:ms-3">
                   02
-                </h1>
+                </h3>
               </div>
               <p className="text-base/8 lg:text-xl md:ms-8">
                 {t("step2Body")}
@@ -58,12 +58,12 @@ const ProductionProcess = () => {
           <div className="grid lg:grid-cols-3 md:grid-cols-2">
             <div className="lg:col-span-2 justify-center flex flex-col mb-4">
               <div className="flex items-center justify-between relative md:my-12 my-4">
-                <h2 className="text-[40px] md:text-5xl lg:text-[64px] md:mx-8">
+                <h3 className="text-[40px] md:text-5xl lg:text-[64px] md:mx-8">
                   {t("step3Title")}
-                </h2>
-                <h1 className="text-8xl md:text-9xl lg:text-[150px] md:absolute -top-18.5 text-primary/10 font-semibold ">
+                </h3>
+                <h3 className="text-8xl md:text-9xl lg:text-[150px] md:absolute -top-18.5 text-primary/10 font-semibold ">
                   03
-                </h1>
+                </h3>
               </div>
               <p className="text-base/8 lg:text-xl md:ms-8 md:me-8">
                 {t("step3Body")}

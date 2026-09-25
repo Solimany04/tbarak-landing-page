@@ -10,9 +10,9 @@ const Products = async () => {
 
   return (
     <div className=" w-full overflow-hidden mb-16 scroll-mt-16" id="products-section">
-      <h1 className=" font-semibold text-5xl mx-auto my-16 w-fit">
+      <h2 className=" font-semibold text-5xl mx-auto my-16 w-fit">
         {t("heading")} <span className="text-secondary">{t("brand")}</span>
-      </h1>
+      </h2>
       <ProductCarousel items={items} dir={locale === "ar" ? "rtl" : "ltr"} />
     </div>
   );
