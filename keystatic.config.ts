@@ -1,12 +1,14 @@
 import { config, fields, collection } from '@keystatic/core';
 import { compressedImage } from '@/lib/keystatic/compressed-image';
 
-const isGithub = process.env.NEXT_PUBLIC_KEYSTATIC_STORAGE_KIND === 'github';
 
 export default config({
-  storage: isGithub
-    ? { kind: 'github', repo: { owner: 'Solimany04', name: 'tbarak-landing-page' } }
-    : { kind: 'local' },
+  storage: {
+    kind: 'cloud',
+  },
+  cloud: {
+    project: 'tbarak/tbarak',
+  },
   ui: { brand: { name: 'لوحة التحكم' } },
   collections: {
     products: collection({
@@ -19,8 +21,8 @@ export default config({
           name: { label: 'Slug (shared across locales)', validation: { length: { max: 60 } } },
         }),
         // validation.length.max = character limit enforced in the admin UI
-        titleAr: fields.text({ label: 'Title (Arabic)', validation: { length: { max: 60 }} }),
-        titleEn: fields.text({ label: 'Title (English)', validation: { length: { max: 60 }  } }),
+        titleAr: fields.text({ label: 'Title (Arabic)', validation: { length: { max: 60 } } }),
+        titleEn: fields.text({ label: 'Title (English)', validation: { length: { max: 60 } } }),
         descAr: fields.text({
           label: 'Description (Arabic)',
           multiline: true,
