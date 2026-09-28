@@ -1,2 +1,3 @@
-# Cloudflare Pages: the export has no root page, only /ar and /en.
-/  /ar  302
+# Serve the Keystatic admin shell for any deep link under /keystatic on refresh.
+# Keystatic does its own client-side routing once loaded.
+/keystatic/*  /keystatic  200
