@@ -1,8 +1,15 @@
 'use client';
 
-import { makePage } from '@keystatic/core/ui';
-import config from '@/keystatic.config';
+import type { Config } from '@keystatic/core';
+import { Keystatic } from '@keystatic/core/ui';
+import keystaticConfig from '@/keystatic.config';
 
-// Cloud mode: this SPA authenticates against keystatic.cloud and commits to the
-// GitHub repo (tbarak/tbarak) through Keystatic Cloud — no server route of ours.
-export default makePage(config);
+// Same as @keystatic/next's makePage (which only wraps <Keystatic />), without
+// needing that extra package. The loose Config type mirrors makePage's own.
+const config: Config<any, any> = keystaticConfig;
+
+// Cloud mode: this SPA signs in against keystatic.cloud and commits to the
+// GitHub repo through Keystatic Cloud — no server route needed.
+export default function KeystaticApp() {
+  return <Keystatic config={config} />;
+}

@@ -1,7 +1,14 @@
 import KeystaticApp from './keystatic';
 
-// A second root layout, beside app/[locale]/layout.tsx. KeystaticApp renders its
-// own <html>/<body>, so this returns it directly (the official Keystatic pattern).
+// A second root layout, beside app/[locale]/layout.tsx, so it needs its own
+// <html>/<body>. The admin UI is rendered here; the catch-all page is empty.
 export default function RootLayout() {
-  return <KeystaticApp />;
+  return (
+    <html lang="en">
+      <head />
+      <body>
+        <KeystaticApp />
+      </body>
+    </html>
+  );
 }
