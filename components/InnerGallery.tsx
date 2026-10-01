@@ -1,13 +1,23 @@
 import React, { useState, useRef, useEffect, UIEvent, MouseEvent } from "react";
 import { cn } from "@/lib/utils";
+import type { ImageSize } from "@/app/utils/types";
 
 interface InnerGalleryProps {
   images: string[];
+  /** One alt per image (localized, from ProductCard). */
+  alts: string[];
+  /** Intrinsic size per image, read at build time. */
+  sizes?: (ImageSize | undefined)[];
   isActive: boolean;
   zoomed?: boolean;
 }
 
-export const InnerGallery: React.FC<InnerGalleryProps> = ({ images, isActive, zoomed = false }) => {
+/* The carousel sits well below the fold: every image is lazy and async-decoded.
+   Without loading="lazy", React preloads each <img> from <head> during SSR and
+   all product photos compete with the hero for bandwidth. */
+const lazyImgProps = { loading: "lazy", decoding: "async", draggable: false } as const;
+
+export const InnerGallery: React.FC<InnerGalleryProps> = ({ images, alts, sizes, isActive, zoomed = false }) => {
   const [currentPic, setCurrentPic] = useState(0);
   const [fadeOverlay, setFadeOverlay] = useState<string | null>(null);
   const [isFading, setIsFading] = useState(false);
@@ -172,7 +182,7 @@ export const InnerGallery: React.FC<InnerGalleryProps> = ({ images, isActive, zo
   };
 
   if (!isActive || images.length <= 1) {
-    return <img src={images[0]} alt="product" className={cn("w-full h-full object-cover select-none pointer-events-none", zoomClasses)} draggable={false} />;
+    return <img src={images[0]} alt={alts[0] ?? ""} width={sizes?.[0]?.width} height={sizes?.[0]?.height} className={cn("w-full h-full object-cover select-none pointer-events-none", zoomClasses)} {...lazyImgProps} />;
   }
 
   // Prepend 2 last images and append 2 first images for infinite loop buffer
@@ -203,14 +213,18 @@ export const InnerGallery: React.FC<InnerGalleryProps> = ({ images, isActive, zo
           {extendedImages.map((img, idx) => {
             let logicalIndex = idx - 2;
             logicalIndex = ((logicalIndex % N) + N) % N;
+            // The two slides at each end are loop-buffer clones of real slides.
+            const isClone = idx < 2 || idx >= N + 2;
 
             return (
-              <div key={idx} className="w-full h-full flex-shrink-0 snap-center relative">
-                <img 
-                  src={img} 
-                  alt={`product-${logicalIndex}`} 
-                  className="w-full h-full object-cover select-none pointer-events-none rounded-sm" 
-                  draggable={false} 
+              <div key={idx} className="w-full h-full flex-shrink-0 snap-center relative" aria-hidden={isClone || undefined}>
+                <img
+                  src={img}
+                  alt={isClone ? "" : alts[logicalIndex] ?? ""}
+                  width={sizes?.[logicalIndex]?.width}
+                  height={sizes?.[logicalIndex]?.height}
+                  className="w-full h-full object-cover select-none pointer-events-none rounded-sm"
+                  {...lazyImgProps}
                 />
               </div>
             );
@@ -224,7 +238,7 @@ export const InnerGallery: React.FC<InnerGalleryProps> = ({ images, isActive, zo
               isFading ? "opacity-100" : "opacity-0"
             )}
           >
-            <img src={fadeOverlay} alt="fade overlay" className="w-full h-full object-cover rounded-sm" />
+            <img src={fadeOverlay} alt="" aria-hidden="true" className="w-full h-full object-cover rounded-sm" decoding="async" />
           </div>
         )}
       </div>

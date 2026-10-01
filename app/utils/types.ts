@@ -1,11 +1,17 @@
 // types.ts
 import type React from "react";
 
+export interface ImageSize {
+  width: number;
+  height: number;
+}
+
 export interface ProductItem {
   productId: string;
   productTitle: string;
   productDesc: string;
   productImage: string[]; // مصفوفة تدعم صورة واحدة أو أكثر
+  productImageSizes?: (ImageSize | undefined)[]; // intrinsic size per image, read at build time
 }
 
 export type CardStatus = "active" | "adjacent" | "distant";

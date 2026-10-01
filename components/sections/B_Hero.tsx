@@ -9,20 +9,26 @@ import { ParticlesBackground } from "@/components/ParticlesBackground";
 import NaviagtionButton from "../NaviagtionButton";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { HERO_STATS } from "@/lib/site";
 
 export default function Hero() {
   const t = useTranslations("hero");
   const t2 = useTranslations("common");
+  const tAlt = useTranslations("alt");
 
   return (
     <>
       {/* height classes: h-124 md:h-154 lg:h-fit  min-h-[calc(100vh-50px)]*/}
       <main id="hero-section" className="relative min-h-178 w-full flex flex-col items-center justify-center">
+        {/* LCP element: preloaded from <head> and fetched at high priority. */}
         <Image
           src="/Hero.webp"
-          alt="background"
+          alt={tAlt("hero")}
           width={1920}
-          height={1920}
+          height={929}
+          preload
+          fetchPriority="high"
+          sizes="100vw"
           style={{
             height: "100%",
             width: "100%",
@@ -65,19 +71,19 @@ export default function Hero() {
           <div className="flex gap-16 w-full justify-center">
             <div className="flex flex-col gap-1.5">
               <h4 className="text-secondary text-2xl md:text-4xl font-semibold">
-                30+
+                {HERO_STATS.years}
               </h4>
               <p className="font-normal md:text-2xl">{t("yearsLabel")}</p>
             </div>
             <div className="flex flex-col gap-1.5">
               <h4 className="text-secondary text-2xl md:text-4xl font-semibold">
-                25+
+                {HERO_STATS.clients}
               </h4>
               <p className="font-normal md:text-2xl">{t("clientsLabel")}</p>
             </div>
             <div className="flex flex-col gap-1.5">
               <h4 className="text-secondary text-2xl md:text-4xl font-semibold">
-                15+
+                {HERO_STATS.fabrics}
               </h4>
               <p className="font-normal md:text-2xl">{t("fabricsLabel")}</p>
             </div>

@@ -13,7 +13,7 @@
   "hero": {
     "title": "Tbarak Fabrics",
     "subtitle": "quality you can feel with your hands",
-    "body": "high-quality materials, reliable supply, competitive prices.",
+    "body": "We supply fabric traders and factories with high-quality fabrics, steady supply and competitive prices.",
     "contact": "Contact us",
     "explore": "Explore now",
     "yearsLabel": "Experience",
@@ -23,7 +23,7 @@
   "about": {
     "heading": "About",
     "brand": "Tbarak",
-    "intro": "Tbarak Spinning and Weaving Company strives to provide premium-quality raw materials and fabrics at the most competitive prices.",
+    "intro": "Tbarak Spinning and Weaving Company, based in Downtown Cairo, Egypt, supplies fabric traders and factories with premium-quality raw materials and fabrics at the most competitive prices.",
     "item1": "We provide reliable fabrics with consistent quality and regular shipping.",
     "item2": "We build long-term partnerships with trusted suppliers.",
     "item3": "We maintain ready stock to support uninterrupted production.",
@@ -56,7 +56,7 @@
     "f4Title": "We provide all materials",
     "f4Sub": "You will find all the fabrics you need with us",
     "f5Title": "Free samples",
-    "f5Sub": "Send samples for product preview before ordering"
+    "f5Sub": "We send samples so you can check the fabric before you order"
   },
   "feedback": {
     "heading": "Customer reviews of",
@@ -65,7 +65,7 @@
   "contact": {
     "heading": "Let's build relationships",
     "subtitle": "Together we create more value. The journey begins with communication.",
-    "addressNote": "You can visit us at the address shown or contact us through the available channels.",
+    "addressNote": "Visit us in Downtown Cairo, Egypt, or contact us on WhatsApp or by email.",
     "companyName": "Tbarak Fabrics & Textiles"
   },
   "footer": {
@@ -94,5 +94,28 @@
     "toggleImageZoom": "Toggle product image zoom",
     "previous": "Previous",
     "next": "Next"
+  },
+  "meta": {
+    "siteName": "Tbarak Fabrics",
+    "title": "Tbarak Fabrics | Wholesale Cotton Fabrics in Egypt",
+    "description": "Wholesale cotton fabrics for traders and factories in Egypt: single jersey, Milton, piqué and interlock. Steady supply, free samples and nationwide shipping.",
+    "ogImageAlt": "Tbarak Fabrics: wholesale cotton fabrics for traders and factories",
+    "ogHeadline": "Wholesale cotton fabrics for traders and factories",
+    "ogTagline": "Quality you can feel · Free samples · Nationwide shipping",
+    "audience": "Fabric traders and factories",
+    "addressLocality": "Downtown",
+    "addressRegion": "Cairo Governorate",
+    "country": "Egypt"
+  },
+  "alt": {
+    "logoHome": "Tbarak Fabrics – home",
+    "hero": "Close-up of soft, light-coloured cotton fabric in loose folds",
+    "about": "Cotton field with open white bolls",
+    "process1": "Yarn winding machines holding cones of white cotton yarn",
+    "process2": "Modern circular knitting machine on a factory floor, surrounded by coloured yarn cones",
+    "process3": "A worker's hands inspecting a roll of fabric for quality",
+    "map": "Map showing Tbarak Fabrics' location in Downtown Cairo",
+    "social": "Tbarak on {network}",
+    "productMulti": "{name} – photo {index} of {total}"
   }
 }

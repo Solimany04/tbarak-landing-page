@@ -4,3 +4,22 @@
   X-Frame-Options: DENY
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   Strict-Transport-Security: max-age=63072000; includeSubDomains
+
+# Keep the *.pages.dev hostnames out of search: the production alias and every
+# preview deployment. Only https://tbarak.org should be indexed.
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+# CMS admin (the HTML also carries <meta name="robots" content="noindex">).
+/keystatic
+  X-Robots-Tag: noindex, nofollow
+
+/keystatic/*
+  X-Robots-Tag: noindex, nofollow
+
+# Arabic text in llms.txt needs an explicit charset.
+/llms.txt
+  Content-Type: text/plain; charset=utf-8

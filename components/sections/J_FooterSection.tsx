@@ -6,14 +6,21 @@ import { MapPin, Mail } from 'lucide-react';
 import { useTranslations } from "next-intl";
 import NaviagtionButton from "../NaviagtionButton";
 import { whatsappHref, WHATSAPP_NUMBER } from "@/lib/whatsapp";
+import { CONTACT_EMAIL, MAP_URL, SOCIAL_PROFILES } from "@/lib/site";
 
-const SocialIcon = ({ name, size = 16 }: { name: string; size?: number }) => {
-  return <Link href="" className="bg-secondary/10 text-secondary p-2.5 rounded-full inline-flex">
+type SocialNetwork = keyof typeof SOCIAL_PROFILES;
+
+/* Profile URLs live in lib/site.ts, which also feeds Organization.sameAs, so
+   the footer and the structured data always list the same profiles. */
+const SocialIcon = ({ name, size = 16 }: { name: SocialNetwork; size?: number }) => {
+  const t = useTranslations("alt");
+  const href = SOCIAL_PROFILES[name];
+  return <Link href={href} {...(href ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="bg-secondary/10 text-secondary p-2.5 rounded-full inline-flex">
     <Image
       src={`/Icons/${name}.svg`}
       width={size}
       height={size}
-      alt={`${name} logo`}
+      alt={t("social", { network: name })}
       style={{ width: size, height: size }}
     />
   </Link>
@@ -22,6 +29,7 @@ const SocialIcon = ({ name, size = 16 }: { name: string; size?: number }) => {
 const J_FooterSection = () => {
   const t = useTranslations("footer");
   const t2 = useTranslations("common");
+  const tAlt = useTranslations("alt");
   const supportHref = whatsappHref(t2("supportWhatsappMessage"));
   /* No dedicated NEXT_PUBLIC_PHONE_NUMBER is configured, so "call us" falls
      back to the WhatsApp number rather than rendering `tel:undefined`. */
@@ -33,11 +41,11 @@ const J_FooterSection = () => {
         {/* Links */}
         <div className="md:col-span-3 col-span-6 flex md:flex-col gap-6 md:pb-0 pb-8 justify-between">
           <Link href="/" className="relative w-30 h-15 bg-primary " style={{ maskImage: "url(/vector.svg)", maskRepeat: "no-repeat", maskSize: "contain", }}>
-            <Image src="/vector.svg" alt="icon" fill className="opacity-0" />
+            <Image src="/vector.svg" alt={tAlt("logoHome")} fill className="opacity-0" />
           </Link>
           <div className="flex flex-col gap-6">
-            <Link href="" className="w-fit"><MapPin className="inline me-2" />{t("address")}</Link>
-            <Link href="" className="w-fit"><Mail className="inline me-2" />contact@tbarak.com</Link>
+            <Link href={MAP_URL} target="_blank" rel="noopener noreferrer" className="w-fit"><MapPin className="inline me-2" />{t("address")}</Link>
+            <Link href={`mailto:${CONTACT_EMAIL}`} className="w-fit"><Mail className="inline me-2" />{CONTACT_EMAIL}</Link>
             {/* Social Icons */}
             <div className="flex gap-2">
               <SocialIcon name="Facebook" />

@@ -10,6 +10,8 @@ import WhySection from "@/components/sections/F_WhySection";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { setRequestLocale } from "next-intl/server";
+import StructuredData from "@/components/StructuredData";
+import type { Locale } from "@/i18n/config";
 
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -17,6 +19,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
   return (
     <div>
+      <StructuredData locale={locale as Locale} />
       <Navbar />
       <Hero />
       <About/>
