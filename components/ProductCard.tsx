@@ -16,6 +16,11 @@ interface ProductCardProps {
 
 export const ProductCard: React.FC<ProductCardProps> = ({ item, status, offsetX = 0 }) => {
   const t = useTranslations("common");
+  const tAlt = useTranslations("alt");
+  const total = item.productImage.length;
+  const alts = item.productImage.map((_, i) =>
+    total > 1 ? tAlt("productMulti", { name: item.productTitle, index: i + 1, total }) : item.productTitle
+  );
   const [isZoomed, setIsZoomed] = useState(false);
   const isActive = status === "active";
   const href = whatsappHref(`${t("productWhatsappMessage")}${item.productTitle}.`);
@@ -45,7 +50,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ item, status, offsetX 
         className={cn("w-full bg-[#fcfcfc] flex items-center justify-center relative overflow-hidden transition-all duration-500 ease-in-out outline-none focus-visible:ring-[3px] focus-visible:ring-inset focus-visible:ring-ring/50",
           isZoomed ? "cursor-zoom-out" : "cursor-zoom-in",
           isActive ? "h-90 md:h-72" : status === "adjacent" ? "h-68 md:h-47" : "h-54 md:h-22.5")}>
-        <InnerGallery images={item.productImage} isActive={isActive} zoomed={isZoomed} />
+        <InnerGallery images={item.productImage} alts={alts} sizes={item.productImageSizes} isActive={isActive} zoomed={isZoomed} />
       </div>
       <div className="p-5 w-full flex flex-col justify-between grow min-h-45">
         <div>

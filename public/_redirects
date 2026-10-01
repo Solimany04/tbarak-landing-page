@@ -1,5 +1,8 @@
 # Cloudflare Pages: the export has no root page, only /ar and /en.
-/  /ar  302
+# "/" can't pick a language without a runtime, so it is a *permanent* redirect
+# to the default locale. That consolidates the root's signals into /ar, which is
+# also the hreflang x-default (see lib/site.ts → X_DEFAULT_LOCALE).
+/  /ar  301
 
 # Serve the Keystatic admin shell for any deep link under /keystatic on refresh
 # (including the keystatic.cloud sign-in callback /keystatic/cloud/oauth/callback).

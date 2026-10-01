@@ -17,31 +17,31 @@ const WhySection = () => {
         <div className="grid grid-cols-6 gap-4 md:h-84 h-128 max-w-400 mx-auto w-full">
             <div className="md:col-span-2 col-span-3 bg-white outline-1 outline-[#152727]/8 rounded-2xl flex flex-col items-center justify-center">
                 {/* Icon */}
-                  <Image src={why1} width={50} height={50} alt='Top quality award' />
+                  <Image src={why1} width={50} height={50} alt="" />
                 <h5 className="md:text-xl text-base">{t("f1Title")}</h5>
                 <p className="text-[10px] font-light">{t("f1Sub")}</p>
             </div>
             <div className="md:col-span-2 col-span-3 bg-white outline-1 outline-[#152727]/8 rounded-2xl flex flex-col items-center justify-center">
                 {/* Icon */}
-                  <Image src={why2} width={50} height={50} alt='Affordable pricing' />
+                  <Image src={why2} width={50} height={50} alt="" />
                 <h5 className="md:text-xl text-base">{t("f2Title")}</h5>
                 <p className="text-[10px] font-light">{t("f2Sub")}</p>
             </div>
             <div className="md:col-span-2 col-span-3 bg-white outline-1 outline-[#152727]/8 rounded-2xl flex flex-col items-center justify-center">
                 {/* Icon */}
-                  <Image src={why3} width={50} height={50} alt='Shipping worldwide' />
+                  <Image src={why3} width={50} height={50} alt="" />
                 <h5 className="md:text-xl text-base">{t("f3Title")}</h5>
                 <p className="text-[10px] font-light">{t("f3Sub")}</p>
             </div>
             <div className="md:col-span-3 col-span-6  md:order-4 order-5 bg-white outline-1 outline-[#152727]/8 rounded-2xl flex flex-col items-center justify-center">
                 {/* Icon */}
-                  <Image src={why4} width={50} height={50} alt='Complete inventory' />
+                  <Image src={why4} width={50} height={50} alt="" />
                 <h5 className="md:text-xl text-base">{t("f4Title")}</h5>
                 <p className="text-[10px] font-light">{t("f4Sub")}</p>
             </div>
             <div className="col-span-3 md:order-5 order-4 bg-white outline-1 outline-[#152727]/8 rounded-2xl flex flex-col items-center justify-center">
                 {/* Icon */}
-                  <Image src={why5} width={50} height={50} alt='Free samples' />
+                  <Image src={why5} width={50} height={50} alt="" />
                 <h5 className="md:text-xl text-base">{t("f5Title")}</h5>
                 <p className="text-[10px] font-light">{t("f5Sub")}</p>
             </div>

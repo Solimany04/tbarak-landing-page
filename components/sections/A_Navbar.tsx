@@ -15,6 +15,7 @@ import LocaleSwitcher from "../LocaleSwitcher";
 const Navbar = () => {
   const t = useTranslations("nav");
   const t2 = useTranslations("common");
+  const tAlt = useTranslations("alt");
   const activeSection = useActiveSection([
     "hero-section",
     "about-section",
@@ -65,9 +66,10 @@ const Navbar = () => {
       >
         <Image
           src="/vector.svg"
-          alt="logo"
-          width={200}
-          height={200}
+          alt={tAlt("logoHome")}
+          width={100}
+          height={51}
+          loading="eager"
           className="w-full"
         />
       </Link>
@@ -145,9 +147,9 @@ const Navbar = () => {
               >
                 <Image
                   src="/vector.svg"
-                  alt="logo"
-                  width={200}
-                  height={200}
+                  alt={tAlt("logoHome")}
+                  width={100}
+                  height={51}
                   className="w-full"
                 />
               </Link>

@@ -9,7 +9,8 @@ const FeedbackCard = ({ avatar, name, desc, content }: FeedbackCardProps) => {
   return (
     <div className='h-56.5 w-95 md:w-100 bg-white flex flex-col gap-5 px-8 py-11 rounded-3xl outline-1 outline-primary/8'>
       <div className="flex gap-6 items-center">
-        <Image className='' width={70} height={70} src={avatar || "/FeedbackAvatars/Ellipse1.png"} alt={`${name || "User"}'s Avatar`}/>
+        {/* Generic illustration shared across reviewers, not their photo: decorative. */}
+        <Image className='' width={70} height={70} src={avatar || "/FeedbackAvatars/Ellipse1.png"} alt=""/>
         <div className="flex flex-col">
             <h4 className=''>{name}</h4>
             <p className="">{desc}</p>

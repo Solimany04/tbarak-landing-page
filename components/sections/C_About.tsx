@@ -8,6 +8,7 @@ import { useTranslations } from "next-intl";
 
 const About = () => {
   const t = useTranslations("about");
+  const tAlt = useTranslations("alt");
   return (
     <div className="w-full  bg-white scroll-mt-21" id="about-section">
 
@@ -18,9 +19,9 @@ const About = () => {
           <Image
             src="/List.png"
             className="rounded-4xl"
-            alt="raw_material"
-            width={550}
-            height={550}
+            alt={tAlt("about")}
+            width={421}
+            height={535}
           />
         </div>
 

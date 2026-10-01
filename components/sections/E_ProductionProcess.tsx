@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 
 const ProductionProcess = () => {
   const t = useTranslations("process");
+  const tAlt = useTranslations("alt");
   return (
     <div className="w-full bg-linear-to-b from-white scroll-mt-16" id="process-section">
       <div className=" mb-0 lg:px-16 md:px-8 px-4">
@@ -28,9 +29,9 @@ const ProductionProcess = () => {
             <Image
               className="lg:col-span-1 rounded-[40px] ms-auto"
               src="/2.png"
-              width={500}
-              height={500}
-              alt="Weavary Machine Process"
+              width={446}
+              height={568}
+              alt={tAlt("process1")}
             />
           </div>
           <div className="grid lg:grid-cols-3 md:grid-cols-2">
@@ -50,9 +51,9 @@ const ProductionProcess = () => {
             <Image
               className="lg:col-span-1 rounded-[40px] me-auto"
               src="/3.png"
-              width={500}
-              height={500}
-              alt="Weavary Machine Process"
+              width={446}
+              height={568}
+              alt={tAlt("process2")}
             />
           </div>
           <div className="grid lg:grid-cols-3 md:grid-cols-2">
@@ -72,9 +73,9 @@ const ProductionProcess = () => {
             <Image
               className="lg:col-span-1 rounded-[40px] ms-auto"
               src="/4.png"
-              width={500}
-              height={500}
-              alt="Weavary Machine Process"
+              width={446}
+              height={568}
+              alt={tAlt("process3")}
             />
           </div>
         </div>
