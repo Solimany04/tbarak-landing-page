@@ -6,14 +6,12 @@
  *
  * Loading, per locale:
  *  - critical: the 400 and 500 faces of the locale's own script (body copy and
- *    the hero heading) are declared inline in <head> and preloaded, and Latin
- *    600 (the hero stats) is declared inline too, so the hero is final at the
- *    first paint;
- *  - everything else (below-the-fold weights, the other script, the desktop
- *    nav's 300) is in /fonts.css, attached on the visitor's first scroll,
- *    touch or key, or 5 s after load (app/[locale]/layout.tsx). Until then
- *    600/700 text uses the 500 face (synthesised bold), 300 uses 400 and the
- *    other script the size-adjusted fallback, then swaps in.
+ *    the hero heading) are declared inline in <head> and preloaded;
+ *  - everything else is in /fonts.css, attached on the visitor's first
+ *    scroll, touch or key, or 5 s after load (app/[locale]/layout.tsx). Until
+ *    then 600/700 text uses the 500 face (synthesised bold), 300 uses 400 and
+ *    the other script (including the hero's "30+" digits on /ar) the
+ *    size-adjusted fallback, then swaps in.
  * Nothing font-related competes with the hero image or blocks first paint,
  * and the relayout a font swap causes stays out of the page load.
  */
@@ -44,12 +42,14 @@ const WEIGHTS = [300, 400, 500, 600, 700] as const;
 
 type Face = readonly [Subset, number];
 
-/* Per locale: `preload` = the body and hero-heading faces of its own script;
-   `inline` = faces the hero also shows (the semibold "30+" stats are Latin
-   digits in both languages), declared up front but not preloaded. */
-const CRITICAL: Record<Locale, { preload: readonly Face[]; inline: readonly Face[] }> = {
-  ar: { preload: [['arabic', 400], ['arabic', 500]], inline: [['latin', 600]] },
-  en: { preload: [['latin', 400], ['latin', 500]], inline: [['latin', 600]] },
+/* Per locale, the body and hero-heading faces of its own script. Only faces
+   that are also preloaded may be declared up front: a face Chrome discovers
+   from CSS and starts loading before the first paint holds that paint back
+   by 1-2 s, even with font-display: swap (measured against the Cloudflare
+   preview: declaring Latin 600 inline for the hero stats cost ~8 points). */
+const CRITICAL: Record<Locale, readonly Face[]> = {
+  ar: [['arabic', 400], ['arabic', 500]],
+  en: [['latin', 400], ['latin', 500]],
 };
 
 /** Served by app/fonts.css/route.ts; declares every face. */
@@ -63,10 +63,10 @@ const fontFace = (subset: Subset, weight: number) =>
 
 /** The locale's first-paint faces: URLs to preload and their @font-face rules. */
 export function criticalFonts(locale: Locale) {
-  const { preload, inline } = CRITICAL[locale];
+  const faces = CRITICAL[locale];
   return {
-    urls: preload.map(([subset, w]) => fontUrl(subset, w)),
-    css: [...preload, ...inline].map(([subset, w]) => fontFace(subset, w)).join('\n'),
+    urls: faces.map(([subset, w]) => fontUrl(subset, w)),
+    css: faces.map(([subset, w]) => fontFace(subset, w)).join('\n'),
   };
 }
 
