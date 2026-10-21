@@ -46,3 +46,6 @@ Draft/
 
 # local-only image backups (originals before compression)
 ._original_images/
+
+# local Lighthouse / PSI reports (npm run perf, npm run perf:psi)
+/perf-reports/
