@@ -1,19 +1,16 @@
 "use client"
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
+
+function subscribe(onChange: () => void) {
+  window.addEventListener("load", onChange);
+  return () => window.removeEventListener("load", onChange);
+}
 
 /** False until the window "load" event has fired (always false while server-rendering). */
 export function usePageLoaded() {
-  const [loaded, setLoaded] = useState(false);
-
-  useEffect(() => {
-    if (document.readyState === "complete") {
-      setLoaded(true);
-      return;
-    }
-    const onLoad = () => setLoaded(true);
-    window.addEventListener("load", onLoad, { once: true });
-    return () => window.removeEventListener("load", onLoad);
-  }, []);
-
-  return loaded;
+  return useSyncExternalStore(
+    subscribe,
+    () => document.readyState === "complete",
+    () => false,
+  );
 }

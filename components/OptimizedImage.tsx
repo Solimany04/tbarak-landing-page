@@ -65,7 +65,6 @@ export function OptimizedImage({
       {art?.image.webp && <source media={art.media} type="image/webp" srcSet={art.image.webp} sizes={art.sizes} />}
       {image.avif && <source type="image/avif" srcSet={image.avif} sizes={sizes} />}
       {image.webp && <source type="image/webp" srcSet={image.webp} sizes={sizes} />}
-      {/* eslint-disable-next-line @next/next/no-img-element -- static export: no image optimizer to hand this to */}
       <img
         src={image.src}
         alt={alt}
