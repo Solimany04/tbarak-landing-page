@@ -6,9 +6,14 @@ import type { OptimizedImageData } from "@/lib/images/types";
    the original file as the <img> fallback. Server components resolve the data
    with getImage() from lib/images; client components receive it as props.
 
-   No hooks, so it renders on either side. The <picture> is display:contents:
-   classes and positioning on the <img> behave exactly as on a bare <img>
-   (grid placement, absolute fill, object-cover). */
+   No hooks, so it renders on either side. The <picture> is display:contents
+   and every <source> is display:none, so only the <img> takes part in the
+   parent's layout: classes and positioning on it behave exactly as on a bare
+   <img> (grid placement, absolute fill, object-cover). Without the hidden
+   sources, each <source> became a grid item of its own and pushed the photos
+   in the Production Process grid into the wrong cells. A source's display has
+   no effect on which candidate the browser picks. */
+const SOURCE = "hidden";
 
 type ArtDirection = {
   /** Used instead of `image` while `media` matches. */
@@ -61,10 +66,10 @@ export function OptimizedImage({
 
   return (
     <picture className="contents">
-      {art?.image.avif && <source media={art.media} type="image/avif" srcSet={art.image.avif} sizes={art.sizes} />}
-      {art?.image.webp && <source media={art.media} type="image/webp" srcSet={art.image.webp} sizes={art.sizes} />}
-      {image.avif && <source type="image/avif" srcSet={image.avif} sizes={sizes} />}
-      {image.webp && <source type="image/webp" srcSet={image.webp} sizes={sizes} />}
+      {art?.image.avif && <source className={SOURCE} media={art.media} type="image/avif" srcSet={art.image.avif} sizes={art.sizes} />}
+      {art?.image.webp && <source className={SOURCE} media={art.media} type="image/webp" srcSet={art.image.webp} sizes={art.sizes} />}
+      {image.avif && <source className={SOURCE} type="image/avif" srcSet={image.avif} sizes={sizes} />}
+      {image.webp && <source className={SOURCE} type="image/webp" srcSet={image.webp} sizes={sizes} />}
       <img
         src={image.src}
         alt={alt}
