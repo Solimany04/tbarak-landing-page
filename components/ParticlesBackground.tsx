@@ -3,9 +3,12 @@
 import { useEffect, useState, type ComponentType } from "react";
 
 /* Decorative particles over the hero, kept out of the critical path: the
-   tsparticles code is fetched only after the window "load" event and an idle
-   period, so it never competes with the hero image or delays first paint.
+   tsparticles code (~140 KB, plus a costly engine start) is fetched 3 s after
+   the window "load" event, on the next idle period, so it neither competes
+   with the hero image nor lands on top of the other post-load work.
    With prefers-reduced-motion: reduce nothing is loaded at all. */
+const START_DELAY_MS = 3000;
+
 export const ParticlesBackground = () => {
   const [Canvas, setCanvas] = useState<ComponentType | null>(null);
 
@@ -22,9 +25,11 @@ export const ParticlesBackground = () => {
       });
     };
     const whenIdle = () => {
-      // Safari has no requestIdleCallback.
-      if ("requestIdleCallback" in window) idleId = window.requestIdleCallback(load, { timeout: 3000 });
-      else timeoutId = setTimeout(load, 1000);
+      timeoutId = setTimeout(() => {
+        // Safari has no requestIdleCallback.
+        if ("requestIdleCallback" in window) idleId = window.requestIdleCallback(load, { timeout: 2000 });
+        else load();
+      }, START_DELAY_MS);
     };
 
     if (document.readyState === "complete") whenIdle();

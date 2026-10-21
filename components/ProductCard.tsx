@@ -12,7 +12,7 @@ interface ProductCardProps {
   item: ProductItem;
   status: CardStatus;
   offsetX?: number;
-  /** False until the page has loaded; the photo frame stays empty until then. */
+  /** False until the carousel nears the viewport; the photo frame stays empty until then. */
   showImages: boolean;
 }
 
