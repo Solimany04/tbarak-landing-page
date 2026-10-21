@@ -7,6 +7,8 @@
  *   npm run perf                          # build + 3 runs each on /ar and /en
  *   npm run perf -- --no-build            # reuse the existing out/
  *   npm run perf -- --runs 5 --label fonts --paths /ar
+ *   npm run perf -- --cpu 8               # slower CPU, closer to PageSpeed Insights
+ *   npm run perf -- --url https://<preview>.pages.dev   # a deployed site instead of out/
  *
  * Raw Lighthouse JSON and a summary.json go to perf-reports/ (gitignored).
  * Needs a local Chrome/Chromium; set CHROME_PATH if it is not found.
@@ -29,21 +31,29 @@ import {
 const args = parseArgs(process.argv.slice(2));
 const runs = Number(args.runs ?? 3);
 const paths = String(args.paths ?? '/ar,/en').split(',');
+// Lighthouse's default is 4x. PSI's machines are slower than a typical dev
+// laptop, so a higher multiplier here tracks PSI more closely.
+const cpu = args.cpu ? Number(args.cpu) : undefined;
 
-if (!args['no-build']) {
+// --url: measure a deployed origin (real HTTPS/HTTP2/CDN) instead of a local build.
+const remote = typeof args.url === 'string' ? args.url.replace(/\/+$/, '') : null;
+
+if (!remote && !args['no-build']) {
   // `npm run build` (not `next build`) so the prebuild step runs too.
   const { status } = spawnSync('npm', ['run', 'build'], { cwd: root, stdio: 'inherit', shell: true });
   if (status !== 0) process.exit(status ?? 1);
 }
 
 const outDir = path.join(root, 'out');
-await fs.access(path.join(outDir, 'ar.html')).catch(() => {
-  console.error('out/ has no build in it; run without --no-build.');
-  process.exit(1);
-});
+if (!remote) {
+  await fs.access(path.join(outDir, 'ar.html')).catch(() => {
+    console.error('out/ has no build in it; run without --no-build.');
+    process.exit(1);
+  });
+}
 
-const server = await startServer({ root: outDir });
-const reportDir = await makeReportDir('local', args.label);
+const server = remote ? { origin: remote, close: async () => {} } : await startServer({ root: outDir });
+const reportDir = await makeReportDir(remote ? 'remote' : 'local', args.label);
 const results = {};
 
 try {
@@ -61,7 +71,7 @@ try {
           output: 'json',
           logLevel: 'error',
           onlyCategories: ['performance'],
-        });
+        }, cpu ? { extends: 'lighthouse:default', settings: { throttling: { cpuSlowdownMultiplier: cpu } } } : undefined);
         const metrics = metricsFromLhr(result.lhr);
         results[pagePath].push(metrics);
         const name = `${pagePath.replace(/\W+/g, '') || 'root'}-${i}.json`;
