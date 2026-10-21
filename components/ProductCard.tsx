@@ -12,9 +12,11 @@ interface ProductCardProps {
   item: ProductItem;
   status: CardStatus;
   offsetX?: number;
+  /** False until the page has loaded; the photo frame stays empty until then. */
+  showImages: boolean;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ item, status, offsetX = 0 }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({ item, status, offsetX = 0, showImages }) => {
   const t = useTranslations("common");
   const tAlt = useTranslations("alt");
   const total = item.productImage.length;
@@ -50,7 +52,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ item, status, offsetX 
         className={cn("w-full bg-[#fcfcfc] flex items-center justify-center relative overflow-hidden transition-all duration-500 ease-in-out outline-none focus-visible:ring-[3px] focus-visible:ring-inset focus-visible:ring-ring/50",
           isZoomed ? "cursor-zoom-out" : "cursor-zoom-in",
           isActive ? "h-90 md:h-72" : status === "adjacent" ? "h-68 md:h-47" : "h-54 md:h-22.5")}>
-        <InnerGallery images={item.productImageData} alts={alts} isActive={isActive} zoomed={isZoomed} />
+        {showImages && <InnerGallery images={item.productImageData} alts={alts} isActive={isActive} zoomed={isZoomed} />}
       </div>
       <div className="p-5 w-full flex flex-col justify-between grow min-h-45">
         <div>

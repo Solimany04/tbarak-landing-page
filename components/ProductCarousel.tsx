@@ -8,6 +8,7 @@ import { ProductCard } from "./ProductCard";
 import { cn } from "@/lib/utils";
 import { onFocusProduct } from "@/lib/actions/productCarouselNav";
 import { useTranslations } from "next-intl";
+import { usePageLoaded } from "@/lib/hooks/usePageLoaded";
 
 interface ProductCarouselProps {
   items: ProductItem[];
@@ -21,6 +22,11 @@ export const ProductCarousel: React.FC<ProductCarouselProps> = ({ items, dir = "
   const [api, setApi] = useState<CarouselApi>();
   const [currentIndex, setCurrentIndex] = useState(0);
   const isRtl = dir === "rtl";
+  // The product photos (~330 KB) sit 2000px+ down the page, yet Chrome's
+  // lazy-load margin (and its look-ahead inside carousels) would start them
+  // at the first layout, alongside the hero. They render once the page has
+  // loaded instead; the frames have fixed sizes, so nothing shifts.
+  const pageLoaded = usePageLoaded();
 
   useEffect(() => {
     if (!api) return;
@@ -76,7 +82,7 @@ export const ProductCarousel: React.FC<ProductCarouselProps> = ({ items, dir = "
                 key={item.productId}
                 className="ps-0 flex justify-center items-center basis-[332px]"
               >
-                <ProductCard item={item} status={status} offsetX={offsetX} />
+                <ProductCard item={item} status={status} offsetX={offsetX} showImages={pageLoaded} />
               </CarouselItem>
             );
           })}
