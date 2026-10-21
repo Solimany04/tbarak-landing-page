@@ -6,12 +6,16 @@
  *
  * Loading, per locale:
  *  - critical: the 400 and 500 faces of the locale's own script (body copy and
- *    the hero heading) are declared inline in <head> and preloaded;
- *  - everything else (300/600/700, the other script) is in /fonts.css, which
- *    is attached after the window "load" event. Until then 600/700 text uses
- *    the 500 face (synthesised bold) and the other script uses the
- *    size-adjusted fallback below, then swaps in.
- * Nothing font-related competes with the hero image or blocks first paint.
+ *    the hero heading) are declared inline in <head> and preloaded, and Latin
+ *    600 (the hero stats) is declared inline too, so the hero is final at the
+ *    first paint;
+ *  - everything else (below-the-fold weights, the other script, the desktop
+ *    nav's 300) is in /fonts.css, attached on the visitor's first scroll,
+ *    touch or key, or 5 s after load (app/[locale]/layout.tsx). Until then
+ *    600/700 text uses the 500 face (synthesised bold), 300 uses 400 and the
+ *    other script the size-adjusted fallback, then swaps in.
+ * Nothing font-related competes with the hero image or blocks first paint,
+ * and the relayout a font swap causes stays out of the page load.
  */
 import type { Locale } from '@/i18n/config';
 
@@ -38,9 +42,14 @@ type Subset = keyof typeof UNICODE_RANGE;
 
 const WEIGHTS = [300, 400, 500, 600, 700] as const;
 
-const CRITICAL: Record<Locale, { subset: Subset; weights: readonly number[] }> = {
-  ar: { subset: 'arabic', weights: [400, 500] },
-  en: { subset: 'latin', weights: [400, 500] },
+type Face = readonly [Subset, number];
+
+/* Per locale: `preload` = the body and hero-heading faces of its own script;
+   `inline` = faces the hero also shows (the semibold "30+" stats are Latin
+   digits in both languages), declared up front but not preloaded. */
+const CRITICAL: Record<Locale, { preload: readonly Face[]; inline: readonly Face[] }> = {
+  ar: { preload: [['arabic', 400], ['arabic', 500]], inline: [['latin', 600]] },
+  en: { preload: [['latin', 400], ['latin', 500]], inline: [['latin', 600]] },
 };
 
 /** Served by app/fonts.css/route.ts; declares every face. */
@@ -54,10 +63,10 @@ const fontFace = (subset: Subset, weight: number) =>
 
 /** The locale's first-paint faces: URLs to preload and their @font-face rules. */
 export function criticalFonts(locale: Locale) {
-  const { subset, weights } = CRITICAL[locale];
+  const { preload, inline } = CRITICAL[locale];
   return {
-    urls: weights.map((w) => fontUrl(subset, w)),
-    css: weights.map((w) => fontFace(subset, w)).join('\n'),
+    urls: preload.map(([subset, w]) => fontUrl(subset, w)),
+    css: [...preload, ...inline].map(([subset, w]) => fontFace(subset, w)).join('\n'),
   };
 }
 

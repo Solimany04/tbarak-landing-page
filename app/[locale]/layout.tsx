@@ -16,13 +16,14 @@ import {
   localePath,
 } from '@/lib/site';
 
-// Attaches every font face once the page has loaded AND painted (see
-// lib/fonts.ts). On a fast connection "load" can fire before the first paint,
-// and new @font-face rules arriving then held the first paint back by about a
-// second in Chrome; so it waits for a paint entry (3 s fallback for hidden
-// tabs). As a print stylesheet it is fetched at the lowest priority and
+// Attaches every font face (see lib/fonts.ts) on the visitor's first scroll,
+// touch or key press, or 5 s after "load". The hero already has its faces;
+// the rest is below the fold. Swapping fonts relayouts the whole page, and
+// doing it during the load (worse: before the first paint, which held that
+// paint back by about a second in Chrome) cost both real visitors and
+// PageSpeed. As a print stylesheet it is fetched at the lowest priority and
 // switches to "all" once it has arrived.
-const loadDeferredFonts = `addEventListener("load",function(){var d=0;function f(){if(d)return;d=1;var l=document.createElement("link");l.rel="stylesheet";l.media="print";l.onload=function(){l.media="all"};l.href="${DEFERRED_STYLESHEET}";document.head.appendChild(l)}if(performance.getEntriesByType("paint").length)return f();new PerformanceObserver(function(o,b){b.disconnect();f()}).observe({type:"paint"});setTimeout(f,3000)})`;
+const loadDeferredFonts = `(function(){var d=0,e=["scroll","pointerdown","keydown","touchstart"];function f(){if(d)return;d=1;e.forEach(function(n){removeEventListener(n,f,true)});var l=document.createElement("link");l.rel="stylesheet";l.media="print";l.onload=function(){l.media="all"};l.href="${DEFERRED_STYLESHEET}";document.head.appendChild(l)}e.forEach(function(n){addEventListener(n,f,{capture:true,passive:true,once:true})});addEventListener("load",function(){setTimeout(f,5000)})})()`;
 
 // Everything below is resolved at build time: one <head> per exported locale.
 export async function generateMetadata({
