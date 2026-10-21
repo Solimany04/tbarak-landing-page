@@ -32,3 +32,8 @@ https://:version.:project.pages.dev/*
 
 /_next/static/*
   Cache-Control: public, max-age=31536000, immutable
+
+# Self-hosted font files (lib/fonts.ts). Never edited in place: a new version
+# of a face gets a new file name.
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable

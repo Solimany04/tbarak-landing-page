@@ -1,5 +1,4 @@
-import { IBM_Plex_Sans_Arabic } from "next/font/google";
-
+import { preload } from "react-dom";
 import { DirectionProvider } from "@/components/ui/direction"
 import type { Metadata, Viewport } from "next";
 import "../globals.css";
@@ -7,6 +6,7 @@ import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
+import { criticalFonts, DEFERRED_STYLESHEET } from '@/lib/fonts';
 import {
   OG_IMAGE,
   OG_LOCALE,
@@ -16,17 +16,8 @@ import {
   localePath,
 } from '@/lib/site';
 
-// Only the weights the page uses (font-light … font-bold); 100/200 had no users.
-// No preloads: with display "swap" text paints in the metric-matched fallback
-// right away, and each face is fetched only once text that needs it is laid
-// out, so the 10 font files no longer compete with the hero image.
-const ibmPlexSansArabic = IBM_Plex_Sans_Arabic({
-  subsets: ["arabic", "latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  display: "swap",
-  preload: false,
-  variable: "--font-ibm-plex-sans-arabic",
-});
+// Attaches every font face once the page has loaded (see lib/fonts.ts).
+const loadDeferredFonts = `addEventListener("load",function(){var l=document.createElement("link");l.rel="stylesheet";l.href="${DEFERRED_STYLESHEET}";document.head.appendChild(l)})`;
 
 // Everything below is resolved at build time: one <head> per exported locale.
 export async function generateMetadata({
@@ -112,12 +103,21 @@ export default async function RootLayout({
   // without request-time state, which is what makes static rendering possible.
   setRequestLocale(locale);
   const dir = locale === "ar" ? "rtl" : "ltr";
+  // IBM Plex Sans Arabic: only this locale's 400/500 faces are needed for the
+  // first paint; they are declared inline and preloaded, the rest load later.
+  const fonts = criticalFonts(locale);
+  for (const href of fonts.urls) preload(href, { as: "font", type: "font/woff2" });
 
   return (
-    <html lang={locale} className={ibmPlexSansArabic.variable} dir={dir}>
-      <body
-        className={`${ibmPlexSansArabic.variable} antialiased`}
-      >
+    <html lang={locale} dir={dir}>
+      <head>
+        <style dangerouslySetInnerHTML={{ __html: fonts.css }} />
+        <script dangerouslySetInnerHTML={{ __html: loadDeferredFonts }} />
+        <noscript>
+          <link rel="stylesheet" href={DEFERRED_STYLESHEET} />
+        </noscript>
+      </head>
+      <body className="antialiased">
         <NextIntlClientProvider>
           <DirectionProvider dir={dir}>
             {children}
