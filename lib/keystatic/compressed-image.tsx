@@ -13,10 +13,10 @@
  * route, React Server Components), where Keystatic itself stubs every field
  * Input and imports none of its UI. This module mirrors that: it imports no
  * @keystar/ui and no browser code; the real input lives in
- * ./compressed-image-input.tsx and is loaded lazily, on first render, in the
- * browser only.
+ * ./compressed-image-input.tsx, which the admin page registers (lazily) with
+ * registerCompressedImageInput().
  */
-import { lazy, Suspense } from 'react';
+import { Suspense, type ComponentType } from 'react';
 import type { AssetFormField, FormFieldStoredValue } from '@keystatic/core';
 import { formatBytes } from './image-compression';
 
@@ -73,7 +73,17 @@ const getSrcPrefix = (publicPath: string | undefined, slug: string | undefined) 
     : '';
 const fixPath = (path: string) => path.replace(/^\.?\/+/, '').replace(/\/*$/, '');
 
-const LazyInput = lazy(() => import('./compressed-image-input'));
+/* The admin page hands the real input over with registerCompressedImageInput()
+   (app/keystatic/keystatic.tsx). This module must not import it, not even
+   lazily: keystatic.config.ts is also read by the site's own server code
+   (lib/content/reader.ts), and any import of the 'use client' input from there
+   makes it a client reference of /ar and /en, which then ship @keystar/ui and
+   react-aria (~170 KB) to every visitor. */
+let InputImpl: ComponentType<CompressedImageInputProps> | null = null;
+
+export function registerCompressedImageInput(component: ComponentType<CompressedImageInputProps>) {
+  InputImpl = component;
+}
 
 export function compressedImage<IsRequired extends boolean | undefined>({
   label,
@@ -109,9 +119,10 @@ export function compressedImage<IsRequired extends boolean | undefined>({
     formKind: 'asset',
     label,
     Input(props) {
+      if (!InputImpl) return null;
       return (
         <Suspense fallback={null}>
-          <LazyInput
+          <InputImpl
             {...props}
             label={label}
             description={description}

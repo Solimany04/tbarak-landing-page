@@ -1,10 +1,8 @@
 import { IBM_Plex_Sans_Arabic } from "next/font/google";
 
 import { DirectionProvider } from "@/components/ui/direction"
-import "flag-icons/css/flag-icons.min.css";
 import type { Metadata, Viewport } from "next";
 import "../globals.css";
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -123,7 +121,6 @@ export default async function RootLayout({
         <NextIntlClientProvider>
           <DirectionProvider dir={dir}>
             {children}
-            <SpeedInsights />
           </DirectionProvider>
         </NextIntlClientProvider>
       </body>

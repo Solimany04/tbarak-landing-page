@@ -1,9 +1,9 @@
 'use client';
 
 /**
- * Admin UI for the `compressedImage` field. Loaded lazily by
- * ./compressed-image.tsx so that @keystar/ui and the canvas code never reach
- * the server bundles (see the note there). Layout, labels and buttons follow
+ * Admin UI for the `compressedImage` field. Registered (lazily) by the admin
+ * page, app/keystatic/keystatic.tsx, so that @keystar/ui and the canvas code
+ * never reach the server bundles or the public pages (see compressed-image.tsx). Layout, labels and buttons follow
  * Keystatic's built-in ImageFieldInput so the field looks native.
  */
 import { ActionButton, ButtonGroup } from '@keystar/ui/button';
