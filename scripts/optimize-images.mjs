@@ -177,7 +177,7 @@ async function processImage(file, manifest) {
   const input = await fs.readFile(file);
   const hash = crypto.createHash('sha256').update(SETTINGS).update(input).digest('hex').slice(0, 10);
   const meta = await sharp(input).metadata();
-  // Extensions lie sometimes (Icons/why1 - Copy.png is an SVG); vectors stay as they are.
+  // Extensions can lie (an SVG saved as .png); vectors stay as they are.
   if (!['jpeg', 'png', 'webp', 'avif', 'heif'].includes(meta.format)) return;
   // EXIF orientations 5-8 are rotated by 90°, so width and height swap.
   const rotated = (meta.orientation ?? 1) >= 5;
