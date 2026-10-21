@@ -40,6 +40,13 @@ async function runPsi(url) {
     const res = await fetch(api);
     if (res.ok) return res.json();
     const body = await res.text();
+    if (res.status === 429 && /per day/i.test(body)) {
+      throw new Error(
+        'PSI daily quota is exhausted for anonymous requests. Create a key (Google Cloud console → ' +
+          'APIs & Services → PageSpeed Insights API → Credentials) and set PSI_API_KEY, or use ' +
+          'https://pagespeed.web.dev/ directly.',
+      );
+    }
     if ((res.status === 429 || res.status >= 500) && attempt < 4) {
       console.log(`  PSI answered ${res.status}, retrying in ${attempt * 20} s...`);
       await new Promise((r) => setTimeout(r, attempt * 20_000));

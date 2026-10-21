@@ -18,9 +18,15 @@ import {
   localePath,
 } from '@/lib/site';
 
+// Only the weights the page uses (font-light … font-bold); 100/200 had no users.
+// No preloads: with display "swap" text paints in the metric-matched fallback
+// right away, and each face is fetched only once text that needs it is laid
+// out, so the 10 font files no longer compete with the hero image.
 const ibmPlexSansArabic = IBM_Plex_Sans_Arabic({
   subsets: ["arabic", "latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+  preload: false,
   variable: "--font-ibm-plex-sans-arabic",
 });
 

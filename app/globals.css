@@ -36,8 +36,11 @@
   --sidebar-border: ;
   --sidebar-ring: ;
 
-  --font-sans: 'IBM Plex Sans Arabic', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-serif: 'IBM Plex Sans Arabic', ui-serif, Georgia, serif;
+  /* --font-ibm-plex-sans-arabic comes from next/font (app/[locale]/layout.tsx):
+     'IBM Plex Sans Arabic', 'IBM Plex Sans Arabic Fallback'. The fallback is a
+     size-adjusted local Arial, so the swap to the web font barely moves text. */
+  --font-sans: var(--font-ibm-plex-sans-arabic), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: var(--font-ibm-plex-sans-arabic), ui-serif, Georgia, serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   --radius: 0.625rem;
