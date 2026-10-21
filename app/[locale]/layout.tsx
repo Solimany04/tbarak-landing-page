@@ -16,8 +16,10 @@ import {
   localePath,
 } from '@/lib/site';
 
-// Attaches every font face once the page has loaded (see lib/fonts.ts).
-const loadDeferredFonts = `addEventListener("load",function(){var l=document.createElement("link");l.rel="stylesheet";l.href="${DEFERRED_STYLESHEET}";document.head.appendChild(l)})`;
+// Attaches every font face once the page has loaded (see lib/fonts.ts). As a
+// print stylesheet it is fetched at the lowest priority and never blocks
+// rendering; it switches to "all" as soon as it has arrived.
+const loadDeferredFonts = `addEventListener("load",function(){var l=document.createElement("link");l.rel="stylesheet";l.media="print";l.onload=function(){l.media="all"};l.href="${DEFERRED_STYLESHEET}";document.head.appendChild(l)})`;
 
 // Everything below is resolved at build time: one <head> per exported locale.
 export async function generateMetadata({
