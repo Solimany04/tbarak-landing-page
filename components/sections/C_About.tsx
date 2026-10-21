@@ -1,9 +1,10 @@
-import Image from "next/image";
 import React from "react";
 import { Button } from "../ui/button";
 import { scrollToNextSection } from "@/lib/actions/scrollToNextSection";
 import NaviagtionButton from "../NaviagtionButton";
 import { useTranslations } from "next-intl";
+import { OptimizedImage } from "../OptimizedImage";
+import { getImage } from "@/lib/images";
 
 
 const About = () => {
@@ -16,12 +17,11 @@ const About = () => {
 
         {/* Image Side */}
         <div className="flex h-134 flex-col lg:w-1/3 md:w-1/2 w-full  relative mt-4 md:mt-0">
-          <Image
-            src="/List.png"
+          <OptimizedImage
+            image={getImage("/List.png")}
+            sizes="421px"
             className="rounded-4xl"
             alt={tAlt("about")}
-            width={421}
-            height={535}
           />
         </div>
 

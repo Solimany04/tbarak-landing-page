@@ -1,4 +1,5 @@
 import { reader } from './reader';
+import { getImage } from '@/lib/images';
 import type { Locale } from '@/i18n/config';
 import type { FeedbackCardProps } from '@/app/utils/types';
 
@@ -17,7 +18,7 @@ export async function getFeedbacks(locale: Locale): Promise<FeedbackCardProps[]>
     .slice()
     .sort((a, b) => a.slug.localeCompare(b.slug, undefined, { numeric: true }))
     .map(({ entry }, i) => ({
-      avatar: AVATARS[i % AVATARS.length],
+      avatar: getImage(AVATARS[i % AVATARS.length]),
       name: pick(locale, entry.nameAr, entry.nameEn),
       desc: pick(locale, entry.roleAr, entry.roleEn),
       content: pick(locale, entry.contentAr, entry.contentEn),

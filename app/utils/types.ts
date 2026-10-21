@@ -1,23 +1,19 @@
 // types.ts
 import type React from "react";
-
-export interface ImageSize {
-  width: number;
-  height: number;
-}
+import type { OptimizedImageData } from "@/lib/images/types";
 
 export interface ProductItem {
   productId: string;
   productTitle: string;
   productDesc: string;
   productImage: string[]; // مصفوفة تدعم صورة واحدة أو أكثر
-  productImageSizes?: (ImageSize | undefined)[]; // intrinsic size per image, read at build time
+  productImageData: OptimizedImageData[]; // same images: size + AVIF/WebP srcsets, resolved at build time
 }
 
 export type CardStatus = "active" | "adjacent" | "distant";
 
 export type FeedbackCardProps = {
-    avatar?: string,
+    avatar?: OptimizedImageData,
     name?: string,
     desc?: string,
     content?: string

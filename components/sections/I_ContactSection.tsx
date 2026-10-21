@@ -1,9 +1,10 @@
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { whatsappHref } from "@/lib/whatsapp";
 import { MAP_URL } from "@/lib/site";
+import { OptimizedImage } from "../OptimizedImage";
+import { getImage } from "@/lib/images";
 
 /* Built from Figma node 2014:3772 ("Tabarak – Landing Page Design").
    The redesign drops the email form entirely: the section is now a heading,
@@ -96,11 +97,10 @@ const I_ContactSection = () => {
             The PNG in /public is the Figma export, so the 32px corner radius
             and the bottom #1C3535 gradient are already baked into it. */}
         <Link href={MAP_URL} target="_blank" rel="noopener noreferrer" className="relative w-full max-w-[591px] px-2.5 brightness-90 hover:brightness-110 transition-[filter] duration-400 ease-out">
-          <Image
-            src="/tbarak google maps location.png"
+          <OptimizedImage
+            image={getImage("/tbarak google maps location.png")}
+            sizes="571px"
             alt={tAlt("map")}
-            width={571}
-            height={573}
             className="w-full h-auto"
           />
           {/* Figma "Frame 10" — absolute, 466 wide, gap-6, aligned to the

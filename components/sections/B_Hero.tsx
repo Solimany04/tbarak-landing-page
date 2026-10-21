@@ -1,15 +1,13 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import React from "react";
-import { ChevronDown } from "lucide-react";
-import { scrollToNextSection } from "@/lib/actions/scrollToNextSection";
 import { ParticlesBackground } from "@/components/ParticlesBackground";
+import { OptimizedImage } from "@/components/OptimizedImage";
+import ScrollDownButton from "@/components/ScrollDownButton";
 import NaviagtionButton from "../NaviagtionButton";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { HERO_STATS } from "@/lib/site";
+import { getImage } from "@/lib/images";
 
 export default function Hero() {
   const t = useTranslations("hero");
@@ -20,15 +18,21 @@ export default function Hero() {
     <>
       {/* height classes: h-124 md:h-154 lg:h-fit  min-h-[calc(100vh-50px)]*/}
       <main id="hero-section" className="relative min-h-178 w-full flex flex-col items-center justify-center">
-        {/* LCP element: preloaded from <head> and fetched at high priority. */}
-        <Image
-          src="/Hero.webp"
+        {/* LCP element: preloaded from <head> and fetched at high priority.
+            The box is at least 712px tall, so object-cover never renders the
+            1920×929 image narrower than 712 × 1920/929 ≈ 1472px. Up to 712px
+            wide the box is never wider than tall, so only the central square
+            is visible: phones get just that crop, pixel for pixel the same. */}
+        <OptimizedImage
+          image={getImage("/Hero.webp")}
+          sizes="(max-width: 1472px) 1472px, 100vw"
+          art={{
+            image: getImage("/Hero.webp", "square"),
+            media: "(max-width: 712px)",
+            sizes: "712px",
+          }}
           alt={tAlt("hero")}
-          width={1920}
-          height={929}
-          preload
-          fetchPriority="high"
-          sizes="100vw"
+          priority
           style={{
             height: "100%",
             width: "100%",
@@ -90,13 +94,7 @@ export default function Hero() {
           </div>
         </div>
         <div className="flex justify-center absolute bottom-0">
-          <button
-            onClick={() => scrollToNextSection(`about-section`)}
-            className="animate-bounce"
-            aria-label="Scroll down"
-          >
-            <ChevronDown strokeWidth={1.2} className="text-white h-12 w-18 md:h-13 md:w-13 lg:mb-4.75 cursor-pointer" />
-          </button>
+          <ScrollDownButton targetId="about-section" />
         </div>
 
       </main>

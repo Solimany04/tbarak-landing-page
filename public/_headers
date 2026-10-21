@@ -23,3 +23,12 @@ https://:version.:project.pages.dev/*
 # Arabic text in llms.txt needs an explicit charset.
 /llms.txt
   Content-Type: text/plain; charset=utf-8
+
+# Generated image variants (scripts/optimize-images.mjs) and Next's build
+# output: every file name carries a content hash, so a changed file is a new
+# URL and the old one can be cached for a year.
+/_optimized/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable

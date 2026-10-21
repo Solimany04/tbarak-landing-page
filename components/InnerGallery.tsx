@@ -1,25 +1,38 @@
 import React, { useState, useRef, useEffect, UIEvent, MouseEvent } from "react";
 import { cn } from "@/lib/utils";
-import type { ImageSize } from "@/app/utils/types";
+import type { OptimizedImageData } from "@/lib/images/types";
+import { OptimizedImage } from "./OptimizedImage";
 
 interface InnerGalleryProps {
-  images: string[];
+  /** Size + AVIF/WebP srcsets per image, resolved at build time. */
+  images: OptimizedImageData[];
   /** One alt per image (localized, from ProductCard). */
   alts: string[];
-  /** Intrinsic size per image, read at build time. */
-  sizes?: (ImageSize | undefined)[];
   isActive: boolean;
   zoomed?: boolean;
 }
 
-/* The carousel sits well below the fold: every image is lazy and async-decoded.
-   Without loading="lazy", React preloads each <img> from <head> during SSR and
-   all product photos compete with the hero for bandwidth. */
-const lazyImgProps = { loading: "lazy", decoding: "async", draggable: false } as const;
+/* The carousel sits well below the fold: every image is lazy and async-decoded
+   (OptimizedImage's defaults). Without loading="lazy", React preloads each
+   <img> from <head> during SSR and all product photos compete with the hero
+   for bandwidth. */
 
-export const InnerGallery: React.FC<InnerGalleryProps> = ({ images, alts, sizes, isActive, zoomed = false }) => {
+/* `sizes` for an object-cover photo in the ACTIVE card's frame (292×360 on
+   phones, 324×288 from md): a wide photo is cropped, so it renders wider than
+   the card. Inactive cards use the same value so nothing refetches when they
+   become active. While zoomed (scale-200) it doubles, and the browser swaps
+   in a sharper variant. */
+const sizesFor = (image: OptimizedImageData | undefined, zoomed: boolean) => {
+  const aspect = image?.width && image.height ? image.width / image.height : 1;
+  const k = zoomed ? 2 : 1;
+  const phone = Math.ceil(Math.max(292, 360 * aspect) * k);
+  const desktop = Math.ceil(Math.max(324, 288 * aspect) * k);
+  return `(min-width: 768px) ${desktop}px, ${phone}px`;
+};
+
+export const InnerGallery: React.FC<InnerGalleryProps> = ({ images, alts, isActive, zoomed = false }) => {
   const [currentPic, setCurrentPic] = useState(0);
-  const [fadeOverlay, setFadeOverlay] = useState<string | null>(null);
+  const [fadeOverlay, setFadeOverlay] = useState<OptimizedImageData | null>(null);
   const [isFading, setIsFading] = useState(false);
   const isTransitioning = useRef(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -182,7 +195,7 @@ export const InnerGallery: React.FC<InnerGalleryProps> = ({ images, alts, sizes,
   };
 
   if (!isActive || images.length <= 1) {
-    return <img src={images[0]} alt={alts[0] ?? ""} width={sizes?.[0]?.width} height={sizes?.[0]?.height} className={cn("w-full h-full object-cover select-none pointer-events-none", zoomClasses)} {...lazyImgProps} />;
+    return <OptimizedImage image={images[0]} sizes={sizesFor(images[0], zoomed)} alt={alts[0] ?? ""} draggable={false} className={cn("w-full h-full object-cover select-none pointer-events-none", zoomClasses)} />;
   }
 
   // Prepend 2 last images and append 2 first images for infinite loop buffer
@@ -218,13 +231,12 @@ export const InnerGallery: React.FC<InnerGalleryProps> = ({ images, alts, sizes,
 
             return (
               <div key={idx} className="w-full h-full flex-shrink-0 snap-center relative" aria-hidden={isClone || undefined}>
-                <img
-                  src={img}
+                <OptimizedImage
+                  image={img}
+                  sizes={sizesFor(img, zoomed)}
                   alt={isClone ? "" : alts[logicalIndex] ?? ""}
-                  width={sizes?.[logicalIndex]?.width}
-                  height={sizes?.[logicalIndex]?.height}
+                  draggable={false}
                   className="w-full h-full object-cover select-none pointer-events-none rounded-sm"
-                  {...lazyImgProps}
                 />
               </div>
             );
@@ -238,7 +250,7 @@ export const InnerGallery: React.FC<InnerGalleryProps> = ({ images, alts, sizes,
               isFading ? "opacity-100" : "opacity-0"
             )}
           >
-            <img src={fadeOverlay} alt="" aria-hidden="true" className="w-full h-full object-cover rounded-sm" decoding="async" />
+            <OptimizedImage image={fadeOverlay} sizes={sizesFor(fadeOverlay, zoomed)} alt="" aria-hidden className="w-full h-full object-cover rounded-sm" />
           </div>
         )}
       </div>

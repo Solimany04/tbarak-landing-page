@@ -1,6 +1,7 @@
-import Image from "next/image";
 import React from "react";
 import { useTranslations } from "next-intl";
+import { OptimizedImage } from "../OptimizedImage";
+import { getImage } from "@/lib/images";
 
 const ProductionProcess = () => {
   const t = useTranslations("process");
@@ -26,11 +27,10 @@ const ProductionProcess = () => {
                 {t("step1Body")}
               </p>
             </div>
-            <Image
+            <OptimizedImage
               className="lg:col-span-1 rounded-[40px] ms-auto"
-              src="/2.png"
-              width={446}
-              height={568}
+              image={getImage("/2.png")}
+              sizes="446px"
               alt={tAlt("process1")}
             />
           </div>
@@ -48,11 +48,10 @@ const ProductionProcess = () => {
                 {t("step2Body")}
               </p>
             </div>
-            <Image
+            <OptimizedImage
               className="lg:col-span-1 rounded-[40px] me-auto"
-              src="/3.png"
-              width={446}
-              height={568}
+              image={getImage("/3.png")}
+              sizes="446px"
               alt={tAlt("process2")}
             />
           </div>
@@ -70,11 +69,10 @@ const ProductionProcess = () => {
                 {t("step3Body")}
               </p>
             </div>
-            <Image
+            <OptimizedImage
               className="lg:col-span-1 rounded-[40px] ms-auto"
-              src="/4.png"
-              width={446}
-              height={568}
+              image={getImage("/4.png")}
+              sizes="446px"
               alt={tAlt("process3")}
             />
           </div>
