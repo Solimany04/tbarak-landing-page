@@ -1,59 +1,42 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import Particles, { initParticlesEngine } from "@tsparticles/react";
-import { loadSlim } from "@tsparticles/slim";
+import { useEffect, useState, type ComponentType } from "react";
 
+/* Decorative particles over the hero, kept out of the critical path: the
+   tsparticles code is fetched only after the window "load" event and an idle
+   period, so it never competes with the hero image or delays first paint.
+   With prefers-reduced-motion: reduce nothing is loaded at all. */
 export const ParticlesBackground = () => {
-  const [init, setInit] = useState(false);
+  const [Canvas, setCanvas] = useState<ComponentType | null>(null);
 
   useEffect(() => {
-    initParticlesEngine(async (engine) => {
-      await loadSlim(engine);
-    }).then(() => {
-      setInit(true);
-    });
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let cancelled = false;
+    let idleId: number | undefined;
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+
+    const load = () => {
+      import("./ParticlesCanvas").then((mod) => {
+        if (!cancelled) setCanvas(() => mod.default);
+      });
+    };
+    const whenIdle = () => {
+      // Safari has no requestIdleCallback.
+      if ("requestIdleCallback" in window) idleId = window.requestIdleCallback(load, { timeout: 3000 });
+      else timeoutId = setTimeout(load, 1000);
+    };
+
+    if (document.readyState === "complete") whenIdle();
+    else window.addEventListener("load", whenIdle, { once: true });
+
+    return () => {
+      cancelled = true;
+      window.removeEventListener("load", whenIdle);
+      if (idleId !== undefined) window.cancelIdleCallback(idleId);
+      if (timeoutId !== undefined) clearTimeout(timeoutId);
+    };
   }, []);
 
-  const options = useMemo(
-    () => ({
-      fullScreen: { enable: false },
-      fpsLimit: 120,
-      particles: {
-        color: { value: "#ffffff" },
-        move: {
-          enable: true,
-          direction: "none" as const,
-          outModes: "out" as const,
-          random: true,
-          speed: 1.5,
-          straight: false,
-        },
-        number: {
-          density: { enable: true, area: 800 },
-          value: 40,
-        },
-        opacity: {
-          value: { min: 0.1, max: 0.5 },
-        },
-        shape: { type: "circle" },
-        size: {
-          value: { min: 1, max: 4 },
-        },
-      },
-    }),
-    [],
-  );
-
-  if (init) {
-    return (
-      <Particles
-        id="tsparticles"
-        className="absolute inset-0 -z-5"
-        options={options}
-      />
-    );
-  }
-
-  return null;
+  return Canvas ? <Canvas /> : null;
 };
